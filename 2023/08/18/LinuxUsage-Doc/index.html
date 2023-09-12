@@ -31,7 +31,7 @@
 <meta property="og:description" content="前言  本着记录的原则写下本文，可能会有错误或者缺漏。本文内容有相当一部分来自网络，如有侵权，请及时联系我。 网卡驱动缺失  因为ubuntu最新的lts内核还是5.15，一些网卡的驱动还没有（比如ax1675i）。解决方法一般有两个，一个是更新内核，另一个就是编译驱动到内核。  更新内核：升级 Ubuntu Linux 内核的几种不同方法 | Linux 中国-知乎 编译驱动:12345678s">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-08-18T03:14:41.000Z">
-<meta property="article:modified_time" content="2023-08-18T11:12:58.330Z">
+<meta property="article:modified_time" content="2023-09-12T01:53:44.713Z">
 <meta property="article:author" content="wu1015">
 <meta property="article:tag" content="linux网卡配置">
 <meta property="article:tag" content="linux">
@@ -199,7 +199,7 @@
 <li>clash的启动：<br>在clash二进制文件所在的目录打开终端，执行以下命令下载配置文件<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -O config.yaml &quot;https://api.sub-300.club/link/0vsALy9MsMyBad9T?clash=3&quot; </span><br></pre></td></tr></table></figure>
 如果权限不足则执行以下命令提权<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x clash</span><br></pre></td></tr></table></figure>
 最后执行二进制文件clash<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./clash -d .</span><br></pre></td></tr></table></figure>
-如果顺利的话就可以进入<a target="_blank" rel="noopener" href="https://clash.razord.top/">Clash Dashboard</a>进行更换节点的操作了。<br><code>端口在配置文件中查看</code></li>
+其中<code>-d .</code>为配置文件在当前目录<br>可以在<code>.bashrc</code>中添加<code>alias Clash_Enable=&quot;clash路径 -d 配置文件路径&quot;</code>，然后就可以直接在终端执行<code>Clash_Enable</code>启动。<br>如果顺利的话就可以进入<a target="_blank" rel="noopener" href="https://clash.razord.top/">Clash Dashboard</a>进行更换节点的操作了。<br><code>端口在配置文件中查看</code></li>
 <li>在ubuntu（gnome）的使用：只需要去设置栏添加手动代理即可。</li>
 <li>在ubuntu（xfce）的使用：<ul>
 <li>浏览器中（以firefox为例），在clash启动后进入设置配置网络代理。</li>
@@ -208,11 +208,40 @@
 </ul>
 </li>
 </ul>
+<h2 id="tcpdump的使用"><a href="#tcpdump的使用" class="headerlink" title="tcpdump的使用"></a>tcpdump的使用</h2><ul>
+<li><p>提示的语法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Usage: tcpdump [-AbdDefhHIJKlLnNOpqStuUvxX#] [ -B size ] [ -c count ] [--count]</span><br><span class="line">[ -C file_size ] [ -E algo:secret ] [ -F file ] [ -G seconds ]</span><br><span class="line">[ -i interface ] [ --immediate-mode ] [ -j tstamptype ]</span><br><span class="line">[ -M secret ] [ --number ] [ --print ] [ -Q in|out|inout ]</span><br><span class="line">[ -r file ] [ -s snaplen ] [ -T type ] [ --version ]</span><br><span class="line">[ -V file ] [ -w file ] [ -W filecount ] [ -y datalinktype ]</span><br><span class="line">[ --time-stamp-precision precision ] [ --micro ] [ --nano ]</span><br><span class="line">[ -z postrotate-command ] [ -Z user ] [ expression ]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-tcpdump.html">菜鸟教程整理的参数说明</a></p>
+<blockquote>
+<p> -a 尝试将网络和广播地址转换成名称。<br>  -c&lt;数据包数目&gt; 收到指定的数据包数目后，就停止进行倾倒操作。<br>  -d 把编译过的数据包编码转换成可阅读的格式，并倾倒到标准输出。<br>  -dd 把编译过的数据包编码转换成C语言的格式，并倾倒到标准输出。<br>  -ddd 把编译过的数据包编码转换成十进制数字的格式，并倾倒到标准输出。<br>  -e 在每列倾倒资料上显示连接层级的文件头。<br>  -f 用数字显示网际网络地址。<br>  -F&lt;表达文件&gt; 指定内含表达方式的文件。<br>  -i&lt;网络界面&gt; 使用指定的网络截面送出数据包。<br>  -l 使用标准输出列的缓冲区。<br>  -n 不把主机的网络地址转换成名字。<br>  -N 不列出域名。<br>  -O 不将数据包编码最佳化。<br>  -p 不让网络界面进入混杂模式。<br>  -q 快速输出，仅列出少数的传输协议信息。<br>  -r&lt;数据包文件&gt; 从指定的文件读取数据包数据。<br>  -s&lt;数据包大小&gt; 设置每个数据包的大小。<br>  -S 用绝对而非相对数值列出TCP关联数。<br>  -t 在每列倾倒资料上不显示时间戳记。<br>  -tt 在每列倾倒资料上显示未经格式化的时间戳记。<br>  -T&lt;数据包类型&gt; 强制将表达方式所指定的数据包转译成设置的数据包类型。<br>  -v 详细显示指令执行过程。<br>  -vv 更详细显示指令执行过程。<br>  -x 用十六进制字码列出数据包资料。<br> -w&lt;数据包文件&gt; 把数据包数据写入指定的文件。</p>
+</blockquote>
+</li>
+<li><p>具体使用<br>开启tcpdump之后默认抓取的网络为当前网络。<br>抓取并存储为<code>result.cap</code>到当前目录：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo tcpdump -w result.cap</span><br></pre></td></tr></table></figure>
+<p>保存后的文件可打开wireshark进行更详细的报文分析。<br>使用tcpdump打开<code>.cap</code>文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo tcpdump -r result.cap</span><br></pre></td></tr></table></figure>
+<p>可用<code>|grep</code>进行过滤输出，但无法在存储时进行过滤存储。</p>
+</li>
+</ul>
+<h2 id="wireshark的使用"><a href="#wireshark的使用" class="headerlink" title="wireshark的使用"></a>wireshark的使用</h2><ul>
+<li><p>下载和说明<br>wireshark是一个开源的软件，在<code>windows、linux</code>平台均可下载。在<code>linux</code>上有命令行的版本和图形化的版本。<br><code>linux</code>安装（默认全部安装）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install wireshark</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>过滤的语法<br>过滤源地址或目的地址为<code>ip_a</code>之间交换的包：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip.src==ip_a or ip.dst==ip_a</span><br></pre></td></tr></table></figure>
+<p>过滤主机ip为<code>ip_a</code>的包：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip.host==ip_a</span><br></pre></td></tr></table></figure>
+<p>过滤ip为<code>ip_a</code>的包：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip.addr==ip_a</span><br></pre></td></tr></table></figure>
+<p>直接输入协议名称则过滤该协议，如<code>Tcp、UDP</code>等。</p>
+</li>
+</ul>
 
             
         </div>
         <footer class="article-footer">
-            <a data-url="http://wu1015.github.io/2023/08/18/LinuxUsage-Doc/" data-id="cllght7560002d8l65kyjfxkb" data-title="Linux的基础使用记录"
+            <a data-url="http://wu1015.github.io/2023/08/18/LinuxUsage-Doc/" data-id="clmfnwnyw0002zol64tn24lrp" data-title="Linux的基础使用记录"
                class="article-share-link">分享</a>
             
             
