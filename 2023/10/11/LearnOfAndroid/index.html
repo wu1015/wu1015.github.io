@@ -31,7 +31,7 @@
 <meta property="og:description" content="安卓开发基础的学习笔记 Tocst的基础使用  1Toast.makeText(MainActivity.this,text_show.toString(),Toast.LENGTH_SHORT).show(); 如果您的应用以 Android 12（API 级别 31）或更高版本为目标平台，则消息框上限为两行文本，并且必须在文本旁边显示应用图标。请注意，此文本的行长因屏幕尺寸而异，因此最好尽可能">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-10-11T07:49:00.000Z">
-<meta property="article:modified_time" content="2023-10-11T08:16:12.392Z">
+<meta property="article:modified_time" content="2023-10-30T14:42:44.754Z">
 <meta property="article:author" content="wu1015">
 <meta name="twitter:card" content="summary">
     
@@ -209,7 +209,16 @@
 </blockquote>
 </li>
 <li><p>调试语句：</p>
- <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Log.d(&quot;TAG&quot;, &quot;onCheckedChanged: &quot;);</span><br></pre></td></tr></table></figure></li>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Log.d(&quot;TAG&quot;, &quot;onCheckedChanged: &quot;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>无法使用switch的原因是模块中的<code>R</code>不是final类型，因此只能用<code>if-else</code>来代替。</p>
+</li>
+<li><p>TabLayout与ViewPage2的绑定：</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">new TabLayoutMediator(tabLayout, viewPager2, true, (tab, position) -&gt; tab.setText(titleList.get(position))).attach();</span><br></pre></td></tr></table></figure>
+<p> 另外，ViewPage2的触发器继承<code>FragmentStateAdapter</code>。因为两者绑定了，所以只有ViewPage2需要触发器。</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ViewPageAdapter viewPageAdapter=new ViewPageAdapter(getActivity(),fragmentList);</span><br></pre></td></tr></table></figure>
+<p> <code>fragments</code>是<code>List&lt;Fragment&gt;</code>类型，需要在里面加入碎片以在ViewPage2中显示。</p>
+</li>
 </ol>
 
             
