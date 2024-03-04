@@ -30,8 +30,8 @@
 <meta property="og:site_name" content="wu1015&#39;s blog">
 <meta property="og:description" content="wxid添加好友可以通过a标签在微信发送来添加好友。 12345&lt;a href&#x3D;&quot;weixin:&#x2F;&#x2F;contacts&#x2F;profile&#x2F;微信id或者wxid&quot;&gt;通过wxid加好友&lt;&#x2F;a&gt;&#x2F;&#x2F; 或者&lt;a href&#x3D;&quot;weixin:&#x2F;&#x2F;findfriend&#x2F;verifycontact&#x2F;微信id或者wxid&quot;&gt;通过wxid加好友&amp;">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-02-20T02:39:10.000Z">
-<meta property="article:modified_time" content="2024-02-20T03:36:59.523Z">
+<meta property="article:published_time" content="2024-02-19T23:20:09.000Z">
+<meta property="article:modified_time" content="2024-03-04T10:53:22.477Z">
 <meta property="article:author" content="wu1015">
 <meta property="article:tag" content="微信">
 <meta name="twitter:card" content="summary">
@@ -167,7 +167,7 @@
         <div class="article-meta">
             <div class="article-date wow slideInLeft">
     <a href="/2024/02/20/WxidFound/" class="article-date-link">
-        <time datetime="2024-02-20T02:39:10.000Z"
+        <time datetime="2024-02-19T23:20:09.000Z"
               itemprop="datePublished">2024-02-20</time>
     </a>
 </div>
@@ -184,24 +184,24 @@
 
         <div class="e-content article-entry" itemprop="articleBody">
             
-                <h2 id="wxid添加好友"><a href="#wxid添加好友" class="headerlink" title="wxid添加好友"></a>wxid添加好友</h2><p>可以通过<code>a</code>标签在微信发送来添加好友。</p>
+                <h2 id="wxid添加好友"><a href="#wxid添加好友" class="headerlink" title="wxid添加好友"></a>wxid添加好友</h2><p>可以通过a标签在微信发送来添加好友。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=&quot;weixin://contacts/profile/微信id或者wxid&quot;&gt;通过wxid加好友&lt;/a&gt;</span><br><span class="line"></span><br><span class="line">// 或者</span><br><span class="line"></span><br><span class="line">&lt;a href=&quot;weixin://findfriend/verifycontact/微信id或者wxid&quot;&gt;通过wxid加好友&lt;/a&gt;</span><br></pre></td></tr></table></figure>
 
 <p>在微信8.0.24play可行，8.0.32只能收到纯文本而不是转换后的可点击的超链接。（申请添加之后可以在添加好友那看到申请添加，但对方能否看到还不好说）</p>
-<p>另外，如果目标联系人有头像和昵称的话会显示的，而不是显示<code>wxid_xxx</code>。</p>
-<h4 id="不可行方案"><a href="#不可行方案" class="headerlink" title="不可行方案"></a>不可行方案</h4><ul>
-<li>微信手机版直接搜索<code>wxid</code>。</li>
-<li>微信pc或uwp版本直接搜索<code>wxid</code>（uwp版本甚至不能加好友）。</li>
+<p>另外，如果目标联系人有头像和昵称的话会显示的，而不是显示wxid_xxx。</p>
+<h3 id="不可行方案"><a href="#不可行方案" class="headerlink" title="不可行方案"></a>不可行方案</h3><ul>
+<li>微信手机版直接搜索wxid。</li>
+<li>微信pc或uwp版本直接搜索wxid（uwp版本甚至不能加好友）。</li>
 <li>微信wx模块，在某个版本去除了对这个功能的支持（尽管之前也是捐赠之后才能有的“付费功能”）。</li>
-<li>直接拿上述<code>a</code>标签链接生成二维码进行扫描只会返回纯文本。如果是把<code>href</code>中的文本进行生成的话，扫描后会返回不支持。</li>
+<li>直接拿上述a标签链接生成二维码进行扫描只会返回纯文本。如果是把href中的文本进行生成的话，扫描后会返回不支持。</li>
 </ul>
-<h2 id="获取目前的手机号"><a href="#获取目前的手机号" class="headerlink" title="获取目前的手机号"></a>获取目前的手机号</h2><p>如果在输入错误手机号后再次输入正确手机号，目标联系人那也会出现错误手机号，进而误导我们。（前提是已经加过好友了）</p>
+<h2 id="获取目前的手机号"><a href="#获取目前的手机号" class="headerlink" title="获取目前的手机号"></a>获取目前的手机号</h2><p> 如果在输入错误手机号后再次输入正确手机号，目标联系人那也会出现错误手机号，进而误导我们。（前提是已经加过好友了）</p>
 <p>正确的手机号只是我们搜索后会跳转到目标联系人的手机号而不是微信显示的。</p>
 
             
         </div>
         <footer class="article-footer">
-            <a data-url="http://wu1015.github.io/2024/02/20/WxidFound/" data-id="clsts3ktv0000col6cn8t0ihl" data-title="wxid添加好友"
+            <a data-url="http://wu1015.github.io/2024/02/20/WxidFound/" data-id="cltctkusa0000c8l6ftggeedj" data-title="wxid添加好友"
                class="article-share-link">分享</a>
             
             
@@ -215,6 +215,20 @@
     
         
     <nav id="article-nav" class="wow fadeInUp">
+        
+            <div class="article-nav-link-wrap article-nav-link-left">
+                
+                    <img data-src="https://shp.qpic.cn/collector/1015650207/d2c09f42-9ab7-487d-947f-cf0db6e35e10/0" data-sizes="auto" alt="Win使用FTP连接VM虚拟机"
+                         class="lazyload">
+                
+                <a href="/2024/03/04/FTPUsageForWin/"></a>
+                <div class="article-nav-caption">前一篇</div>
+                <h3 class="article-nav-title">
+                    
+                        Win使用FTP连接VM虚拟机
+                    
+                </h3>
+            </div>
         
         
             <div class="article-nav-link-wrap article-nav-link-right">
@@ -259,7 +273,7 @@
         <div class="sidebar-state">
             <div class="sidebar-state-article">
                 <div>文章</div>
-                <div class="sidebar-state-number">7</div>
+                <div class="sidebar-state-number">8</div>
             </div>
             <div class="sidebar-state-category">
                 <div>分类</div>
@@ -267,7 +281,7 @@
             </div>
             <div class="sidebar-state-tag">
                 <div>标签</div>
-                <div class="sidebar-state-number">5</div>
+                <div class="sidebar-state-number">6</div>
             </div>
         </div>
         <div class="sidebar-social">
@@ -320,7 +334,7 @@
     <div class="widget-wrap wow fadeInRight">
         <h3 class="widget-title">标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">C语言</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/linux%E7%BD%91%E5%8D%A1%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">linux网卡配置</a> <a href="/tags/%E5%BE%AE%E4%BF%A1/" style="font-size: 10px;">微信</a>
+            <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">C语言</a> <a href="/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/linux%E7%BD%91%E5%8D%A1%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">linux网卡配置</a> <a href="/tags/%E5%BE%AE%E4%BF%A1/" style="font-size: 10px;">微信</a>
         </div>
     </div>
 
@@ -330,7 +344,7 @@
     <div class="widget-wrap wow fadeInRight">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">二月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">一月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">十一月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">十月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">八月 2023</a></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">三月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">二月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">一月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">十一月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">十月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">八月 2023</a></li></ul>
         </div>
     </div>
 
@@ -374,7 +388,7 @@
         <div class="sidebar-state">
             <div class="sidebar-state-article">
                 <div>文章</div>
-                <div class="sidebar-state-number">7</div>
+                <div class="sidebar-state-number">8</div>
             </div>
             <div class="sidebar-state-category">
                 <div>分类</div>
@@ -382,7 +396,7 @@
             </div>
             <div class="sidebar-state-tag">
                 <div>标签</div>
-                <div class="sidebar-state-number">5</div>
+                <div class="sidebar-state-number">6</div>
             </div>
         </div>
         <div class="sidebar-social">
