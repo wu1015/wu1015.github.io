@@ -6,7 +6,7 @@
   <link href="http://wu1015.github.io/atom.xml" rel="self"/>
   
   <link href="http://wu1015.github.io/"/>
-  <updated>2024-07-19T02:12:43.450Z</updated>
+  <updated>2024-07-19T03:00:06.323Z</updated>
   <id>http://wu1015.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>PDF与图片的互相转换</title>
+    <link href="http://wu1015.github.io/2024/07/19/pdf-convert/"/>
+    <id>http://wu1015.github.io/2024/07/19/pdf-convert/</id>
+    <published>2024-07-19T02:57:54.000Z</published>
+    <updated>2024-07-19T03:00:06.323Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="PDF转图片"><a href="#PDF转图片" class="headerlink" title="PDF转图片"></a>PDF转图片</h2><ul><li><p>众所周知，对PDF的编辑基本都是建立在对图片的修改上，那么如果将其相对无损的转化为图片就是首要的问题。</p></li><li><p>首先想到的就是截图，但这与无损相悖。那么就剩下提取了。可以使用命令将其提取出来。命令如下，会输出以<code>outputname</code>为前缀的图片。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pdftoppm input.pdf outputname -png</span><br></pre></td></tr></table></figure></li></ul><h2 id="图片转PDF"><a href="#图片转PDF" class="headerlink" title="图片转PDF"></a>图片转PDF</h2><ul><li>图片合并为PDF同样也是有命令<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">convert input.png input1.png output.pdf</span><br></pre></td></tr></table></figure></li></ul><p>如果名称基本相同的话也可以用通配符。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">convert input&#123;01...12&#125;.png output.pdf</span><br></pre></td></tr></table></figure><h2 id="可能会遇到的问题"><a href="#可能会遇到的问题" class="headerlink" title="可能会遇到的问题"></a>可能会遇到的问题</h2><ul><li><p>报错<code>convert: attempt to perform an operation not allowed by the security policy &#39;PDF&#39; @ error/constitute.c/IsCoderAuthorized/408</code>。安全策略问题。前往&#x2F;etc&#x2F;ImageMagick-6&#x2F;policy.xml改对应行如下：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 原本</span><br><span class="line">&lt;policy domain=&quot;coder&quot; rights=&quot;none&quot; pattern=&quot;PDF&quot; /&gt;</span><br><span class="line">// 改为</span><br><span class="line">&lt;policy domain=&quot;coder&quot; rights=&quot;read|write&quot; pattern=&quot;PDF&quot; /&gt;</span><br></pre></td></tr></table></figure></li><li><p>报错<code>convert-im6.q16: cache resources exhausted </code>outputname_12.png’ @ error&#x2F;cache.c&#x2F;OpenPixelCache&#x2F;4095.&#96;。爆内存问题。因为默认设置只有256MiB，去之前的配置文件改对应内存配置就可以了。</p></li></ul><h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><blockquote><ul><li><a href="https://blog.csdn.net/u013919171/article/details/113520520">在ubuntu上如何将多张图片或PDF合到一个PDF上</a></li><li><a href="https://github.com/ImageMagick/ImageMagick/issues/396#issuecomment-319569255">ImageMagick  Memory issues #396 </a></li></ul></blockquote>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;PDF转图片&quot;&gt;&lt;a href=&quot;#PDF转图片&quot; class=&quot;headerlink&quot; title=&quot;PDF转图片&quot;&gt;&lt;/a&gt;PDF转图片&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;众所周知，对PDF的编辑基本都是建立在对图片的修改上，那么如果将其相对无损的转化为图片就是</summary>
+      
+    
+    
+    
+    <category term="日常" scheme="http://wu1015.github.io/categories/%E6%97%A5%E5%B8%B8/"/>
+    
+    
+    <category term="PDF" scheme="http://wu1015.github.io/tags/PDF/"/>
+    
+  </entry>
   
   <entry>
     <title>更新Hexo出现的一些问题</title>
