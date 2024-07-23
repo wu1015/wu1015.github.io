@@ -6,7 +6,7 @@
   <link href="http://wu1015.github.io/atom.xml" rel="self"/>
   
   <link href="http://wu1015.github.io/"/>
-  <updated>2024-07-19T03:00:06.323Z</updated>
+  <updated>2024-07-23T07:43:53.744Z</updated>
   <id>http://wu1015.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Xubuntu的SFTP在thunar上的使用</title>
+    <link href="http://wu1015.github.io/2024/07/23/sftp-in-thunar/"/>
+    <id>http://wu1015.github.io/2024/07/23/sftp-in-thunar/</id>
+    <published>2024-07-23T07:40:19.000Z</published>
+    <updated>2024-07-23T07:43:53.744Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="正常使用"><a href="#正常使用" class="headerlink" title="正常使用"></a>正常使用</h2><ul><li>将sftp链接复制粘贴到thunar的地址栏上，回车就可以直接挂载了。</li><li>长时间不使用一定记得主动卸载掉。</li></ul><h2 id="异常解决"><a href="#异常解决" class="headerlink" title="异常解决"></a>异常解决</h2><ul><li>在长时间不用之后，sftp链接断开连接，但thunar没有及时中断，而是持续请求，这也会导致thunar直接卡死，重启进程，或是断网也无济于事。</li><li>只能重启解决或者使用ps命令查看sftp的进程，再直接kill掉。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ps -A | grep sftp</span><br><span class="line">// 上面得到的pid</span><br><span class="line">kill pid xxx</span><br></pre></td></tr></table></figure></li></ul><h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><blockquote><ul><li><a href="https://www.runoob.com/linux/linux-comm-kill.html">Linux kill命令_菜鸟教程</a></li></ul></blockquote>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;正常使用&quot;&gt;&lt;a href=&quot;#正常使用&quot; class=&quot;headerlink&quot; title=&quot;正常使用&quot;&gt;&lt;/a&gt;正常使用&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;将sftp链接复制粘贴到thunar的地址栏上，回车就可以直接挂载了。&lt;/li&gt;
+&lt;li&gt;长时间不使用一定记得主</summary>
+      
+    
+    
+    
+    <category term="日常" scheme="http://wu1015.github.io/categories/%E6%97%A5%E5%B8%B8/"/>
+    
+    
+    <category term="Linux" scheme="http://wu1015.github.io/tags/Linux/"/>
+    
+  </entry>
   
   <entry>
     <title>PDF与图片的互相转换</title>
