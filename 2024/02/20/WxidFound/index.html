@@ -206,7 +206,7 @@
             
         </div>
         <footer class="article-footer">
-            <a data-url="http://wu1015.github.io/2024/02/20/WxidFound/" data-id="clys2cyss00141el68ckb2ann" data-title="wxid添加好友"
+            <a data-url="http://wu1015.github.io/2024/02/20/WxidFound/" data-id="clz6aaqkx0014yul6155o6m4c" data-title="wxid添加好友"
                class="article-share-link">分享</a>
             
             
@@ -346,12 +346,53 @@
 
     
         
-    <div class="widget-wrap wow fadeInRight">
-        <h3 class="widget-title">归档</h3>
-        <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">七月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">六月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">五月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">四月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">三月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">二月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">一月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">十一月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">十月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">八月 2023</a></li></ul>
-        </div>
-    </div>
+	<div id="toca" class="widget-wrap wow fadeInRight">
+		<h3 class="widget-title">文章导航</h3>
+		<div class="widget" >
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#wxid%E6%B7%BB%E5%8A%A0%E5%A5%BD%E5%8F%8B"><span class="toc-number">1.</span> <span class="toc-text">wxid添加好友</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E5%8F%AF%E8%A1%8C%E6%96%B9%E6%A1%88"><span class="toc-number">1.1.</span> <span class="toc-text">不可行方案</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E7%9B%AE%E5%89%8D%E7%9A%84%E6%89%8B%E6%9C%BA%E5%8F%B7"><span class="toc-number">2.</span> <span class="toc-text">获取目前的手机号</span></a></li></ol>
+			<div class="sidebar-btn-wrapper" style="position:static">
+				<a href="#top">
+					<div class="sidebar-top">
+						<img src="/images/taichi.svg" height="30" width="30" alt="backtop" />
+						<div class="arrow-up"><i class="arrow-up"></i></div>
+					</div>
+					<div id="mask"></div>
+				</a>
+			</div>
+		</div>
+	</div>
+	<script src="/js/unpkg/jquery.min.js"></script>
+	<script>
+		function getElementPagePosition(element){
+			//计算x坐标
+			var actualLeft = element.offsetLeft;
+			var current = element.offsetParent;
+			while (current !== null){
+				actualLeft += current.offsetLeft;
+				current = current.offsetParent;
+			}
+			//计算y坐标
+			var actualTop = element.offsetTop;
+			var current = element.offsetParent;
+			while (current !== null){
+				actualTop += (current.offsetTop+current.clientTop);
+				current = current.offsetParent;
+			}
+			//返回结果
+			return {x: actualLeft, y: actualTop}
+		};
+		let jj=getElementPagePosition(document.getElementById('toca'));
+		$(window).scroll(function(){
+			var top = $(this).scrollTop();
+			if(top>jj.y){
+				$("#toca").css("position","fixed");
+				$("#toca").css("width","284.667px");
+				$("#toca").css("top","-35px");
+			}else{
+				$("#toca").css("position","sticky");
+			}
+		})
+	</script>
 
 
     

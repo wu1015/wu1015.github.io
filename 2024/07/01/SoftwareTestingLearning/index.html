@@ -343,7 +343,7 @@
             
         </div>
         <footer class="article-footer">
-            <a data-url="http://wu1015.github.io/2024/07/01/SoftwareTestingLearning/" data-id="clys2cysr000y1el69ext2f56" data-title="软件测试基础学习"
+            <a data-url="http://wu1015.github.io/2024/07/01/SoftwareTestingLearning/" data-id="clz6aaqkw000vyul65zbm4yoe" data-title="软件测试基础学习"
                class="article-share-link">分享</a>
             
             
@@ -483,12 +483,53 @@
 
     
         
-    <div class="widget-wrap wow fadeInRight">
-        <h3 class="widget-title">归档</h3>
-        <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">七月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">六月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">五月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">四月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">三月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">二月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">一月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">十一月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">十月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">八月 2023</a></li></ul>
-        </div>
-    </div>
+	<div id="toca" class="widget-wrap wow fadeInRight">
+		<h3 class="widget-title">文章导航</h3>
+		<div class="widget" >
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0"><span class="toc-number">1.</span> <span class="toc-text">软件测试基础学习</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%8D%E8%AF%8D%E8%A7%A3%E6%9E%90"><span class="toc-number">1.1.</span> <span class="toc-text">名词解析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E7%AD%94"><span class="toc-number">1.2.</span> <span class="toc-text">问答</span></a></li></ol></li></ol>
+			<div class="sidebar-btn-wrapper" style="position:static">
+				<a href="#top">
+					<div class="sidebar-top">
+						<img src="/images/taichi.svg" height="30" width="30" alt="backtop" />
+						<div class="arrow-up"><i class="arrow-up"></i></div>
+					</div>
+					<div id="mask"></div>
+				</a>
+			</div>
+		</div>
+	</div>
+	<script src="/js/unpkg/jquery.min.js"></script>
+	<script>
+		function getElementPagePosition(element){
+			//计算x坐标
+			var actualLeft = element.offsetLeft;
+			var current = element.offsetParent;
+			while (current !== null){
+				actualLeft += current.offsetLeft;
+				current = current.offsetParent;
+			}
+			//计算y坐标
+			var actualTop = element.offsetTop;
+			var current = element.offsetParent;
+			while (current !== null){
+				actualTop += (current.offsetTop+current.clientTop);
+				current = current.offsetParent;
+			}
+			//返回结果
+			return {x: actualLeft, y: actualTop}
+		};
+		let jj=getElementPagePosition(document.getElementById('toca'));
+		$(window).scroll(function(){
+			var top = $(this).scrollTop();
+			if(top>jj.y){
+				$("#toca").css("position","fixed");
+				$("#toca").css("width","284.667px");
+				$("#toca").css("top","-35px");
+			}else{
+				$("#toca").css("position","sticky");
+			}
+		})
+	</script>
 
 
     

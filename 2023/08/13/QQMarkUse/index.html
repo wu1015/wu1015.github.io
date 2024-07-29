@@ -214,7 +214,7 @@
             
         </div>
         <footer class="article-footer">
-            <a data-url="http://wu1015.github.io/2023/08/13/QQMarkUse/" data-id="clys2cysp000o1el6gt87d7xp" data-title="QQ收藏的妙用"
+            <a data-url="http://wu1015.github.io/2023/08/13/QQMarkUse/" data-id="clz6aaqku000kyul6dfv2a93u" data-title="QQ收藏的妙用"
                class="article-share-link">分享</a>
             
             
@@ -352,12 +352,53 @@
 
     
         
-    <div class="widget-wrap wow fadeInRight">
-        <h3 class="widget-title">归档</h3>
-        <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">七月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">六月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">五月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">四月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">三月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">二月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">一月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">十一月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">十月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">八月 2023</a></li></ul>
-        </div>
-    </div>
+	<div id="toca" class="widget-wrap wow fadeInRight">
+		<h3 class="widget-title">文章导航</h3>
+		<div class="widget" >
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AC%E8%BA%AB%E7%89%B9%E7%82%B9"><span class="toc-number">1.</span> <span class="toc-text">本身特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%9C%E4%B8%BA%E5%9B%BE%E5%BA%8A"><span class="toc-number">2.</span> <span class="toc-text">作为图床</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BD%93%E4%BD%9C%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E5%88%86%E4%BA%AB"><span class="toc-number">3.</span> <span class="toc-text">当作一篇文章分享</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%85%E5%BD%93%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E6%BA%90"><span class="toc-number">4.</span> <span class="toc-text">充当配置文件的源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A5%E5%85%85"><span class="toc-number">5.</span> <span class="toc-text">补充</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%B6%E8%97%8F%E7%9A%84%E9%93%BE%E6%8E%A5"><span class="toc-number">6.</span> <span class="toc-text">收藏的链接</span></a></li></ol>
+			<div class="sidebar-btn-wrapper" style="position:static">
+				<a href="#top">
+					<div class="sidebar-top">
+						<img src="/images/taichi.svg" height="30" width="30" alt="backtop" />
+						<div class="arrow-up"><i class="arrow-up"></i></div>
+					</div>
+					<div id="mask"></div>
+				</a>
+			</div>
+		</div>
+	</div>
+	<script src="/js/unpkg/jquery.min.js"></script>
+	<script>
+		function getElementPagePosition(element){
+			//计算x坐标
+			var actualLeft = element.offsetLeft;
+			var current = element.offsetParent;
+			while (current !== null){
+				actualLeft += current.offsetLeft;
+				current = current.offsetParent;
+			}
+			//计算y坐标
+			var actualTop = element.offsetTop;
+			var current = element.offsetParent;
+			while (current !== null){
+				actualTop += (current.offsetTop+current.clientTop);
+				current = current.offsetParent;
+			}
+			//返回结果
+			return {x: actualLeft, y: actualTop}
+		};
+		let jj=getElementPagePosition(document.getElementById('toca'));
+		$(window).scroll(function(){
+			var top = $(this).scrollTop();
+			if(top>jj.y){
+				$("#toca").css("position","fixed");
+				$("#toca").css("width","284.667px");
+				$("#toca").css("top","-35px");
+			}else{
+				$("#toca").css("position","sticky");
+			}
+		})
+	</script>
 
 
     

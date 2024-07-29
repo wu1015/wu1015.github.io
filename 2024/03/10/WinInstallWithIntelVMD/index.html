@@ -242,7 +242,7 @@
             
         </div>
         <footer class="article-footer">
-            <a data-url="http://wu1015.github.io/2024/03/10/WinInstallWithIntelVMD/" data-id="clys2cysr00111el640h42l8l" data-title="Windows重装找不到磁盘解决"
+            <a data-url="http://wu1015.github.io/2024/03/10/WinInstallWithIntelVMD/" data-id="clz6aaqkx0011yul6epeu2xbh" data-title="Windows重装找不到磁盘解决"
                class="article-share-link">分享</a>
             
             
@@ -382,12 +382,53 @@
 
     
         
-    <div class="widget-wrap wow fadeInRight">
-        <h3 class="widget-title">归档</h3>
-        <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">七月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">六月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">五月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">四月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">三月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">二月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">一月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">十一月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">十月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">八月 2023</a></li></ul>
-        </div>
-    </div>
+	<div id="toca" class="widget-wrap wow fadeInRight">
+		<h3 class="widget-title">文章导航</h3>
+		<div class="widget" >
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9A%E5%85%B3%E9%97%ADIntel-VMD%E6%8A%80%E6%9C%AF"><span class="toc-number">1.</span> <span class="toc-text">方法一：关闭Intel VMD技术</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9A%E5%AE%89%E8%A3%85Intel-Rapid-Storage-Technology%E9%A9%B1%E5%8A%A8"><span class="toc-number">2.</span> <span class="toc-text">方法二：安装Intel Rapid Storage Technology驱动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%9A%E6%9C%AA%E8%A7%A3%E5%86%B3%E7%9A%84%E7%96%91%E9%97%AE"><span class="toc-number">3.</span> <span class="toc-text">尚未解决的疑问</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E7%9A%84%E6%96%87%E7%AB%A0"><span class="toc-number">4.</span> <span class="toc-text">参考的文章</span></a></li></ol>
+			<div class="sidebar-btn-wrapper" style="position:static">
+				<a href="#top">
+					<div class="sidebar-top">
+						<img src="/images/taichi.svg" height="30" width="30" alt="backtop" />
+						<div class="arrow-up"><i class="arrow-up"></i></div>
+					</div>
+					<div id="mask"></div>
+				</a>
+			</div>
+		</div>
+	</div>
+	<script src="/js/unpkg/jquery.min.js"></script>
+	<script>
+		function getElementPagePosition(element){
+			//计算x坐标
+			var actualLeft = element.offsetLeft;
+			var current = element.offsetParent;
+			while (current !== null){
+				actualLeft += current.offsetLeft;
+				current = current.offsetParent;
+			}
+			//计算y坐标
+			var actualTop = element.offsetTop;
+			var current = element.offsetParent;
+			while (current !== null){
+				actualTop += (current.offsetTop+current.clientTop);
+				current = current.offsetParent;
+			}
+			//返回结果
+			return {x: actualLeft, y: actualTop}
+		};
+		let jj=getElementPagePosition(document.getElementById('toca'));
+		$(window).scroll(function(){
+			var top = $(this).scrollTop();
+			if(top>jj.y){
+				$("#toca").css("position","fixed");
+				$("#toca").css("width","284.667px");
+				$("#toca").css("top","-35px");
+			}else{
+				$("#toca").css("position","sticky");
+			}
+		})
+	</script>
 
 
     
