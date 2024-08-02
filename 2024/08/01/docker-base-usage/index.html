@@ -34,7 +34,7 @@
 <meta property="og:image" content="https://shp.qpic.cn/collector/1015650207/024f83b6-723d-4b3a-9fd2-cfbf500914c8/0">
 <meta property="og:image" content="https://shp.qpic.cn/collector/1015650207/000255af-63e9-4d7e-9c08-9d4cf52a1e61/0">
 <meta property="article:published_time" content="2024-08-01T09:16:57.000Z">
-<meta property="article:modified_time" content="2024-08-01T09:23:06.956Z">
+<meta property="article:modified_time" content="2024-08-02T02:55:09.380Z">
 <meta property="article:author" content="wu1015">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="Docker">
@@ -178,7 +178,7 @@
             <div class="article-date wow slideInLeft">
     <a href="/2024/08/01/docker-base-usage/" class="article-date-link">
         <time datetime="2024-08-01T09:16:57.000Z"
-              itemprop="datePublished">2024-08-01 Last 2024-08-01</time>
+              itemprop="datePublished">2024-08-01 Last 2024-08-02</time>
     </a>
 </div>
 
@@ -231,6 +231,9 @@
 </li>
 <li><p>进入已经打开了的容器，<code>CONTAINER ID</code>和<code>NAMES</code>为之前看到的容器属性，用哪个都行。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker attach &lt;CONTAINER ID&gt; &lt;NAMES&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>退出但不关闭容器</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 输入Ctrl P Q</span><br><span class="line"></span><br><span class="line">//退出并关闭容器</span><br><span class="line">exit</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>修改容器名称</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rename 原容器名称 新容器名称</span><br></pre></td></tr></table></figure>
@@ -286,6 +289,20 @@
         
     <nav id="article-nav" class="wow fadeInUp">
         
+            <div class="article-nav-link-wrap article-nav-link-left">
+                
+                    <img data-src="https://shp.qpic.cn/collector/1015650207/5f7a0192-2d0d-492c-9508-7e4d058e67da/0" data-sizes="auto" alt="Docker配置Jupyter"
+                         class="lazyload">
+                
+                <a href="/2024/08/02/docker-with-jupyter/"></a>
+                <div class="article-nav-caption">前一篇</div>
+                <h3 class="article-nav-title">
+                    
+                        Docker配置Jupyter
+                    
+                </h3>
+            </div>
+        
         
             <div class="article-nav-link-wrap article-nav-link-right">
                 
@@ -329,7 +346,7 @@
         <div class="sidebar-state">
             <div class="sidebar-state-article">
                 <div>文章</div>
-                <div class="sidebar-state-number">19</div>
+                <div class="sidebar-state-number">20</div>
             </div>
             <div class="sidebar-state-category">
                 <div>分类</div>
@@ -390,7 +407,7 @@
     <div class="widget-wrap wow fadeInRight">
         <h3 class="widget-title">标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 15px;">C语言</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Linux%E7%BD%91%E5%8D%A1%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">Linux网卡配置</a> <a href="/tags/PDF/" style="font-size: 10px;">PDF</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 10px;">人工智能</a> <a href="/tags/%E5%BE%AE%E4%BF%A1/" style="font-size: 10px;">微信</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/" style="font-size: 10px;">软件测试</a>
+            <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 15px;">C语言</a> <a href="/tags/Docker/" style="font-size: 15px;">Docker</a> <a href="/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Linux%E7%BD%91%E5%8D%A1%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">Linux网卡配置</a> <a href="/tags/PDF/" style="font-size: 10px;">PDF</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 10px;">人工智能</a> <a href="/tags/%E5%BE%AE%E4%BF%A1/" style="font-size: 10px;">微信</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/" style="font-size: 10px;">软件测试</a>
         </div>
     </div>
 
@@ -500,7 +517,7 @@
         <div class="sidebar-state">
             <div class="sidebar-state-article">
                 <div>文章</div>
-                <div class="sidebar-state-number">19</div>
+                <div class="sidebar-state-number">20</div>
             </div>
             <div class="sidebar-state-category">
                 <div>分类</div>
