@@ -165,23 +165,76 @@
         
     <div class="post-wrap-left wow fadeInUp">
         
-            <a class="post-link" href="/2024/08/02/docker-with-jupyter/"></a>
+            <a class="post-link" href="/2024/08/09/mix2s-flash-root/"></a>
         
         
         <div class="post-cover-left">
             
-                <img data-src="https://shp.qpic.cn/collector/1015650207/5f7a0192-2d0d-492c-9508-7e4d058e67da/0" data-sizes="auto" alt="Docker配置Jupyter" class="lazyload">
+                <img data-src="https://shp.qpic.cn/collector/1015650207/131ca15d-b108-492d-a331-89a055bef3cf/0" data-sizes="auto" alt="MOMO提示分区挂载异常问题解决以及Mix2s的类原生优化" class="lazyload">
             
 
         </div>
         <div class="post-info">
             <div class="post-meta">
+                <a><span class="icon-calendar"></span>2024-08-09</a>
+                
+                    <a><span class="icon-pencil"></span>1k 字</a>
+                
+                
+                    <a><span class="icon-clock"></span>2024-08-09 08:36</a>
+                
+            </div>
+            <h2 class="post-title">MOMO提示分区挂载异常问题解决以及Mix2s的类原生优化</h2>
+            <article class="post-article">
+                
+                    前提说明
+使用的是机器是MIX2S
+面具：官方面具，版本为27.0
+shamiko版本：1.1
+momo版本：4.4.2
+内核：sakura 2.5（4.9.332）
+
+分区挂载异常
+经过测试发现在刷入面具、LSP框架和shamiko之后momo出现分区挂载异常的回报。
+
+在删除LSP后回报消失。
+
+
+
+在删除shamiko之后回报消失。
+
+
+
+在刷入内核前无分区挂载异常回报。
+
+
+结论：shamiko、LSP、第三方内核只能同时存在两个，出现第三个必定回报分区挂载异常。
+解决：删掉一个，或者是放着不管，毕竟不太影响。经过测试，在momo回报分区挂载异常、设备运行在非官方系统、发现代码注入、调
+                
+            </article>
+        </div>
+    </div>
+
+
+    
+        
+    <div class="post-wrap-right wow fadeInUp">
+        
+            <a class="post-link" href="/2024/08/02/docker-with-jupyter/"></a>
+        
+        <div class="post-cover-right">
+            
+                <img data-src="https://shp.qpic.cn/collector/1015650207/5f7a0192-2d0d-492c-9508-7e4d058e67da/0" data-sizes="auto" alt="Docker配置Jupyter" class="lazyload">
+            
+        </div>
+        <div class="post-info">
+            <div class="post-meta">
                 <a><span class="icon-calendar"></span>2024-08-02</a>
                 
-                    <a><span class="icon-pencil"></span>996 字</a>
+                    <a><span class="icon-pencil"></span>1.1k 字</a>
                 
                 
-                    <a><span class="icon-clock"></span>2024-08-02 16:21</a>
+                    <a><span class="icon-clock"></span>2024-08-09 08:33</a>
                 
             </div>
             <h2 class="post-title">Docker配置Jupyter</h2>
@@ -195,8 +248,8 @@
 1docker load --input 路径/文件名.tar
 
 启动容器
-注意要设置好端口，不然后面设置会很麻烦。要设置GPU的话也是一样，后面再弄会很麻烦。要么弄成个镜像再启动一边，要么停止docker然后修改文件，具体应该可以度娘，这里就不再赘述。IMAGE ID可执行docker images得到，也就是镜像的ID。
-1234567docker run --name 自己想要的名字 -it -p 本地端口:容器端口 IMAGE ID// 也可以不指定本地端口，让系统选一个空闲的端口docker ru
+注意要设置好端口，不然后面设置会很麻烦。要设置GPU的话也是一样，后面再弄会很麻烦。要么弄成个镜像再启动一遍，要么停止docker然后修改文件，具体应该可以度娘，这里就不再赘述。IMAGE ID可执行docker images得到，也就是镜像的ID。包括shm的配置也是，如果没有修改配置文件的话，默认为64M，这显然是不够用的。
+12345678910docker run --name 自己想要的名字 -it -p 本地端口:容器端
                 
             </article>
         </div>
@@ -205,14 +258,16 @@
 
     
         
-    <div class="post-wrap-right wow fadeInUp">
+    <div class="post-wrap-left wow fadeInUp">
         
             <a class="post-link" href="/2024/08/01/docker-base-usage/"></a>
         
-        <div class="post-cover-right">
+        
+        <div class="post-cover-left">
             
                 <img data-src="https://shp.qpic.cn/collector/1015650207/83ce2fdb-d763-4c25-beb0-3e4c01c12d5f/0" data-sizes="auto" alt="Docker的基本使用" class="lazyload">
             
+
         </div>
         <div class="post-info">
             <div class="post-meta">
@@ -247,16 +302,14 @@
 
     
         
-    <div class="post-wrap-left wow fadeInUp">
+    <div class="post-wrap-right wow fadeInUp">
         
             <a class="post-link" href="/2024/07/23/sftp-in-thunar/"></a>
         
-        
-        <div class="post-cover-left">
+        <div class="post-cover-right">
             
                 <img data-src="https://shp.qpic.cn/collector/1015650207/2453f5ac-4a93-4d3d-99c4-305062c5ea80/0" data-sizes="auto" alt="Xubuntu的SFTP在thunar上的使用" class="lazyload">
             
-
         </div>
         <div class="post-info">
             <div class="post-meta">
@@ -293,14 +346,16 @@ Linux kill命令_菜鸟教程
 
     
         
-    <div class="post-wrap-right wow fadeInUp">
+    <div class="post-wrap-left wow fadeInUp">
         
             <a class="post-link" href="/2024/07/19/pdf-convert/"></a>
         
-        <div class="post-cover-right">
+        
+        <div class="post-cover-left">
             
                 <img data-src="https://shp.qpic.cn/collector/1015650207/9987d8dc-d7c7-4cd9-9a15-ae26cde8a323/0" data-sizes="auto" alt="PDF与图片的互相转换" class="lazyload">
             
+
         </div>
         <div class="post-info">
             <div class="post-meta">
@@ -336,16 +391,14 @@ Linux kill命令_菜鸟教程
 
     
         
-    <div class="post-wrap-left wow fadeInUp">
+    <div class="post-wrap-right wow fadeInUp">
         
             <a class="post-link" href="/2024/07/19/hexo-update-mark/"></a>
         
-        
-        <div class="post-cover-left">
+        <div class="post-cover-right">
             
                 <img data-src="https://shp.qpic.cn/collector/1015650207/90920c13-4b19-4d01-8824-647992cabf13/0" data-sizes="auto" alt="更新Hexo出现的一些问题" class="lazyload">
             
-
         </div>
         <div class="post-info">
             <div class="post-meta">
@@ -373,14 +426,16 @@ Linux kill命令_菜鸟教程
 
     
         
-    <div class="post-wrap-right wow fadeInUp">
+    <div class="post-wrap-left wow fadeInUp">
         
             <a class="post-link" href="/2024/07/01/SoftwareTestingLearning/"></a>
         
-        <div class="post-cover-right">
+        
+        <div class="post-cover-left">
             
                 <img data-src="https://shp.qpic.cn/collector/1015650207/52ffd40d-348f-4d2f-a8e3-57a96f25c8a0/0" data-sizes="auto" alt="软件测试基础学习" class="lazyload">
             
+
         </div>
         <div class="post-info">
             <div class="post-meta">
@@ -411,16 +466,14 @@ Linux kill命令_菜鸟教程
 
     
         
-    <div class="post-wrap-left wow fadeInUp">
+    <div class="post-wrap-right wow fadeInUp">
         
             <a class="post-link" href="/2024/06/27/CRCLearningByC/"></a>
         
-        
-        <div class="post-cover-left">
+        <div class="post-cover-right">
             
                 <img data-src="https://shp.qpic.cn/collector/1015650207/73b98eca-95e7-4fe0-9f53-9de4e08dda8d/0" data-sizes="auto" alt="CRC校验的C语言实现" class="lazyload">
             
-
         </div>
         <div class="post-info">
             <div class="post-meta">
@@ -450,14 +503,16 @@ CRC-4 &amp;#x3D;&amp;gt; x4+
 
     
         
-    <div class="post-wrap-right wow fadeInUp">
+    <div class="post-wrap-left wow fadeInUp">
         
             <a class="post-link" href="/2024/06/03/ColabUsage/"></a>
         
-        <div class="post-cover-right">
+        
+        <div class="post-cover-left">
             
                 <img data-src="https://shp.qpic.cn/collector/1015650207/3605ab31-b8ae-4125-89df-4a9836074166/0" data-sizes="auto" alt="Colab的简单使用" class="lazyload">
             
+
         </div>
         <div class="post-info">
             <div class="post-meta">
@@ -486,16 +541,14 @@ Colab，免费用户可使用 T4 GPU 和 CPU。T4 虽然不说有多强吧，但
 
     
         
-    <div class="post-wrap-left wow fadeInUp">
+    <div class="post-wrap-right wow fadeInUp">
         
             <a class="post-link" href="/2024/05/01/WPSForLinuxUse/"></a>
         
-        
-        <div class="post-cover-left">
+        <div class="post-cover-right">
             
                 <img data-src="https://shp.qpic.cn/collector/1015650207/67c474a0-5841-4101-846e-3894f684b185/0" data-sizes="auto" alt="WPS For Linux几个版本的体验" class="lazyload">
             
-
         </div>
         <div class="post-info">
             <div class="post-meta">
@@ -524,52 +577,11 @@ With Deb
 
 
     
-        
-    <div class="post-wrap-right wow fadeInUp">
-        
-            <a class="post-link" href="/2024/04/24/NewIDEAVersionWithJavaEE/"></a>
-        
-        <div class="post-cover-right">
-            
-                <img data-src="https://shp.qpic.cn/collector/1015650207/9d2c04d1-8ba2-4208-9c78-9dfa308d2b3e/0" data-sizes="auto" alt="新版IDEA创建JavaWeb" class="lazyload">
-            
-        </div>
-        <div class="post-info">
-            <div class="post-meta">
-                <a><span class="icon-calendar"></span>2024-04-24</a>
-                
-                    <a><span class="icon-pencil"></span>272 字</a>
-                
-                
-                    <a><span class="icon-clock"></span>2024-04-24 19:58</a>
-                
-            </div>
-            <h2 class="post-title">新版IDEA创建JavaWeb</h2>
-            <article class="post-article">
-                
-                    问题描述
-从 IntelliJ IDEA 2022.1 版本开始，JetBrains 开始支持 Jakarta EE 项目。因此，从 IntelliJ IDEA 2022.1 版本开始，将无法像以前版本一样创建 JavaEE 项目。
-
-解决方法
-创建普通的Java项目
-右键项目然后添加框架add framework support
-如果右键没有这个选项则可以在Navigate/Search Everywhere中搜索add framework aupport添加
-添加WebApplication
-
-问题源头
-2009年，Oracle 宣布收购 SUN，Java 相关技术自然归 Oracle 所
-                
-            </article>
-        </div>
-    </div>
-
-
-    
 
 
     <nav id="page-nav" class="wow fadeInUp">
         
-        <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">下一页 &raquo;</a>
+        <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">下一页 &raquo;</a>
     </nav>
 
 
@@ -585,7 +597,7 @@ With Deb
         <div class="sidebar-state">
             <div class="sidebar-state-article">
                 <div>文章</div>
-                <div class="sidebar-state-number">20</div>
+                <div class="sidebar-state-number">21</div>
             </div>
             <div class="sidebar-state-category">
                 <div>分类</div>
@@ -593,7 +605,7 @@ With Deb
             </div>
             <div class="sidebar-state-tag">
                 <div>标签</div>
-                <div class="sidebar-state-number">12</div>
+                <div class="sidebar-state-number">13</div>
             </div>
         </div>
         <div class="sidebar-social">
@@ -646,7 +658,7 @@ With Deb
     <div class="widget-wrap wow fadeInRight">
         <h3 class="widget-title">标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 15px;">C语言</a> <a href="/tags/Docker/" style="font-size: 15px;">Docker</a> <a href="/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Linux%E7%BD%91%E5%8D%A1%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">Linux网卡配置</a> <a href="/tags/PDF/" style="font-size: 10px;">PDF</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 10px;">人工智能</a> <a href="/tags/%E5%BE%AE%E4%BF%A1/" style="font-size: 10px;">微信</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/" style="font-size: 10px;">软件测试</a>
+            <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 15px;">C语言</a> <a href="/tags/Docker/" style="font-size: 15px;">Docker</a> <a href="/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Linux%E7%BD%91%E5%8D%A1%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">Linux网卡配置</a> <a href="/tags/PDF/" style="font-size: 10px;">PDF</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 10px;">人工智能</a> <a href="/tags/%E5%88%B7%E6%9C%BA/" style="font-size: 10px;">刷机</a> <a href="/tags/%E5%BE%AE%E4%BF%A1/" style="font-size: 10px;">微信</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/" style="font-size: 10px;">软件测试</a>
         </div>
     </div>
 
@@ -719,7 +731,7 @@ With Deb
         <div class="sidebar-state">
             <div class="sidebar-state-article">
                 <div>文章</div>
-                <div class="sidebar-state-number">20</div>
+                <div class="sidebar-state-number">21</div>
             </div>
             <div class="sidebar-state-category">
                 <div>分类</div>
@@ -727,7 +739,7 @@ With Deb
             </div>
             <div class="sidebar-state-tag">
                 <div>标签</div>
-                <div class="sidebar-state-number">12</div>
+                <div class="sidebar-state-number">13</div>
             </div>
         </div>
         <div class="sidebar-social">
