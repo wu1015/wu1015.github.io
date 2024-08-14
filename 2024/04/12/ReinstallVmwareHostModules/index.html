@@ -31,7 +31,7 @@
 <meta property="og:description" content="问题报错在升级Linux内核后被要求重新编译安装VM的相关模块。但安装失败。报错UNable to install all modules. See log Path&#x2F;vmware-xxx.log for details. (Exit code 1)。 内核版本：6.5.0-27VM版本：17.0.2（使用vmware-installer -l查询版本，只需要大版本号） log报错内容： 1234">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-04-12T09:01:25.000Z">
-<meta property="article:modified_time" content="2024-06-17T02:26:10.746Z">
+<meta property="article:modified_time" content="2024-08-14T01:13:27.023Z">
 <meta property="article:author" content="wu1015">
 <meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary">
@@ -173,7 +173,7 @@
             <div class="article-date wow slideInLeft">
     <a href="/2024/04/12/ReinstallVmwareHostModules/" class="article-date-link">
         <time datetime="2024-04-12T09:01:25.000Z"
-              itemprop="datePublished">2024-04-12 Last 2024-06-17</time>
+              itemprop="datePublished">2024-04-12 Last 2024-08-14</time>
     </a>
 </div>
 
@@ -204,6 +204,9 @@
 <p>在目录打开终端，编译并安装</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo make</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
 
+<h3 id="未完全解决"><a href="#未完全解决" class="headerlink" title="未完全解决"></a>未完全解决</h3><ul>
+<li>在更新到6.8内核后，无法编译成功，最后的解决方法是把vm更新到17.5.1然后再下载新的模块编译。</li>
+</ul>
 <h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><blockquote>
 <p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000042268631">解决Ubuntu宿主机下面安装Vmware时候vmmon和vmnet模块缺失导致的报错</a><br><a target="_blank" rel="noopener" href="https://ubuntu-mate.community/t/20-04-vmware-workstation-player-fails-to-build-kernel-modules-vmmon-vmnet/21176">[20.04] VMware Workstation&#x2F;Player fails to build kernel modules VMMON &amp; VMNET</a></p>
 </blockquote>
@@ -215,7 +218,7 @@
             
         </div>
         <footer class="article-footer">
-            <a data-url="http://wu1015.github.io/2024/04/12/ReinstallVmwareHostModules/" data-id="clzqoi7y1000raul62nup6r26" data-title="解决Ubuntu升级内核导致的无法安装VMware模块问题"
+            <a data-url="http://wu1015.github.io/2024/04/12/ReinstallVmwareHostModules/" data-id="clzt6p1dl000ru8l6fsqche1p" data-title="解决Ubuntu升级内核导致的无法安装VMware模块问题"
                class="article-share-link">分享</a>
             
             
@@ -361,7 +364,7 @@
 	<div id="toca" class="widget-wrap wow fadeInRight">
 		<h3 class="widget-title">文章导航</h3>
 		<div class="widget" >
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E6%8A%A5%E9%94%99"><span class="toc-number">1.</span> <span class="toc-text">问题报错</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3"><span class="toc-number">2.</span> <span class="toc-text">问题解决</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0"><span class="toc-number">3.</span> <span class="toc-text">参考文章</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E7%AB%A0%E6%89%80%E6%B6%89%E5%8F%8A%E7%9A%84%E8%B5%84%E6%BA%90"><span class="toc-number">4.</span> <span class="toc-text">文章所涉及的资源</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E6%8A%A5%E9%94%99"><span class="toc-number">1.</span> <span class="toc-text">问题报错</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3"><span class="toc-number">2.</span> <span class="toc-text">问题解决</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AA%E5%AE%8C%E5%85%A8%E8%A7%A3%E5%86%B3"><span class="toc-number">2.1.</span> <span class="toc-text">未完全解决</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0"><span class="toc-number">3.</span> <span class="toc-text">参考文章</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E7%AB%A0%E6%89%80%E6%B6%89%E5%8F%8A%E7%9A%84%E8%B5%84%E6%BA%90"><span class="toc-number">4.</span> <span class="toc-text">文章所涉及的资源</span></a></li></ol>
 			<div class="sidebar-btn-wrapper" style="position:static">
 				<a href="#top">
 					<div class="sidebar-top">
