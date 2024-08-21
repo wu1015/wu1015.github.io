@@ -31,7 +31,7 @@
 <meta property="og:description" content="起初 本着废物利用的目的，把移动的电视盒子刷成了Armbian，然后在上面挂Alist。但我也是终究没有弄到公网IP，也就只能通过内网穿透来解决这个问题。  电视盒子配置 型号：MGV2000 JZ（九州） 处理器型号：s905l-b 不确定，因为有部分人说是s905l2，但我之前看固件应该是s905-b（没错，-b指的就是有杜比）。 但我刷armbian的时候刷的是s905l2的uboot，除了">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-08-12T06:46:33.000Z">
-<meta property="article:modified_time" content="2024-08-18T02:42:58.991Z">
+<meta property="article:modified_time" content="2024-08-19T04:33:01.038Z">
 <meta property="article:author" content="wu1015">
 <meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary">
@@ -173,7 +173,7 @@
             <div class="article-date wow slideInLeft">
     <a href="/2024/08/12/watchdog-frp/" class="article-date-link">
         <time datetime="2024-08-12T06:46:33.000Z"
-              itemprop="datePublished">2024-08-12 Last 2024-08-18</time>
+              itemprop="datePublished">2024-08-12 Last 2024-08-19</time>
     </a>
 </div>
 
@@ -197,6 +197,7 @@
 <li>处理器型号：s905l-b<ul>
 <li>不确定，因为有部分人说是s905l2，但我之前看固件应该是s905-b（没错，-b指的就是有杜比）。</li>
 <li>但我刷armbian的时候刷的是s905l2的uboot，除了网络之外一切正常（没错，就是没网，包括有线，无线与蓝牙。我还因此买了个RJ45转USB-A来保证连接）。</li>
+<li>然而刷入s905l或者s905lb的dtb会无法启动。</li>
 <li>这部分有待更新（等有时间把散热片拿开看一眼）。</li>
 </ul>
 </li>
@@ -266,7 +267,7 @@
             
         </div>
         <footer class="article-footer">
-            <a data-url="http://wu1015.github.io/2024/08/12/watchdog-frp/" data-id="clzyzyo2i001ooal659p67z48" data-title="FRP的无人监管设置"
+            <a data-url="http://wu1015.github.io/2024/08/12/watchdog-frp/" data-id="cm0352s7q001xlll61qmn6qil" data-title="FRP的无人监管设置"
                class="article-share-link">分享</a>
             
             
@@ -280,6 +281,20 @@
     
         
     <nav id="article-nav" class="wow fadeInUp">
+        
+            <div class="article-nav-link-wrap article-nav-link-left">
+                
+                    <img data-src="https://shp.qpic.cn/collector/1015650207/6f069a13-3076-4308-946a-bf3f813a722f/0" data-sizes="auto" alt="使用nginx进行端口转发实现frp内网穿透端口的多重利用"
+                         class="lazyload">
+                
+                <a href="/2024/08/21/frp-with-nginx/"></a>
+                <div class="article-nav-caption">前一篇</div>
+                <h3 class="article-nav-title">
+                    
+                        使用nginx进行端口转发实现frp内网穿透端口的多重利用
+                    
+                </h3>
+            </div>
         
         
             <div class="article-nav-link-wrap article-nav-link-right">
@@ -324,7 +339,7 @@
         <div class="sidebar-state">
             <div class="sidebar-state-article">
                 <div>文章</div>
-                <div class="sidebar-state-number">22</div>
+                <div class="sidebar-state-number">23</div>
             </div>
             <div class="sidebar-state-category">
                 <div>分类</div>
@@ -332,7 +347,7 @@
             </div>
             <div class="sidebar-state-tag">
                 <div>标签</div>
-                <div class="sidebar-state-number">13</div>
+                <div class="sidebar-state-number">14</div>
             </div>
         </div>
         <div class="sidebar-social">
@@ -385,7 +400,7 @@
     <div class="widget-wrap wow fadeInRight">
         <h3 class="widget-title">标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 15px;">C语言</a> <a href="/tags/Docker/" style="font-size: 15px;">Docker</a> <a href="/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Linux%E7%BD%91%E5%8D%A1%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">Linux网卡配置</a> <a href="/tags/PDF/" style="font-size: 10px;">PDF</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 10px;">人工智能</a> <a href="/tags/%E5%88%B7%E6%9C%BA/" style="font-size: 10px;">刷机</a> <a href="/tags/%E5%BE%AE%E4%BF%A1/" style="font-size: 10px;">微信</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/" style="font-size: 10px;">软件测试</a>
+            <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 15px;">C语言</a> <a href="/tags/Docker/" style="font-size: 15px;">Docker</a> <a href="/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Linux%E7%BD%91%E5%8D%A1%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">Linux网卡配置</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/PDF/" style="font-size: 10px;">PDF</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 10px;">人工智能</a> <a href="/tags/%E5%88%B7%E6%9C%BA/" style="font-size: 10px;">刷机</a> <a href="/tags/%E5%BE%AE%E4%BF%A1/" style="font-size: 10px;">微信</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/" style="font-size: 10px;">软件测试</a>
         </div>
     </div>
 
@@ -495,7 +510,7 @@
         <div class="sidebar-state">
             <div class="sidebar-state-article">
                 <div>文章</div>
-                <div class="sidebar-state-number">22</div>
+                <div class="sidebar-state-number">23</div>
             </div>
             <div class="sidebar-state-category">
                 <div>分类</div>
@@ -503,7 +518,7 @@
             </div>
             <div class="sidebar-state-tag">
                 <div>标签</div>
-                <div class="sidebar-state-number">13</div>
+                <div class="sidebar-state-number">14</div>
             </div>
         </div>
         <div class="sidebar-social">

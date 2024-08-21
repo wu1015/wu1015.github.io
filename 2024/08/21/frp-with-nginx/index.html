@@ -12,7 +12,7 @@
 
     
     <title>
-        归档 |
+        使用nginx进行端口转发实现frp内网穿透端口的多重利用 |
         
         wu1015&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -23,12 +23,18 @@
     
 <link rel="stylesheet" href="/css/loader.css">
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="wu1015&#39;s blog">
-<meta property="og:url" content="http://wu1015.github.io/archives/page/2/index.html">
+    <meta name="description" content="缘起 因为宽带没有公网ip，而买一个云服务器又太过费钱。因而选择了使用内网穿透，而内网穿透我比较熟悉的厂商也就是SakuraFRP了。 但内网穿透的免费隧道只有两条，挂个alist是绰绰有余的，但我还想挂其他服务。这么看来两条隧道显然是不够用，于是我想到了nginx反向代理。 通过反向代理监听本地端口实现子目录的不同服务访问。  下载应用 安装nginx1sudo apt install ngin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用nginx进行端口转发实现frp内网穿透端口的多重利用">
+<meta property="og:url" content="http://wu1015.github.io/2024/08/21/frp-with-nginx/index.html">
 <meta property="og:site_name" content="wu1015&#39;s blog">
+<meta property="og:description" content="缘起 因为宽带没有公网ip，而买一个云服务器又太过费钱。因而选择了使用内网穿透，而内网穿透我比较熟悉的厂商也就是SakuraFRP了。 但内网穿透的免费隧道只有两条，挂个alist是绰绰有余的，但我还想挂其他服务。这么看来两条隧道显然是不够用，于是我想到了nginx反向代理。 通过反向代理监听本地端口实现子目录的不同服务访问。  下载应用 安装nginx1sudo apt install ngin">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-08-21T00:41:44.000Z">
+<meta property="article:modified_time" content="2024-08-21T00:49:22.530Z">
 <meta property="article:author" content="wu1015">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Nginx">
 <meta name="twitter:card" content="summary">
     
         <link rel="alternate" href="/atom.xml" title="wu1015's blog" type="application/atom+xml">
@@ -104,7 +110,7 @@
         <div id="wrap">
             <header id="header">
     
-        <img data-src="http://shp.qpic.cn/collector/1015650207/f1dbf328-b2db-4846-b0cf-a2d436370fd5/0" data-sizes="auto" alt="" class="lazyload">
+        <img data-src="https://shp.qpic.cn/collector/1015650207/6f069a13-3076-4308-946a-bf3f813a722f/0" data-sizes="auto" alt="使用nginx进行端口转发实现frp内网穿透端口的多重利用" class="lazyload">
     
     <div id="header-outer" class="outer">
         <div id="header-title" class="inner">
@@ -112,7 +118,7 @@
                 
                     
                     
-                        <a href="/" id="logo"><h1>归档</h1></a>
+                        <a href="/" id="logo"><h1>使用nginx进行端口转发实现frp内网穿透端口的多重利用</h1></a>
                     
                 
             </div>
@@ -161,268 +167,115 @@
 </header>
 
             <div id="content" class="outer">
-                <section id="main">
-    <div class="archives-outer-wrap wow fadeInUp">
-        <div class="tag-wrap">
+                <section id="main"><article id="post-frp-with-nginx" class="h-entry article article-type-post"
+         itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <div class="article-inner">
+        <div class="article-meta">
+            <div class="article-date wow slideInLeft">
+    <a href="/2024/08/21/frp-with-nginx/" class="article-date-link">
+        <time datetime="2024-08-21T00:41:44.000Z"
+              itemprop="datePublished">2024-08-21 Last 2024-08-21</time>
+    </a>
+</div>
+
             
-                <div class="archives-tag-list-item">
-                    <a class="archives-tag-list-link" href="/tags/人工智能/">人工智能</a>
-                </div>
+    <div class="article-category wow slideInLeft">
+        <a class="article-category-link" href="/categories/%E6%97%A5%E5%B8%B8/">日常</a>
+    </div>
+
+
+        </div>
+        <div class="hr-line"></div>
+        
+
+        <div class="e-content article-entry" itemprop="articleBody">
             
-                <div class="archives-tag-list-item">
-                    <a class="archives-tag-list-link" href="/tags/C语言/">C语言</a>
-                </div>
-            
-                <div class="archives-tag-list-item">
-                    <a class="archives-tag-list-link" href="/tags/FTP/">FTP</a>
-                </div>
-            
-                <div class="archives-tag-list-item">
-                    <a class="archives-tag-list-link" href="/tags/SQL/">SQL</a>
-                </div>
-            
-                <div class="archives-tag-list-item">
-                    <a class="archives-tag-list-link" href="/tags/Linux网卡配置/">Linux网卡配置</a>
-                </div>
-            
-                <div class="archives-tag-list-item">
-                    <a class="archives-tag-list-link" href="/tags/Linux/">Linux</a>
-                </div>
-            
-                <div class="archives-tag-list-item">
-                    <a class="archives-tag-list-link" href="/tags/Java/">Java</a>
-                </div>
-            
-                <div class="archives-tag-list-item">
-                    <a class="archives-tag-list-link" href="/tags/软件测试/">软件测试</a>
-                </div>
-            
-                <div class="archives-tag-list-item">
-                    <a class="archives-tag-list-link" href="/tags/Windows/">Windows</a>
-                </div>
-            
-                <div class="archives-tag-list-item">
-                    <a class="archives-tag-list-link" href="/tags/微信/">微信</a>
-                </div>
-            
-                <div class="archives-tag-list-item">
-                    <a class="archives-tag-list-link" href="/tags/Docker/">Docker</a>
-                </div>
-            
-                <div class="archives-tag-list-item">
-                    <a class="archives-tag-list-link" href="/tags/Nginx/">Nginx</a>
-                </div>
-            
-                <div class="archives-tag-list-item">
-                    <a class="archives-tag-list-link" href="/tags/PDF/">PDF</a>
-                </div>
-            
-                <div class="archives-tag-list-item">
-                    <a class="archives-tag-list-link" href="/tags/刷机/">刷机</a>
-                </div>
+                <h2 id="缘起"><a href="#缘起" class="headerlink" title="缘起"></a>缘起</h2><ul>
+<li>因为宽带没有公网ip，而买一个云服务器又太过费钱。因而选择了使用内网穿透，而内网穿透我比较熟悉的厂商也就是<code>SakuraFRP</code>了。</li>
+<li>但内网穿透的免费隧道只有两条，挂个<code>alist</code>是绰绰有余的，但我还想挂其他服务。这么看来两条隧道显然是不够用，于是我想到了nginx反向代理。</li>
+<li>通过反向代理监听本地端口实现子目录的不同服务访问。</li>
+</ul>
+<h2 id="下载应用"><a href="#下载应用" class="headerlink" title="下载应用"></a>下载应用</h2><ul>
+<li>安装<code>nginx</code><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install nginx</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="配置反向代理"><a href="#配置反向代理" class="headerlink" title="配置反向代理"></a>配置反向代理</h2><h3 id="frp修改映射的端口"><a href="#frp修改映射的端口" class="headerlink" title="frp修改映射的端口"></a>frp修改映射的端口</h3><ul>
+<li>因为本文中用的是SakuraFRP，所以直接去网页那修改一下（本文是改为<code>10086</code>）然后重启frpc就行了。</li>
+</ul>
+<h3 id="添加反向代理文件"><a href="#添加反向代理文件" class="headerlink" title="添加反向代理文件"></a>添加反向代理文件</h3><ul>
+<li><p>先备份一下默认配置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp /etc/nginx/sites-avaliable/default /etc/nginx/sites-avaliable/default.bak</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编辑<code>default</code>。删除所有配置并加入以下内容。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">	listen 10086;  # Nginx 监听本地的 10086 端口（可以改为你需要的端口）</span><br><span class="line"></span><br><span class="line">	server_name 127.0.0.1;</span><br><span class="line"></span><br><span class="line">	# 将根路径 `/` 的请求代理到本地 5244 端口</span><br><span class="line">location / &#123;</span><br><span class="line">	proxy_pass http://127.0.0.1:5244;</span><br><span class="line">	proxy_set_header Host $host;</span><br><span class="line">	proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">	proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">	proxy_set_header X-Forwarded-Proto $scheme;</span><br><span class="line">&#125;</span><br><span class="line">location /other &#123;</span><br><span class="line">	proxy_pass http://127.0.0.1:5299;</span><br><span class="line">	proxy_set_header Host $host;</span><br><span class="line">	proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">	proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">	proxy_set_header X-Forwarded-Proto $scheme;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>加载配置文件并重启<code>nginx</code>服务。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nginx -t</span><br><span class="line"></span><br><span class="line">systemctl restart nginx</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
+<li><p>代理时应该路径相同。比如<code>/other/</code>，目标网站的<code>/other</code>下面应该有东西。</p>
+</li>
+<li><p>如果没有的话就需要加上<code>/</code>来解决。但这样也可能会导致一些资源请求失败而无法完全加载网页。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">location /other/ &#123;</span><br><span class="line">    proxy_pass http://other_server/;</span><br><span class="line">	# 而不是</span><br><span class="line">	# proxy_pass http://other_server;</span><br><span class="line">    proxy_set_header Host $host:$server_port;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>有部分网站可以通过重定向解决资源请求问题，但也只是部分。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">location /other/ &#123;</span><br><span class="line">    proxy_pass http://other_server/;</span><br><span class="line">    proxy_set_header Host $host:$server_port;</span><br><span class="line">    proxy_redirect / /other/;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>$host:$server_port</code>必不可少，因为我们使用的是内网穿透，端口自然不能自定义。加上这个，才能在网页内跳转的时候获取正确的url。</p>
+</li>
+</ul>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><blockquote>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.023niu.com/show-70-58-1.html">Nginx反向代理配置及反向代理泛目录，目录，全站方法</a></li>
+</ul>
+</blockquote>
+
             
         </div>
-        <div class="category-wrap">
-            
-                <div class="archives-category-list-item">
-                    <a class="archives-category-list-link" href="/categories/日常/">日常</a>
-                </div>
-            
-                <div class="archives-category-list-item">
-                    <a class="archives-category-list-link" href="/categories/笔记/">笔记</a>
-                </div>
-            
-                <div class="archives-category-list-item">
-                    <a class="archives-category-list-link" href="/categories/岁月的史书/">岁月的史书</a>
-                </div>
-            
-        </div>
-        
-        
+        <footer class="article-footer">
+            <a data-url="http://wu1015.github.io/2024/08/21/frp-with-nginx/" data-id="cm0352s7n001dlll67lqg443d" data-title="使用nginx进行端口转发实现frp内网穿透端口的多重利用"
+               class="article-share-link">分享</a>
             
             
-                
+            
+            
+    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li></ul>
+
+
+        </footer>
+    </div>
     
-    <section class="archives-wrap wow fadeInUp">
-        <div class="archive-year-wrap">
-            <a href="/archives/2024" class="archive-year">2024</a>
-        </div>
-        <div class="archives">
-            <ul>
+        
+    <nav id="article-nav" class="wow fadeInUp">
+        
+        
+            <div class="article-nav-link-wrap article-nav-link-right">
                 
-                <li class="archive-article">
-    <div class="archive-article-date-wrap">
-        <a href="/2024/03/04/FTPUsageForWin/">
-            <time class="dt-published" datetime="2024-03-04T10:20:16.000Z"
-                  itemprop="datePublished">03-04</time>
-        </a>
-    </div>
-    <div class="archive-article-title-wrap">
-        
-            
-                <a class="archive-article-title" href="/2024/03/04/FTPUsageForWin/">Win使用FTP连接VM虚拟机</a>
-            
-        
-    </div>
-</li>
-
+                    <img data-src="https://shp.qpic.cn/collector/1015650207/957c3c5d-a845-44a6-9509-37d55e9894df/0" data-sizes="auto" alt="FRP的无人监管设置"
+                         class="lazyload">
                 
-            
-            
-                <li class="archive-article">
-    <div class="archive-article-date-wrap">
-        <a href="/2024/02/20/WxidFound/">
-            <time class="dt-published" datetime="2024-02-19T23:20:09.000Z"
-                  itemprop="datePublished">02-20</time>
-        </a>
-    </div>
-    <div class="archive-article-title-wrap">
+                <a href="/2024/08/12/watchdog-frp/"></a>
+                <div class="article-nav-caption">后一篇</div>
+                <h3 class="article-nav-title">
+                    
+                        FRP的无人监管设置
+                    
+                </h3>
+            </div>
         
-            
-                <a class="archive-article-title" href="/2024/02/20/WxidFound/">wxid添加好友</a>
-            
-        
-    </div>
-</li>
-
-                
-            
-            
-                <li class="archive-article">
-    <div class="archive-article-date-wrap">
-        <a href="/2024/01/26/ConvertBaseByC/">
-            <time class="dt-published" datetime="2024-01-26T09:28:09.000Z"
-                  itemprop="datePublished">01-26</time>
-        </a>
-    </div>
-    <div class="archive-article-title-wrap">
-        
-            
-                <a class="archive-article-title" href="/2024/01/26/ConvertBaseByC/">C语言实现进制转换</a>
-            
-        
-    </div>
-</li>
-
-                
-            
-            
-                
-    </div></section>
-    
-    
-    <section class="archives-wrap wow fadeInUp">
-        <div class="archive-year-wrap">
-            <a href="/archives/2023" class="archive-year">2023</a>
-        </div>
-        <div class="archives">
-            <ul>
-                
-                <li class="archive-article">
-    <div class="archive-article-date-wrap">
-        <a href="/2023/11/23/LearnOfMariaDB/">
-            <time class="dt-published" datetime="2023-11-23T12:32:39.000Z"
-                  itemprop="datePublished">11-23</time>
-        </a>
-    </div>
-    <div class="archive-article-title-wrap">
-        
-            
-                <a class="archive-article-title" href="/2023/11/23/LearnOfMariaDB/">MariaDB学习记录</a>
-            
-        
-    </div>
-</li>
-
-                
-            
-            
-                <li class="archive-article">
-    <div class="archive-article-date-wrap">
-        <a href="/2023/10/11/LearnOfAndroid/">
-            <time class="dt-published" datetime="2023-10-11T07:49:00.000Z"
-                  itemprop="datePublished">10-11</time>
-        </a>
-    </div>
-    <div class="archive-article-title-wrap">
-        
-            
-                <a class="archive-article-title" href="/2023/10/11/LearnOfAndroid/">Android学习笔记</a>
-            
-        
-    </div>
-</li>
-
-                
-            
-            
-                <li class="archive-article">
-    <div class="archive-article-date-wrap">
-        <a href="/2023/08/18/LinuxUsage-Doc/">
-            <time class="dt-published" datetime="2023-08-18T03:14:41.000Z"
-                  itemprop="datePublished">08-18</time>
-        </a>
-    </div>
-    <div class="archive-article-title-wrap">
-        
-            
-                <a class="archive-article-title" href="/2023/08/18/LinuxUsage-Doc/">Linux的基础使用记录</a>
-            
-        
-    </div>
-</li>
-
-                
-            
-            
-                <li class="archive-article">
-    <div class="archive-article-date-wrap">
-        <a href="/2023/08/13/QQMarkUse/">
-            <time class="dt-published" datetime="2023-08-12T23:20:09.000Z"
-                  itemprop="datePublished">08-13</time>
-        </a>
-    </div>
-    <div class="archive-article-title-wrap">
-        
-            
-                <a class="archive-article-title" href="/2023/08/13/QQMarkUse/">QQ收藏的妙用</a>
-            
-        
-    </div>
-</li>
-
-                
-            
-            
-                <li class="archive-article">
-    <div class="archive-article-date-wrap">
-        <a href="/2023/08/09/New_start/">
-            <time class="dt-published" datetime="2023-08-09T12:57:44.000Z"
-                  itemprop="datePublished">08-09</time>
-        </a>
-    </div>
-    <div class="archive-article-title-wrap">
-        
-            
-                <a class="archive-article-title" href="/2023/08/09/New_start/">新的开始</a>
-            
-        
-    </div>
-</li>
-
-                
-                
-            </ul>
-        </div>
-    </section>
-    
-    </div>
-
-
-    <nav id="page-nav" class="wow fadeInUp">
-        
-        <a class="extend prev" rel="prev" href="/archives/">&laquo; 上一页</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span>
     </nav>
+
+
+    
+</article>
+
+
+
+
+
+
+
+
+
 
 
 </section>
@@ -505,18 +358,55 @@
 
     
         
-	
-		<div class="widget-wrap wow fadeInRight">
-				<h3 class="widget-title">归档</h3>
-				<div class="widget">
-					<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/08/">八月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">七月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">六月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">五月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">四月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">三月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">二月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">一月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">十一月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">十月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">八月 2023</a></li></ul>
-				</div>
-		</div>
-	
-
 
     
         
+	<div id="toca" class="widget-wrap wow fadeInRight">
+		<h3 class="widget-title">文章导航</h3>
+		<div class="widget" >
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%98%E8%B5%B7"><span class="toc-number">1.</span> <span class="toc-text">缘起</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD%E5%BA%94%E7%94%A8"><span class="toc-number">2.</span> <span class="toc-text">下载应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86"><span class="toc-number">3.</span> <span class="toc-text">配置反向代理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#frp%E4%BF%AE%E6%94%B9%E6%98%A0%E5%B0%84%E7%9A%84%E7%AB%AF%E5%8F%A3"><span class="toc-number">3.1.</span> <span class="toc-text">frp修改映射的端口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E6%96%87%E4%BB%B6"><span class="toc-number">3.2.</span> <span class="toc-text">添加反向代理文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-number">3.3.</span> <span class="toc-text">注意事项</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0"><span class="toc-number">4.</span> <span class="toc-text">参考文章</span></a></li></ol>
+			<div class="sidebar-btn-wrapper" style="position:static">
+				<a href="#top">
+					<div class="sidebar-top">
+						<img src="/images/taichi.svg" height="30" width="30" alt="backtop" />
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
+	<script src="/js/unpkg/jquery.min.js"></script>
+	<script>
+		function getElementPagePosition(element){
+			//计算x坐标
+			var actualLeft = element.offsetLeft;
+			var current = element.offsetParent;
+			while (current !== null){
+				actualLeft += current.offsetLeft;
+				current = current.offsetParent;
+			}
+			//计算y坐标
+			var actualTop = element.offsetTop;
+			var current = element.offsetParent;
+			while (current !== null){
+				actualTop += (current.offsetTop+current.clientTop);
+				current = current.offsetParent;
+			}
+			//返回结果
+			return {x: actualLeft, y: actualTop}
+		};
+		let jj=getElementPagePosition(document.getElementById('toca'));
+		$(window).scroll(function(){
+			var top = $(this).scrollTop();
+			if(top>jj.y){
+				$("#toca").css("position","fixed");
+				$("#toca").css("width","284.667px");
+				$("#toca").css("top","-35px");
+			}else{
+				$("#toca").css("position","sticky");
+			}
+		})
+	</script>
+
 
     
 </aside>

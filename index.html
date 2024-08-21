@@ -165,14 +165,58 @@
         
     <div class="post-wrap-left wow fadeInUp">
         
-            <a class="post-link" href="/2024/08/12/watchdog-frp/"></a>
+            <a class="post-link" href="/2024/08/21/frp-with-nginx/"></a>
         
         
         <div class="post-cover-left">
             
-                <img data-src="https://shp.qpic.cn/collector/1015650207/957c3c5d-a845-44a6-9509-37d55e9894df/0" data-sizes="auto" alt="FRP的无人监管设置" class="lazyload">
+                <img data-src="https://shp.qpic.cn/collector/1015650207/6f069a13-3076-4308-946a-bf3f813a722f/0" data-sizes="auto" alt="使用nginx进行端口转发实现frp内网穿透端口的多重利用" class="lazyload">
             
 
+        </div>
+        <div class="post-info">
+            <div class="post-meta">
+                <a><span class="icon-calendar"></span>2024-08-21</a>
+                
+                    <a><span class="icon-pencil"></span>552 字</a>
+                
+                
+                    <a><span class="icon-clock"></span>2024-08-21 08:41</a>
+                
+            </div>
+            <h2 class="post-title">使用nginx进行端口转发实现frp内网穿透端口的多重利用</h2>
+            <article class="post-article">
+                
+                    缘起
+因为宽带没有公网ip，而买一个云服务器又太过费钱。因而选择了使用内网穿透，而内网穿透我比较熟悉的厂商也就是SakuraFRP了。
+但内网穿透的免费隧道只有两条，挂个alist是绰绰有余的，但我还想挂其他服务。这么看来两条隧道显然是不够用，于是我想到了nginx反向代理。
+通过反向代理监听本地端口实现子目录的不同服务访问。
+
+下载应用
+安装nginx1sudo apt install nginx
+
+配置反向代理frp修改映射的端口
+因为本文中用的是SakuraFRP，所以直接去网页那修改一下（本文是改为10086）然后重启frpc就行了。
+
+添加反向代理文件
+先备份一下默认配置
+1cp /
+                
+            </article>
+        </div>
+    </div>
+
+
+    
+        
+    <div class="post-wrap-right wow fadeInUp">
+        
+            <a class="post-link" href="/2024/08/12/watchdog-frp/"></a>
+        
+        <div class="post-cover-right">
+            
+                <img data-src="https://shp.qpic.cn/collector/1015650207/957c3c5d-a845-44a6-9509-37d55e9894df/0" data-sizes="auto" alt="FRP的无人监管设置" class="lazyload">
+            
         </div>
         <div class="post-info">
             <div class="post-meta">
@@ -181,7 +225,7 @@
                     <a><span class="icon-pencil"></span>1.1k 字</a>
                 
                 
-                    <a><span class="icon-clock"></span>2024-08-18 10:46</a>
+                    <a><span class="icon-clock"></span>2024-08-19 10:46</a>
                 
             </div>
             <h2 class="post-title">FRP的无人监管设置</h2>
@@ -195,12 +239,8 @@
 处理器型号：s905l-b
 不确定，因为有部分人说是s905l2，但我之前看固件应该是s905-b（没错，-b指的就是有杜比）。
 但我刷armbian的时候刷的是s905l2的uboot，除了网络之外一切正常（没错，就是没网，包括有线，无线与蓝牙。我还因此买了个RJ45转USB-A来保证连接）。
-这部分有待更新（等有时间把散热片拿开看一眼）。
-
-
-
-无人监管的初步_定时重启
-刚开始因为电视
+然而刷入s905l或者s905lb的dtb会无法启动。
+这部分有待更新（等有时间把散热片拿开看
                 
             </article>
         </div>
@@ -209,14 +249,16 @@
 
     
         
-    <div class="post-wrap-right wow fadeInUp">
+    <div class="post-wrap-left wow fadeInUp">
         
             <a class="post-link" href="/2024/08/09/mix2s-flash-root/"></a>
         
-        <div class="post-cover-right">
+        
+        <div class="post-cover-left">
             
                 <img data-src="https://shp.qpic.cn/collector/1015650207/131ca15d-b108-492d-a331-89a055bef3cf/0" data-sizes="auto" alt="MOMO提示分区挂载异常问题解决以及Mix2s的类原生优化" class="lazyload">
             
+
         </div>
         <div class="post-info">
             <div class="post-meta">
@@ -262,16 +304,14 @@ momo版本：4.4.2
 
     
         
-    <div class="post-wrap-left wow fadeInUp">
+    <div class="post-wrap-right wow fadeInUp">
         
             <a class="post-link" href="/2024/08/02/docker-with-jupyter/"></a>
         
-        
-        <div class="post-cover-left">
+        <div class="post-cover-right">
             
                 <img data-src="https://shp.qpic.cn/collector/1015650207/5f7a0192-2d0d-492c-9508-7e4d058e67da/0" data-sizes="auto" alt="Docker配置Jupyter" class="lazyload">
             
-
         </div>
         <div class="post-info">
             <div class="post-meta">
@@ -304,14 +344,16 @@ momo版本：4.4.2
 
     
         
-    <div class="post-wrap-right wow fadeInUp">
+    <div class="post-wrap-left wow fadeInUp">
         
             <a class="post-link" href="/2024/08/01/docker-base-usage/"></a>
         
-        <div class="post-cover-right">
+        
+        <div class="post-cover-left">
             
                 <img data-src="https://shp.qpic.cn/collector/1015650207/83ce2fdb-d763-4c25-beb0-3e4c01c12d5f/0" data-sizes="auto" alt="Docker的基本使用" class="lazyload">
             
+
         </div>
         <div class="post-info">
             <div class="post-meta">
@@ -346,16 +388,14 @@ momo版本：4.4.2
 
     
         
-    <div class="post-wrap-left wow fadeInUp">
+    <div class="post-wrap-right wow fadeInUp">
         
             <a class="post-link" href="/2024/07/23/sftp-in-thunar/"></a>
         
-        
-        <div class="post-cover-left">
+        <div class="post-cover-right">
             
                 <img data-src="https://shp.qpic.cn/collector/1015650207/2453f5ac-4a93-4d3d-99c4-305062c5ea80/0" data-sizes="auto" alt="Xubuntu的SFTP在thunar上的使用" class="lazyload">
             
-
         </div>
         <div class="post-info">
             <div class="post-meta">
@@ -392,14 +432,16 @@ Linux kill命令_菜鸟教程
 
     
         
-    <div class="post-wrap-right wow fadeInUp">
+    <div class="post-wrap-left wow fadeInUp">
         
             <a class="post-link" href="/2024/07/19/pdf-convert/"></a>
         
-        <div class="post-cover-right">
+        
+        <div class="post-cover-left">
             
                 <img data-src="https://shp.qpic.cn/collector/1015650207/9987d8dc-d7c7-4cd9-9a15-ae26cde8a323/0" data-sizes="auto" alt="PDF与图片的互相转换" class="lazyload">
             
+
         </div>
         <div class="post-info">
             <div class="post-meta">
@@ -435,16 +477,14 @@ Linux kill命令_菜鸟教程
 
     
         
-    <div class="post-wrap-left wow fadeInUp">
+    <div class="post-wrap-right wow fadeInUp">
         
             <a class="post-link" href="/2024/07/19/hexo-update-mark/"></a>
         
-        
-        <div class="post-cover-left">
+        <div class="post-cover-right">
             
                 <img data-src="https://shp.qpic.cn/collector/1015650207/90920c13-4b19-4d01-8824-647992cabf13/0" data-sizes="auto" alt="更新Hexo出现的一些问题" class="lazyload">
             
-
         </div>
         <div class="post-info">
             <div class="post-meta">
@@ -472,14 +512,16 @@ Linux kill命令_菜鸟教程
 
     
         
-    <div class="post-wrap-right wow fadeInUp">
+    <div class="post-wrap-left wow fadeInUp">
         
             <a class="post-link" href="/2024/07/01/SoftwareTestingLearning/"></a>
         
-        <div class="post-cover-right">
+        
+        <div class="post-cover-left">
             
                 <img data-src="https://shp.qpic.cn/collector/1015650207/52ffd40d-348f-4d2f-a8e3-57a96f25c8a0/0" data-sizes="auto" alt="软件测试基础学习" class="lazyload">
             
+
         </div>
         <div class="post-info">
             <div class="post-meta">
@@ -510,16 +552,14 @@ Linux kill命令_菜鸟教程
 
     
         
-    <div class="post-wrap-left wow fadeInUp">
+    <div class="post-wrap-right wow fadeInUp">
         
             <a class="post-link" href="/2024/06/27/CRCLearningByC/"></a>
         
-        
-        <div class="post-cover-left">
+        <div class="post-cover-right">
             
                 <img data-src="https://shp.qpic.cn/collector/1015650207/73b98eca-95e7-4fe0-9f53-9de4e08dda8d/0" data-sizes="auto" alt="CRC校验的C语言实现" class="lazyload">
             
-
         </div>
         <div class="post-info">
             <div class="post-meta">
@@ -548,42 +588,6 @@ CRC-4 &amp;#x3D;&amp;gt; x4+
 
 
     
-        
-    <div class="post-wrap-right wow fadeInUp">
-        
-            <a class="post-link" href="/2024/06/03/ColabUsage/"></a>
-        
-        <div class="post-cover-right">
-            
-                <img data-src="https://shp.qpic.cn/collector/1015650207/3605ab31-b8ae-4125-89df-4a9836074166/0" data-sizes="auto" alt="Colab的简单使用" class="lazyload">
-            
-        </div>
-        <div class="post-info">
-            <div class="post-meta">
-                <a><span class="icon-calendar"></span>2024-06-03</a>
-                
-                    <a><span class="icon-pencil"></span>384 字</a>
-                
-                
-                    <a><span class="icon-clock"></span>2024-06-03 20:43</a>
-                
-            </div>
-            <h2 class="post-title">Colab的简单使用</h2>
-            <article class="post-article">
-                
-                    优势
-Colab，免费用户可使用 T4 GPU 和 CPU。T4 虽然不说有多强吧，但至少能比用 CPU 跑强不少。不仅如此，因为不是在本地，所以一些库的安装也是飞快的（毕竟在国内不换源的话，下载速度确实不太行），而且最关键的是不占用本地空间。
-
-建议把文件存储的 google drive 以便调用，不然存在 Colab 下线就会被清除。咱这网络环境大伙都知道，传个大点的文件本来就不容易，更何况 Colab 还没有断点续传。所以也就更建议使用 google drive 传输文件，毕竟到时候用的话只需要授权一下而已。
-
-与国内的 AI 计算平台相比，Colab 没广告，没那种莫名其妙突然恶心你一
-                
-            </article>
-        </div>
-    </div>
-
-
-    
 
 
     <nav id="page-nav" class="wow fadeInUp">
@@ -604,7 +608,7 @@ Colab，免费用户可使用 T4 GPU 和 CPU。T4 虽然不说有多强吧，但
         <div class="sidebar-state">
             <div class="sidebar-state-article">
                 <div>文章</div>
-                <div class="sidebar-state-number">22</div>
+                <div class="sidebar-state-number">23</div>
             </div>
             <div class="sidebar-state-category">
                 <div>分类</div>
@@ -612,7 +616,7 @@ Colab，免费用户可使用 T4 GPU 和 CPU。T4 虽然不说有多强吧，但
             </div>
             <div class="sidebar-state-tag">
                 <div>标签</div>
-                <div class="sidebar-state-number">13</div>
+                <div class="sidebar-state-number">14</div>
             </div>
         </div>
         <div class="sidebar-social">
@@ -665,7 +669,7 @@ Colab，免费用户可使用 T4 GPU 和 CPU。T4 虽然不说有多强吧，但
     <div class="widget-wrap wow fadeInRight">
         <h3 class="widget-title">标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 15px;">C语言</a> <a href="/tags/Docker/" style="font-size: 15px;">Docker</a> <a href="/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Linux%E7%BD%91%E5%8D%A1%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">Linux网卡配置</a> <a href="/tags/PDF/" style="font-size: 10px;">PDF</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 10px;">人工智能</a> <a href="/tags/%E5%88%B7%E6%9C%BA/" style="font-size: 10px;">刷机</a> <a href="/tags/%E5%BE%AE%E4%BF%A1/" style="font-size: 10px;">微信</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/" style="font-size: 10px;">软件测试</a>
+            <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 15px;">C语言</a> <a href="/tags/Docker/" style="font-size: 15px;">Docker</a> <a href="/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Linux%E7%BD%91%E5%8D%A1%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">Linux网卡配置</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/PDF/" style="font-size: 10px;">PDF</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 10px;">人工智能</a> <a href="/tags/%E5%88%B7%E6%9C%BA/" style="font-size: 10px;">刷机</a> <a href="/tags/%E5%BE%AE%E4%BF%A1/" style="font-size: 10px;">微信</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/" style="font-size: 10px;">软件测试</a>
         </div>
     </div>
 
@@ -738,7 +742,7 @@ Colab，免费用户可使用 T4 GPU 和 CPU。T4 虽然不说有多强吧，但
         <div class="sidebar-state">
             <div class="sidebar-state-article">
                 <div>文章</div>
-                <div class="sidebar-state-number">22</div>
+                <div class="sidebar-state-number">23</div>
             </div>
             <div class="sidebar-state-category">
                 <div>分类</div>
@@ -746,7 +750,7 @@ Colab，免费用户可使用 T4 GPU 和 CPU。T4 虽然不说有多强吧，但
             </div>
             <div class="sidebar-state-tag">
                 <div>标签</div>
-                <div class="sidebar-state-number">13</div>
+                <div class="sidebar-state-number">14</div>
             </div>
         </div>
         <div class="sidebar-social">
