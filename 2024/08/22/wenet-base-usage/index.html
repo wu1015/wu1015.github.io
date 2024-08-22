@@ -12,7 +12,7 @@
 
     
     <title>
-        Colab的简单使用 |
+        语言识别模型Wenet的基础使用与训练 |
         
         wu1015&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -23,17 +23,18 @@
     
 <link rel="stylesheet" href="/css/loader.css">
 
-    <meta name="description" content="优势 Colab，免费用户可使用 T4 GPU 和 CPU。T4 虽然不说有多强吧，但至少能比用 CPU 跑强不少。不仅如此，因为不是在本地，所以一些库的安装也是飞快的（毕竟在国内不换源的话，下载速度确实不太行），而且最关键的是不占用本地空间。  建议把文件存储的 google drive 以便调用，不然存在 Colab 下线就会被清除。咱这网络环境大伙都知道，传个大点的文件本来就不容易，更何况">
+    <meta name="description" content="最近在训练Wenet模型，所以顺便记录一下。  源码流程 以aishell为例 资源下载  执行以下语句进行下载，下载到&#x2F;export&#x2F;data&#x2F;asr-data&#x2F;OpenSLR&#x2F;33&#x2F;目录中，并进行解压和分类。1.&#x2F;run.sh --stage -1 --stop_stage -1   生成索引文件  执行local&#x2F;aishell-data-prep.sh生成索引文件到data&#x2F;local&#x2F;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Colab的简单使用">
-<meta property="og:url" content="http://wu1015.github.io/2024/06/03/ColabUsage/index.html">
+<meta property="og:title" content="语言识别模型Wenet的基础使用与训练">
+<meta property="og:url" content="http://wu1015.github.io/2024/08/22/wenet-base-usage/index.html">
 <meta property="og:site_name" content="wu1015&#39;s blog">
-<meta property="og:description" content="优势 Colab，免费用户可使用 T4 GPU 和 CPU。T4 虽然不说有多强吧，但至少能比用 CPU 跑强不少。不仅如此，因为不是在本地，所以一些库的安装也是飞快的（毕竟在国内不换源的话，下载速度确实不太行），而且最关键的是不占用本地空间。  建议把文件存储的 google drive 以便调用，不然存在 Colab 下线就会被清除。咱这网络环境大伙都知道，传个大点的文件本来就不容易，更何况">
+<meta property="og:description" content="最近在训练Wenet模型，所以顺便记录一下。  源码流程 以aishell为例 资源下载  执行以下语句进行下载，下载到&#x2F;export&#x2F;data&#x2F;asr-data&#x2F;OpenSLR&#x2F;33&#x2F;目录中，并进行解压和分类。1.&#x2F;run.sh --stage -1 --stop_stage -1   生成索引文件  执行local&#x2F;aishell-data-prep.sh生成索引文件到data&#x2F;local&#x2F;">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-06-03T12:34:34.000Z">
-<meta property="article:modified_time" content="2024-06-03T12:43:47.305Z">
+<meta property="article:published_time" content="2024-08-22T00:52:29.000Z">
+<meta property="article:modified_time" content="2024-08-22T01:05:54.907Z">
 <meta property="article:author" content="wu1015">
 <meta property="article:tag" content="人工智能">
+<meta property="article:tag" content="Wenet">
 <meta name="twitter:card" content="summary">
     
         <link rel="alternate" href="/atom.xml" title="wu1015's blog" type="application/atom+xml">
@@ -109,7 +110,7 @@
         <div id="wrap">
             <header id="header">
     
-        <img data-src="http://shp.qpic.cn/collector/1015650207/f1dbf328-b2db-4846-b0cf-a2d436370fd5/0" data-sizes="auto" alt="Colab的简单使用" class="lazyload">
+        <img data-src="https://shp.qpic.cn/collector/1015650207/76db783a-133d-4345-bea6-48a5bb7506f9/0" data-sizes="auto" alt="语言识别模型Wenet的基础使用与训练" class="lazyload">
     
     <div id="header-outer" class="outer">
         <div id="header-title" class="inner">
@@ -117,7 +118,7 @@
                 
                     
                     
-                        <a href="/" id="logo"><h1>Colab的简单使用</h1></a>
+                        <a href="/" id="logo"><h1>语言识别模型Wenet的基础使用与训练</h1></a>
                     
                 
             </div>
@@ -166,14 +167,14 @@
 </header>
 
             <div id="content" class="outer">
-                <section id="main"><article id="post-ColabUsage" class="h-entry article article-type-post"
+                <section id="main"><article id="post-wenet-base-usage" class="h-entry article article-type-post"
          itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
     <div class="article-inner">
         <div class="article-meta">
             <div class="article-date wow slideInLeft">
-    <a href="/2024/06/03/ColabUsage/" class="article-date-link">
-        <time datetime="2024-06-03T12:34:34.000Z"
-              itemprop="datePublished">2024-06-03 Last 2024-06-03</time>
+    <a href="/2024/08/22/wenet-base-usage/" class="article-date-link">
+        <time datetime="2024-08-22T00:52:29.000Z"
+              itemprop="datePublished">2024-08-22 Last 2024-08-22</time>
     </a>
 </div>
 
@@ -189,34 +190,90 @@
 
         <div class="e-content article-entry" itemprop="articleBody">
             
-                <h2 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h2><ul>
-<li><p>Colab，免费用户可使用 T4 GPU 和 CPU。T4 虽然不说有多强吧，但至少能比用 CPU 跑强不少。不仅如此，因为不是在本地，所以一些库的安装也是飞快的（毕竟在国内不换源的话，下载速度确实不太行），而且最关键的是不占用本地空间。</p>
+                <ul>
+<li>最近在训练<code>Wenet</code>模型，所以顺便记录一下。</li>
+</ul>
+<h2 id="源码流程-以aishell为例"><a href="#源码流程-以aishell为例" class="headerlink" title="源码流程 以aishell为例"></a>源码流程 以aishell为例</h2><ul>
+<li><p>资源下载</p>
+<ul>
+<li>执行以下语句进行下载，下载到<code>/export/data/asr-data/OpenSLR/33/</code>目录中，并进行解压和分类。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./run.sh --stage -1 --stop_stage -1</span><br></pre></td></tr></table></figure></li>
+</ul>
 </li>
-<li><p>建议把文件存储的 google drive 以便调用，不然存在 Colab 下线就会被清除。咱这网络环境大伙都知道，传个大点的文件本来就不容易，更何况 Colab 还没有断点续传。所以也就更建议使用 google drive 传输文件，毕竟到时候用的话只需要授权一下而已。</p>
+<li><p>生成索引文件</p>
+<ul>
+<li>执行<code>local/aishell-data-prep.sh</code>生成索引文件到<code>data/local/&lt;train&gt; &lt;dev&gt; &lt;test&gt;</code>中，然后再把<code>text</code>和<code>wav.scp</code>两个文件复制到<code>data/&lt;train&gt; &lt;dev&gt; &lt;test&gt;</code>三个文件夹中。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./run.sh --stage 0 --stop_stage 0</span><br></pre></td></tr></table></figure></li>
+</ul>
 </li>
-<li><p>与国内的 AI 计算平台相比，Colab 没广告，没那种莫名其妙突然恶心你一下的东西。</p>
+<li><p>归一化计算</p>
+<ul>
+<li>先将<code>text</code>进行备份，备份为<code>text.org</code></li>
+<li>分离<code>text</code>中的元素，后半部分去掉空格，再与前半部分合并（空格隔开）</li>
+<li>进行归一化计算（CMVN）</li>
+<li>删除备份文件<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./run.sh --stage 1 --stop_stage 1</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>生成字典</p>
+<ul>
+<li>生成data.list字典，格式为<code>&#123;&quot;key&quot;:wav的id, &quot;wav&quot;: wav的绝对路径, &quot;txt&quot;: 文字&#125;</code>。在训练时调用这个字典文件进行训练。模型测试时同理。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./run.sh --stage 2 --stop_stage 2</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>格式化，数据打包</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./run.sh --stage 3 --stop_stage 3</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>模型训练</p>
+<ul>
+<li>读取配置文件中的信息，输出到<code>exp/conformer</code>，也就是说，这里面的文件都是生成的，而非源文件。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./run.sh --stage 4 --stop_stage 4</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>模型评价</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./run.sh --stage 5 --stop_stage 5</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>模型导出</p>
+<ul>
+<li>导出WeNet模型为TorchScript格式<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./run.sh --stage 6 --stop_stage 6</span><br></pre></td></tr></table></figure></li>
+</ul>
 </li>
 </ul>
-<h2 id="劣势"><a href="#劣势" class="headerlink" title="劣势"></a>劣势</h2><ul>
-<li><p>跑的时候需要一直在活动窗口，人话说就是得一直有人在移动窗口表示我还在线，否则直接中断连接（免费用户）。另外跑的计算量也有限，跑一些小的东西还行，跑大的东西过一些一天的额度就没了。没错，这个是有每日额度的，具体多少不知道，但是是以计算单位来算的。</p>
-</li>
-<li><p>不登录好像就不给看，这点确实不太好，毕竟国内的有些平台是给浏览的。</p>
-</li>
+<h2 id="注意事项-以aishell为例"><a href="#注意事项-以aishell为例" class="headerlink" title="注意事项 以aishell为例"></a>注意事项 以aishell为例</h2><h3 id="对应文件夹的创建"><a href="#对应文件夹的创建" class="headerlink" title="对应文件夹的创建"></a>对应文件夹的创建</h3><ul>
+<li>因为脚本并没有执行<code>mkdir -p</code>之类的命令，因此有一些文件夹需要自己手动创建，否则会出现报错。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /export/data/asr-data/OpenSLR/33/</span><br><span class="line">mkdir -p data/test/</span><br><span class="line">mkdir -p data/train/</span><br><span class="line">mkdir -p data/dev/</span><br><span class="line">ls</span><br></pre></td></tr></table></figure></li>
 </ul>
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><ul>
-<li>虽然 Colab 基本啥库都有，但不免会出现意外。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">!pip install 模块名称</span><br></pre></td></tr></table></figure></li>
+<h3 id="导出权重"><a href="#导出权重" class="headerlink" title="导出权重"></a>导出权重</h3><ul>
+<li>如果是用的<code>jupyter notebook</code>的话，不要直接下载，否则会得到一个<code>.ptrom</code>的文件，应该直接执行压缩之后再下来下来。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -czvf 输出文件 源文件</span><br></pre></td></tr></table></figure></li>
 </ul>
+<h2 id="其他说明"><a href="#其他说明" class="headerlink" title="其他说明"></a>其他说明</h2><h3 id="使用自己的数据集进行训练"><a href="#使用自己的数据集进行训练" class="headerlink" title="使用自己的数据集进行训练"></a>使用自己的数据集进行训练</h3><h4 id="数据准备"><a href="#数据准备" class="headerlink" title="数据准备"></a>数据准备</h4><ul>
+<li>首先是数据集准备，将数据集转换为<code>text</code>和<code>wav.scp</code>两个文件。</li>
+<li>其中<code>text</code>为<code>wav名称 语句</code>。注意中间是空格隔开。</li>
+<li><code>wav.scp</code>为<code>wav名称 wav绝对路径</code>。注意中间是空格隔开。</li>
+</ul>
+<h4 id="开始训练"><a href="#开始训练" class="headerlink" title="开始训练"></a>开始训练</h4><ul>
+<li><p>跳过数据准备的前几步，直接从归一化计算开始跑。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./run.sh --stage 1 --stop_stage 1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>载入训练</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./run.sh --stage 4 --stop_stage 4 --checkpoint exp/conformer/avg_30.pt</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="保存训练日志"><a href="#保存训练日志" class="headerlink" title="保存训练日志"></a>保存训练日志</h3><ul>
+<li>执行模型训练时加上记录语句（其他同理）<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">./run.sh --stage 4 --stop_stage 4 | tee  ls.txt</span><br><span class="line">// 或 但这样不会输出在终端上</span><br><span class="line">./run.sh --stage 4 --stop_stage 4 &gt; ls.txt</span><br><span class="line"></span><br><span class="line">// 增量写入</span><br><span class="line">./run.sh --stage 4 --stop_stage 4 | tee  -a ls.txt</span><br><span class="line">// 或 但这样不会输出在终端上</span><br><span class="line">./run.sh --stage 4 --stop_stage 4 &gt;&gt; ls.txt</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><ul>
+<li>注意观察<code>run.sh</code>，发现训练的配置文件为<code>conf/train_conformer.yaml</code>。训练时如果数据量过大可以在此修改<code>batch_size</code>。可以改固定值，也可以改为动态。当然也可以在这里改迭代次数。</li>
+</ul>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><blockquote>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://speech.xmu.edu.cn/2020/0630/c18207a406063/page.htm">厦门大学 语音识别：原理与应用 </a></li>
+</ul>
+</blockquote>
 
             
         </div>
         <footer class="article-footer">
-            <a data-url="http://wu1015.github.io/2024/06/03/ColabUsage/" data-id="cm04l0szw000cfil681szhczs" data-title="Colab的简单使用"
+            <a data-url="http://wu1015.github.io/2024/08/22/wenet-base-usage/" data-id="cm04l0t05001sfil6dnxi024n" data-title="语言识别模型Wenet的基础使用与训练"
                class="article-share-link">分享</a>
             
             
             
             
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" rel="tag">人工智能</a></li></ul>
+    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Wenet/" rel="tag">Wenet</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" rel="tag">人工智能</a></li></ul>
 
 
         </footer>
@@ -225,31 +282,17 @@
         
     <nav id="article-nav" class="wow fadeInUp">
         
-            <div class="article-nav-link-wrap article-nav-link-left">
-                
-                    <img data-src="https://shp.qpic.cn/collector/1015650207/73b98eca-95e7-4fe0-9f53-9de4e08dda8d/0" data-sizes="auto" alt="CRC校验的C语言实现"
-                         class="lazyload">
-                
-                <a href="/2024/06/27/CRCLearningByC/"></a>
-                <div class="article-nav-caption">前一篇</div>
-                <h3 class="article-nav-title">
-                    
-                        CRC校验的C语言实现
-                    
-                </h3>
-            </div>
-        
         
             <div class="article-nav-link-wrap article-nav-link-right">
                 
-                    <img data-src="https://shp.qpic.cn/collector/1015650207/67c474a0-5841-4101-846e-3894f684b185/0" data-sizes="auto" alt="WPS For Linux几个版本的体验"
+                    <img data-src="https://shp.qpic.cn/collector/1015650207/6f069a13-3076-4308-946a-bf3f813a722f/0" data-sizes="auto" alt="使用nginx进行端口转发实现frp内网穿透端口的多重利用"
                          class="lazyload">
                 
-                <a href="/2024/05/01/WPSForLinuxUse/"></a>
+                <a href="/2024/08/21/frp-with-nginx/"></a>
                 <div class="article-nav-caption">后一篇</div>
                 <h3 class="article-nav-title">
                     
-                        WPS For Linux几个版本的体验
+                        使用nginx进行端口转发实现frp内网穿透端口的多重利用
                     
                 </h3>
             </div>
@@ -356,7 +399,7 @@
 	<div id="toca" class="widget-wrap wow fadeInRight">
 		<h3 class="widget-title">文章导航</h3>
 		<div class="widget" >
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E5%8A%BF"><span class="toc-number">1.</span> <span class="toc-text">优势</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A3%E5%8A%BF"><span class="toc-number">2.</span> <span class="toc-text">劣势</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96"><span class="toc-number">3.</span> <span class="toc-text">其他</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BA%90%E7%A0%81%E6%B5%81%E7%A8%8B-%E4%BB%A5aishell%E4%B8%BA%E4%BE%8B"><span class="toc-number">1.</span> <span class="toc-text">源码流程 以aishell为例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9-%E4%BB%A5aishell%E4%B8%BA%E4%BE%8B"><span class="toc-number">2.</span> <span class="toc-text">注意事项 以aishell为例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E5%BA%94%E6%96%87%E4%BB%B6%E5%A4%B9%E7%9A%84%E5%88%9B%E5%BB%BA"><span class="toc-number">2.1.</span> <span class="toc-text">对应文件夹的创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%BC%E5%87%BA%E6%9D%83%E9%87%8D"><span class="toc-number">2.2.</span> <span class="toc-text">导出权重</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E8%AF%B4%E6%98%8E"><span class="toc-number">3.</span> <span class="toc-text">其他说明</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E8%87%AA%E5%B7%B1%E7%9A%84%E6%95%B0%E6%8D%AE%E9%9B%86%E8%BF%9B%E8%A1%8C%E8%AE%AD%E7%BB%83"><span class="toc-number">3.1.</span> <span class="toc-text">使用自己的数据集进行训练</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%87%86%E5%A4%87"><span class="toc-number">3.1.1.</span> <span class="toc-text">数据准备</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B%E8%AE%AD%E7%BB%83"><span class="toc-number">3.1.2.</span> <span class="toc-text">开始训练</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%9D%E5%AD%98%E8%AE%AD%E7%BB%83%E6%97%A5%E5%BF%97"><span class="toc-number">3.2.</span> <span class="toc-text">保存训练日志</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">3.3.</span> <span class="toc-text">配置文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0"><span class="toc-number">4.</span> <span class="toc-text">参考文章</span></a></li></ol>
 			<div class="sidebar-btn-wrapper" style="position:static">
 				<a href="#top">
 					<div class="sidebar-top">
