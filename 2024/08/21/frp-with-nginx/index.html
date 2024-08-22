@@ -31,7 +31,7 @@
 <meta property="og:description" content="缘起 因为宽带没有公网ip，而买一个云服务器又太过费钱。因而选择了使用内网穿透，而内网穿透我比较熟悉的厂商也就是SakuraFRP了。 但内网穿透的免费隧道只有两条，挂个alist是绰绰有余的，但我还想挂其他服务。这么看来两条隧道显然是不够用，于是我想到了nginx反向代理。 通过反向代理监听本地端口实现子目录的不同服务访问。  下载应用 安装nginx1sudo apt install ngin">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-08-21T00:41:44.000Z">
-<meta property="article:modified_time" content="2024-08-21T00:49:22.530Z">
+<meta property="article:modified_time" content="2024-08-22T09:08:28.786Z">
 <meta property="article:author" content="wu1015">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="Nginx">
@@ -174,7 +174,7 @@
             <div class="article-date wow slideInLeft">
     <a href="/2024/08/21/frp-with-nginx/" class="article-date-link">
         <time datetime="2024-08-21T00:41:44.000Z"
-              itemprop="datePublished">2024-08-21 Last 2024-08-21</time>
+              itemprop="datePublished">2024-08-21 Last 2024-08-22</time>
     </a>
 </div>
 
@@ -206,7 +206,7 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp /etc/nginx/sites-avaliable/default /etc/nginx/sites-avaliable/default.bak</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>编辑<code>default</code>。删除所有配置并加入以下内容。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">	listen 10086;  # Nginx 监听本地的 10086 端口（可以改为你需要的端口）</span><br><span class="line"></span><br><span class="line">	server_name 127.0.0.1;</span><br><span class="line"></span><br><span class="line">	# 将根路径 `/` 的请求代理到本地 5244 端口</span><br><span class="line">location / &#123;</span><br><span class="line">	proxy_pass http://127.0.0.1:5244;</span><br><span class="line">	proxy_set_header Host $host;</span><br><span class="line">	proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">	proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">	proxy_set_header X-Forwarded-Proto $scheme;</span><br><span class="line">&#125;</span><br><span class="line">location /other &#123;</span><br><span class="line">	proxy_pass http://127.0.0.1:5299;</span><br><span class="line">	proxy_set_header Host $host;</span><br><span class="line">	proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">	proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">	proxy_set_header X-Forwarded-Proto $scheme;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">	listen 10086;  # Nginx 监听本地的 10086 端口（可以改为你需要的端口）</span><br><span class="line"></span><br><span class="line">	server_name 127.0.0.1;</span><br><span class="line"></span><br><span class="line">	# 将根路径 `/` 的请求代理到本地 5244 端口</span><br><span class="line">location / &#123;</span><br><span class="line">	proxy_pass http://127.0.0.1:5244;</span><br><span class="line">	proxy_set_header Host $host;</span><br><span class="line">	proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">	proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">	proxy_set_header X-Forwarded-Proto $scheme;</span><br><span class="line">	# 不加这个上传不了文件</span><br><span class="line">	client_max_body_size 20000m;</span><br><span class="line">&#125;</span><br><span class="line">location /other &#123;</span><br><span class="line">	proxy_pass http://127.0.0.1:5299;</span><br><span class="line">	proxy_set_header Host $host;</span><br><span class="line">	proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">	proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">	proxy_set_header X-Forwarded-Proto $scheme;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>加载配置文件并重启<code>nginx</code>服务。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nginx -t</span><br><span class="line"></span><br><span class="line">systemctl restart nginx</span><br></pre></td></tr></table></figure></li>
@@ -232,7 +232,7 @@
             
         </div>
         <footer class="article-footer">
-            <a data-url="http://wu1015.github.io/2024/08/21/frp-with-nginx/" data-id="cm04l0t02001bfil6cb2xa1xx" data-title="使用nginx进行端口转发实现frp内网穿透端口的多重利用"
+            <a data-url="http://wu1015.github.io/2024/08/21/frp-with-nginx/" data-id="cm05290vu001dk2l6094u9xqi" data-title="使用nginx进行端口转发实现frp内网穿透端口的多重利用"
                class="article-share-link">分享</a>
             
             
