@@ -57,6 +57,7 @@ const getRealPath = (pathname, desc = false) => {
       $(this).attr("id","nav-sun-btn")
     }
   })
+  
   // lazysizes
   const imgs = $('.article-entry img');
   imgs.each(function() {
