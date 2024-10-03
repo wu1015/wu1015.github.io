@@ -6,7 +6,7 @@
   <link href="http://wu1015.github.io/atom.xml" rel="self"/>
   
   <link href="http://wu1015.github.io/"/>
-  <updated>2024-09-17T02:47:09.702Z</updated>
+  <updated>2024-10-03T09:29:27.418Z</updated>
   <id>http://wu1015.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Rustdesk-Nginx-Err</title>
+    <link href="http://wu1015.github.io/2024/10/03/Rustdesk-Nginx-Err/"/>
+    <id>http://wu1015.github.io/2024/10/03/Rustdesk-Nginx-Err/</id>
+    <published>2024-10-03T08:50:32.000Z</published>
+    <updated>2024-10-03T09:29:27.418Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ul><li>这是一次失败的配置，主要是因为需求和实际冲突了。</li><li>需求：部署在内网服务器，通过Nginx反代到内网穿透的一个端口进行访问</li><li>实际：rustdesk不支持端口后加地址，而我也不想再花钱买更多的隧道服务（免费用户仅支持两条隧道）</li></ul><h2 id="配置Rustdesk"><a href="#配置Rustdesk" class="headerlink" title="配置Rustdesk"></a>配置Rustdesk</h2><ul><li><p>下载</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/rustdesk/rustdesk-server/releases/download/1.1.11-1/rustdesk-server-linux-arm64v8.zip</span><br></pre></td></tr></table></figure></li><li><p>解压</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">7z x rustdesk-server-linux-arm64v8</span><br><span class="line"></span><br><span class="line">cd arm64v8</span><br></pre></td></tr></table></figure></li><li><p>添加执行权限</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod +x hbbr</span><br><span class="line">chmod +x hbbs</span><br></pre></td></tr></table></figure></li><li><p>此时只需要执行这两个执行文件就可以开启rustdesk服务了。但这并不太方便，所以需要编写一下启动脚本。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim start_rustdesk.sh</span><br></pre></td></tr></table></figure></li><li><p>输入以下内容</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">地址/hbbr -r 0.0.0.0&amp;</span><br><span class="line">地址/hbbs -r 0.0.0.0&amp;</span><br><span class="line">wait</span><br></pre></td></tr></table></figure></li><li><p>添加启动权限</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x start_rustdesk.sh</span><br></pre></td></tr></table></figure></li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/systemd/system/rustdesk.service</span><br></pre></td></tr></table></figure><ul><li><p>输入以下内容</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=Rustdesk Service</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=simple</span><br><span class="line">ExecStart=/地址/start_rustdesk.sh</span><br><span class="line">KillMode=control-group</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure></li><li><p>重新加载配置文件</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl daemon-reload</span><br></pre></td></tr></table></figure></li><li><p>启动服务</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start rustdesk</span><br></pre></td></tr></table></figure></li></ul><h2 id="使用Nginx进行反代（失败）"><a href="#使用Nginx进行反代（失败）" class="headerlink" title="使用Nginx进行反代（失败）"></a>使用Nginx进行反代（失败）</h2><ul><li><p>编辑配置文件</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/nginx/sites-available/default</span><br><span class="line"></span><br><span class="line"># 加入以下内容</span><br><span class="line"> location /rustdeska/ &#123;</span><br><span class="line">    proxy_pass http://127.0.0.1:21115;</span><br><span class="line">    proxy_set_header Host $host;</span><br><span class="line">    proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">    proxy_set_header X-Forwarded-Proto $scheme;</span><br><span class="line"> &#125;</span><br><span class="line"> location /rustdeskb/ &#123;</span><br><span class="line">    proxy_pass http://127.0.0.1:21116;</span><br><span class="line">    proxy_set_header Host $host;</span><br><span class="line">    proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">    proxy_set_header X-Forwarded-Proto $scheme;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></li><li><p>保存后校验并重启nginx服务</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nginx -t</span><br><span class="line"></span><br><span class="line">systemctl restart nginx</span><br></pre></td></tr></table></figure></li></ul><h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><ul><li>简单来说就是Rustdesk不支持端口后面加地址，比如这样的<code>https://abc:123/abc</code>，只支持这样的<code>https://abc:123</code>或者<code>abc:123</code>之类的。</li></ul><h2 id="用sealos进行配置"><a href="#用sealos进行配置" class="headerlink" title="用sealos进行配置"></a>用sealos进行配置</h2><ul><li>在即将打算不弄了的时候突然发现rustdesk的公用服务器在2024年4月关闭了对大陆的服务，理由是诈骗分子的过于猖獗。</li><li>而在搜索关闭服务的文章的时候发现了这篇博文提到的使用sealos进行配置<a href="https://www.cnblogs.com/ryanyangcs/p/18186163">RustDesk 自建服务器部署和使用教程</a>。一下就来了兴趣，稍微查了下感觉还行就直接用github帐号登录注册了一下。</li></ul><h3 id="关于sealos"><a href="#关于sealos" class="headerlink" title="关于sealos"></a>关于sealos</h3><ul><li>怎么来的我也就不过多赘述了，毕竟大伙都能查到。我就说说页面吧。</li><li>注册之后直接就能看到主页面，十分简洁，而且注册新用户有5g的试用金，这个好像是一比一充值的，充128以上有优惠。<br><img src="https://shp.qpic.cn/collector/1015650207/8528efdf-4aaa-47d5-a7f0-d3a966a4c1a0/0" alt="主界面图片"></li><li>另外默认是国外的服务器，使用国内的服务器在价格上看好像会便宜一点（反正那是这么标价的），不过需要实名认证。<br><img src="https://shp.qpic.cn/collector/1015650207/a2bf4157-65b4-47e1-b504-fe46daea2297/0" alt="费用图片"></li><li>具体部署教程我就不写了，毕竟啥也不用做，跟着人家教程来就是了。</li></ul><h3 id="使用几天后的体验"><a href="#使用几天后的体验" class="headerlink" title="使用几天后的体验"></a>使用几天后的体验</h3><ul><li>第一天部署之后的体验还是不错的，速度还行，虽然画面延迟比较高，但又不是不能用</li><li>部署三天体验，每天的费用在0.2-0.6之间，这是在应用暂停的状态下。开启的话可能是在0.7-0.9之间。也就是说如果暂停使用每天大概0.5，如果使用的话每天大概1。</li><li>然后看了下费用详情（在部署前就该看的），运算资源的费用很低，在0.1-0.2左右，但网络地址的费用较高，在0.6-0.7左右，使用了4个端口地址。<br><img src="https://shp.qpic.cn/collector/1015650207/7ae668f6-8c67-4e34-983f-a0e5796ff61c/0" alt="Rustdesk应用部署费用"></li><li>有个比较大的槽点就是服务器的选择不同会影响应用中心的显示。比如选择的是新加坡服务器，那么北京服务器创建的应用就无法在应用管理中显示。</li></ul><h3 id="总的来说"><a href="#总的来说" class="headerlink" title="总的来说"></a>总的来说</h3><ul><li>如果是即用即开，不用就删，那性价比还可以。但如果是即用即开，不用就暂停的话还不如购买内网穿透服务或者买个便宜的服务器。</li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;这是一次失败的配置，主要是因为需求和实际冲突了。&lt;/li&gt;
+&lt;li&gt;需求：部署在内网服务器，通过Nginx反代到内网穿透的一个端</summary>
+      
+    
+    
+    
+    <category term="日常" scheme="http://wu1015.github.io/categories/%E6%97%A5%E5%B8%B8/"/>
+    
+    
+    <category term="Rustdesk" scheme="http://wu1015.github.io/tags/Rustdesk/"/>
+    
+    <category term="SealOS" scheme="http://wu1015.github.io/tags/SealOS/"/>
+    
+  </entry>
   
   <entry>
     <title>在docker配置vnc连接</title>
@@ -503,31 +531,6 @@
     
     
     <category term="FTP" scheme="http://wu1015.github.io/tags/FTP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>wxid添加好友</title>
-    <link href="http://wu1015.github.io/2024/02/20/WxidFound/"/>
-    <id>http://wu1015.github.io/2024/02/20/WxidFound/</id>
-    <published>2024-02-19T23:20:09.000Z</published>
-    <updated>2024-03-22T09:26:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="wxid添加好友"><a href="#wxid添加好友" class="headerlink" title="wxid添加好友"></a>wxid添加好友</h2><p>可以通过a标签在微信发送来添加好友。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=&quot;weixin://contacts/profile/微信id或者wxid&quot;&gt;通过wxid加好友&lt;/a&gt;</span><br><span class="line"></span><br><span class="line">// 或者</span><br><span class="line"></span><br><span class="line">&lt;a href=&quot;weixin://findfriend/verifycontact/微信id或者wxid&quot;&gt;通过wxid加好友&lt;/a&gt;</span><br></pre></td></tr></table></figure><p>在微信8.0.24play可行，8.0.32只能收到纯文本而不是转换后的可点击的超链接。（申请添加之后可以在添加好友那看到申请添加，但对方能否看到还不好说）</p><p>另外，如果目标联系人有头像和昵称的话会显示的，而不是显示wxid_xxx。</p><h3 id="不可行方案"><a href="#不可行方案" class="headerlink" title="不可行方案"></a>不可行方案</h3><ul><li>微信手机版直接搜索wxid。</li><li>微信pc或uwp版本直接搜索wxid（uwp版本甚至不能加好友）。</li><li>微信wx模块，在某个版本去除了对这个功能的支持（尽管之前也是捐赠之后才能有的“付费功能”）。</li><li>直接拿上述a标签链接生成二维码进行扫描只会返回纯文本。如果是把href中的文本进行生成的话，扫描后会返回不支持。</li></ul><h2 id="获取目前的手机号"><a href="#获取目前的手机号" class="headerlink" title="获取目前的手机号"></a>获取目前的手机号</h2><p> 如果在输入错误手机号后再次输入正确手机号，目标联系人那也会出现错误手机号，进而误导我们。（前提是已经加过好友了）</p><p>正确的手机号只是我们搜索后会跳转到目标联系人的手机号而不是微信显示的。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;wxid添加好友&quot;&gt;&lt;a href=&quot;#wxid添加好友&quot; class=&quot;headerlink&quot; title=&quot;wxid添加好友&quot;&gt;&lt;/a&gt;wxid添加好友&lt;/h2&gt;&lt;p&gt;可以通过a标签在微信发送来添加好友。&lt;/p&gt;
-&lt;figure class=&quot;highligh</summary>
-      
-    
-    
-    
-    <category term="日常" scheme="http://wu1015.github.io/categories/%E6%97%A5%E5%B8%B8/"/>
-    
-    
-    <category term="微信" scheme="http://wu1015.github.io/tags/%E5%BE%AE%E4%BF%A1/"/>
     
   </entry>
   

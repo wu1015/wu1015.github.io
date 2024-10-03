@@ -12,7 +12,7 @@
 
     
     <title>
-        在docker配置vnc连接 |
+        Rustdesk-Nginx-Err |
         
         wu1015&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -23,19 +23,23 @@
     
 <link rel="stylesheet" href="/css/loader.css">
 
-    <meta name="description" content="vnc配置前的准备启动容器 这一步比较关键，要注意启动的镜像的版本。我们这里以Ubuntu举例，如果高于22.04，就必须加入参数--security-opt seccomp&#x3D;unconfined。否则会出问题。在下述启动命令中，指定使用主机所有gpu资源，命名为wu1015_test，将容器5901端口映射到本地的32789。1docker run  --gpus all  --ipc&#x3D;host">
+    <meta name="description" content="前言 这是一次失败的配置，主要是因为需求和实际冲突了。 需求：部署在内网服务器，通过Nginx反代到内网穿透的一个端口进行访问 实际：rustdesk不支持端口后加地址，而我也不想再花钱买更多的隧道服务（免费用户仅支持两条隧道）  配置Rustdesk 下载 1wget https:&#x2F;&#x2F;github.com&#x2F;rustdesk&#x2F;rustdesk-server&#x2F;releases&#x2F;download&#x2F;1.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="在docker配置vnc连接">
-<meta property="og:url" content="http://wu1015.github.io/2024/09/14/docker-with-vnc/index.html">
+<meta property="og:title" content="Rustdesk-Nginx-Err">
+<meta property="og:url" content="http://wu1015.github.io/2024/10/03/Rustdesk-Nginx-Err/index.html">
 <meta property="og:site_name" content="wu1015&#39;s blog">
-<meta property="og:description" content="vnc配置前的准备启动容器 这一步比较关键，要注意启动的镜像的版本。我们这里以Ubuntu举例，如果高于22.04，就必须加入参数--security-opt seccomp&#x3D;unconfined。否则会出问题。在下述启动命令中，指定使用主机所有gpu资源，命名为wu1015_test，将容器5901端口映射到本地的32789。1docker run  --gpus all  --ipc&#x3D;host">
+<meta property="og:description" content="前言 这是一次失败的配置，主要是因为需求和实际冲突了。 需求：部署在内网服务器，通过Nginx反代到内网穿透的一个端口进行访问 实际：rustdesk不支持端口后加地址，而我也不想再花钱买更多的隧道服务（免费用户仅支持两条隧道）  配置Rustdesk 下载 1wget https:&#x2F;&#x2F;github.com&#x2F;rustdesk&#x2F;rustdesk-server&#x2F;releases&#x2F;download&#x2F;1.">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-09-14T08:49:31.000Z">
-<meta property="article:modified_time" content="2024-09-17T02:47:09.702Z">
+<meta property="og:image" content="https://shp.qpic.cn/collector/1015650207/8528efdf-4aaa-47d5-a7f0-d3a966a4c1a0/0">
+<meta property="og:image" content="https://shp.qpic.cn/collector/1015650207/a2bf4157-65b4-47e1-b504-fe46daea2297/0">
+<meta property="og:image" content="https://shp.qpic.cn/collector/1015650207/7ae668f6-8c67-4e34-983f-a0e5796ff61c/0">
+<meta property="article:published_time" content="2024-10-03T08:50:32.000Z">
+<meta property="article:modified_time" content="2024-10-03T09:29:27.418Z">
 <meta property="article:author" content="wu1015">
-<meta property="article:tag" content="Linux">
-<meta property="article:tag" content="Docker">
+<meta property="article:tag" content="Rustdesk">
+<meta property="article:tag" content="SealOS">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://shp.qpic.cn/collector/1015650207/8528efdf-4aaa-47d5-a7f0-d3a966a4c1a0/0">
     
         <link rel="alternate" href="/atom.xml" title="wu1015's blog" type="application/atom+xml">
     
@@ -110,7 +114,7 @@
         <div id="wrap">
             <header id="header">
     
-        <img data-src="https://shp.qpic.cn/collector/1015650207/1276df05-4a46-493c-a8da-e5b543540adb/0" data-sizes="auto" alt="在docker配置vnc连接" class="lazyload">
+        <img data-src="https://shp.qpic.cn/collector/1015650207/b3e7ff4f-934b-4adb-bee6-cef32aaab437/0" data-sizes="auto" alt="Rustdesk-Nginx-Err" class="lazyload">
     
     <div id="header-outer" class="outer">
         <div id="header-title" class="inner">
@@ -118,7 +122,7 @@
                 
                     
                     
-                        <a href="/" id="logo"><h1>在docker配置vnc连接</h1></a>
+                        <a href="/" id="logo"><h1>Rustdesk-Nginx-Err</h1></a>
                     
                 
             </div>
@@ -167,20 +171,20 @@
 </header>
 
             <div id="content" class="outer">
-                <section id="main"><article id="post-docker-with-vnc" class="h-entry article article-type-post"
+                <section id="main"><article id="post-Rustdesk-Nginx-Err" class="h-entry article article-type-post"
          itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
     <div class="article-inner">
         <div class="article-meta">
             <div class="article-date wow slideInLeft">
-    <a href="/2024/09/14/docker-with-vnc/" class="article-date-link">
-        <time datetime="2024-09-14T08:49:31.000Z"
-              itemprop="datePublished">2024-09-14 Last 2024-09-17</time>
+    <a href="/2024/10/03/Rustdesk-Nginx-Err/" class="article-date-link">
+        <time datetime="2024-10-03T08:50:32.000Z"
+              itemprop="datePublished">2024-10-03 Last 2024-10-03</time>
     </a>
 </div>
 
             
     <div class="article-category wow slideInLeft">
-        <a class="article-category-link" href="/categories/%E5%B2%81%E6%9C%88%E7%9A%84%E5%8F%B2%E4%B9%A6/">岁月的史书</a>
+        <a class="article-category-link" href="/categories/%E6%97%A5%E5%B8%B8/">日常</a>
     </div>
 
 
@@ -190,73 +194,82 @@
 
         <div class="e-content article-entry" itemprop="articleBody">
             
-                <h2 id="vnc配置前的准备"><a href="#vnc配置前的准备" class="headerlink" title="vnc配置前的准备"></a>vnc配置前的准备</h2><h3 id="启动容器"><a href="#启动容器" class="headerlink" title="启动容器"></a>启动容器</h3><ul>
-<li>这一步比较关键，要注意启动的镜像的版本。我们这里以Ubuntu举例，如果高于<code>22.04</code>，就必须加入参数<code>--security-opt seccomp=unconfined</code>。否则会出问题。在下述启动命令中，指定使用主机所有gpu资源，命名为wu1015_test，将容器5901端口映射到本地的32789。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run  --gpus all  --ipc=host --name wu1015_test --security-opt seccomp=unconfined -it -p  32789:5901 镜像id</span><br></pre></td></tr></table></figure></li>
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ul>
+<li>这是一次失败的配置，主要是因为需求和实际冲突了。</li>
+<li>需求：部署在内网服务器，通过Nginx反代到内网穿透的一个端口进行访问</li>
+<li>实际：rustdesk不支持端口后加地址，而我也不想再花钱买更多的隧道服务（免费用户仅支持两条隧道）</li>
 </ul>
-<h3 id="新建用户"><a href="#新建用户" class="headerlink" title="新建用户"></a>新建用户</h3><ul>
-<li><p>建议不要使用<code>root</code>用户进行配置，建议新建一个用户避免出现一些问题。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adduser wu</span><br></pre></td></tr></table></figure>
+<h2 id="配置Rustdesk"><a href="#配置Rustdesk" class="headerlink" title="配置Rustdesk"></a>配置Rustdesk</h2><ul>
+<li><p>下载</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/rustdesk/rustdesk-server/releases/download/1.1.11-1/rustdesk-server-linux-arm64v8.zip</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>授予<code>sudo</code>权限。没有<code>sudo</code>的话就下一个<code>apt install sudo</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">usermod -aG sudo wu</span><br></pre></td></tr></table></figure></li>
+<li><p>解压</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">7z x rustdesk-server-linux-arm64v8</span><br><span class="line"></span><br><span class="line">cd arm64v8</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加执行权限</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod +x hbbr</span><br><span class="line">chmod +x hbbs</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>此时只需要执行这两个执行文件就可以开启rustdesk服务了。但这并不太方便，所以需要编写一下启动脚本。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim start_rustdesk.sh</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>输入以下内容</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">地址/hbbr -r 0.0.0.0&amp;</span><br><span class="line">地址/hbbs -r 0.0.0.0&amp;</span><br><span class="line">wait</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加启动权限</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x start_rustdesk.sh</span><br></pre></td></tr></table></figure></li>
 </ul>
-<h2 id="配置vnc"><a href="#配置vnc" class="headerlink" title="配置vnc"></a>配置vnc</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><ul>
-<li><p>安装x11</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install xorg openbox</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>安装xfce桌面环境</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install xfce4 xfce4-goodies vim</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>安装<code>tightvncserver</code>，这个地方要注意的是，这个是新的vnc，旧的是vnc4server好像。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install tightvncserver</span><br></pre></td></tr></table></figure></li>
-</ul>
-<p>&#x2F;&#x2F; todo x11vnc</p>
-<h3 id="vnc配置"><a href="#vnc配置" class="headerlink" title="vnc配置"></a>vnc配置</h3><ul>
-<li><p>启动vnc并关闭以生成配置文件。第一次启动会要求输入一个密码，不要太长。第二个选项选择<code>n</code>。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vncserver :1</span><br><span class="line"></span><br><span class="line">vncserver -kill :1</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编辑启动文件。启动文件，顾名思义，在连接时加载的文件，可以在里面加入一些启动参数，比如<code>thunar</code>就可以启动xfce自带的文件管理器了。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.vnc/xstartup</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>全部删除并添加</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh</span><br><span class="line">unset SESSION_MANAGER</span><br><span class="line">unset DBUS_SESSION_BUS_ADDRESS</span><br><span class="line">#openbox-session &amp;</span><br><span class="line">xrdb $HOME/.Xresources</span><br><span class="line">startxfce4 &amp;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>给予启动权限</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x ~/.vnc/xstartup</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>如果启动成功会回报</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">New &#x27;X&#x27; desktop is 4f09a4c66740:1</span><br><span class="line"></span><br><span class="line">Starting applications specified in /home/wu/.vnc/xstartup</span><br><span class="line">Log file is /home/wu/.vnc/4f09a4c66740:1.log</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="可能出现的一些问题以及解决方法"><a href="#可能出现的一些问题以及解决方法" class="headerlink" title="可能出现的一些问题以及解决方法"></a>可能出现的一些问题以及解决方法</h2><ul>
-<li><p>如果找不到<code>display</code>可以选择配置一个环境变量</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export DISPLAY=:1</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>如果在vnc连接之后没办法输入可以通过<code>xev</code>检测。在服务器端输入<code>xev</code>就可以在vnc那开一个窗口用于检测输入，包括鼠标和键盘。</p>
-</li>
-<li><p>报错<code>failed to close file descriptor for child process(Operation not permitted)</code>。就是前面的那个问题，用的镜像影视ubuntu22.04。使用<code>--security-opt seccomp=unconfined</code>参数重新启动镜像。</p>
-</li>
-<li><p>灰屏黑屏问题的解决方法同上。</p>
-</li>
-</ul>
-<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/systemd/system/rustdesk.service</span><br></pre></td></tr></table></figure>
+
 <ul>
-<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/limstorm/p/17320144.html">Ubuntu20.04 Docker搭建远程xfce桌面以及ssh教程</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/Robert_Q/article/details/127376171">使用VNC可视化Docker容器</a></li>
-<li><a target="_blank" rel="noopener" href="https://gist.github.com/nathabonfim59/b088db8752673e1e7acace8806390242">How to fix the “Failed to close file descriptor for child process (Operation not permitted)” in your docker ci build</a></li>
-<li><a target="_blank" rel="noopener" href="https://forums.docker.com/t/solved-docker-vnc-grey-screen-only-with-ubuntu-22-04-image/140108">[SOLVED] Docker VNC grey screen (only with ubuntu 22.04 image)</a></li>
+<li><p>输入以下内容</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=Rustdesk Service</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=simple</span><br><span class="line">ExecStart=/地址/start_rustdesk.sh</span><br><span class="line">KillMode=control-group</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重新加载配置文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl daemon-reload</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动服务</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start rustdesk</span><br></pre></td></tr></table></figure></li>
 </ul>
-</blockquote>
+<h2 id="使用Nginx进行反代（失败）"><a href="#使用Nginx进行反代（失败）" class="headerlink" title="使用Nginx进行反代（失败）"></a>使用Nginx进行反代（失败）</h2><ul>
+<li><p>编辑配置文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/nginx/sites-available/default</span><br><span class="line"></span><br><span class="line"># 加入以下内容</span><br><span class="line"> location /rustdeska/ &#123;</span><br><span class="line">    proxy_pass http://127.0.0.1:21115;</span><br><span class="line">    proxy_set_header Host $host;</span><br><span class="line">    proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">    proxy_set_header X-Forwarded-Proto $scheme;</span><br><span class="line"> &#125;</span><br><span class="line"> location /rustdeskb/ &#123;</span><br><span class="line">    proxy_pass http://127.0.0.1:21116;</span><br><span class="line">    proxy_set_header Host $host;</span><br><span class="line">    proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">    proxy_set_header X-Forwarded-Proto $scheme;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>保存后校验并重启nginx服务</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nginx -t</span><br><span class="line"></span><br><span class="line">systemctl restart nginx</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><ul>
+<li>简单来说就是Rustdesk不支持端口后面加地址，比如这样的<code>https://abc:123/abc</code>，只支持这样的<code>https://abc:123</code>或者<code>abc:123</code>之类的。</li>
+</ul>
+<h2 id="用sealos进行配置"><a href="#用sealos进行配置" class="headerlink" title="用sealos进行配置"></a>用sealos进行配置</h2><ul>
+<li>在即将打算不弄了的时候突然发现rustdesk的公用服务器在2024年4月关闭了对大陆的服务，理由是诈骗分子的过于猖獗。</li>
+<li>而在搜索关闭服务的文章的时候发现了这篇博文提到的使用sealos进行配置<a target="_blank" rel="noopener" href="https://www.cnblogs.com/ryanyangcs/p/18186163">RustDesk 自建服务器部署和使用教程</a>。一下就来了兴趣，稍微查了下感觉还行就直接用github帐号登录注册了一下。</li>
+</ul>
+<h3 id="关于sealos"><a href="#关于sealos" class="headerlink" title="关于sealos"></a>关于sealos</h3><ul>
+<li>怎么来的我也就不过多赘述了，毕竟大伙都能查到。我就说说页面吧。</li>
+<li>注册之后直接就能看到主页面，十分简洁，而且注册新用户有5g的试用金，这个好像是一比一充值的，充128以上有优惠。<br><img src="https://shp.qpic.cn/collector/1015650207/8528efdf-4aaa-47d5-a7f0-d3a966a4c1a0/0" alt="主界面图片"></li>
+<li>另外默认是国外的服务器，使用国内的服务器在价格上看好像会便宜一点（反正那是这么标价的），不过需要实名认证。<br><img src="https://shp.qpic.cn/collector/1015650207/a2bf4157-65b4-47e1-b504-fe46daea2297/0" alt="费用图片"></li>
+<li>具体部署教程我就不写了，毕竟啥也不用做，跟着人家教程来就是了。</li>
+</ul>
+<h3 id="使用几天后的体验"><a href="#使用几天后的体验" class="headerlink" title="使用几天后的体验"></a>使用几天后的体验</h3><ul>
+<li>第一天部署之后的体验还是不错的，速度还行，虽然画面延迟比较高，但又不是不能用</li>
+<li>部署三天体验，每天的费用在0.2-0.6之间，这是在应用暂停的状态下。开启的话可能是在0.7-0.9之间。也就是说如果暂停使用每天大概0.5，如果使用的话每天大概1。</li>
+<li>然后看了下费用详情（在部署前就该看的），运算资源的费用很低，在0.1-0.2左右，但网络地址的费用较高，在0.6-0.7左右，使用了4个端口地址。<br><img src="https://shp.qpic.cn/collector/1015650207/7ae668f6-8c67-4e34-983f-a0e5796ff61c/0" alt="Rustdesk应用部署费用"></li>
+<li>有个比较大的槽点就是服务器的选择不同会影响应用中心的显示。比如选择的是新加坡服务器，那么北京服务器创建的应用就无法在应用管理中显示。</li>
+</ul>
+<h3 id="总的来说"><a href="#总的来说" class="headerlink" title="总的来说"></a>总的来说</h3><ul>
+<li>如果是即用即开，不用就删，那性价比还可以。但如果是即用即开，不用就暂停的话还不如购买内网穿透服务或者买个便宜的服务器。</li>
+</ul>
 
             
         </div>
         <footer class="article-footer">
-            <a data-url="http://wu1015.github.io/2024/09/14/docker-with-vnc/" data-id="cm1t3iwld001e33l69e9kax0t" data-title="在docker配置vnc连接"
+            <a data-url="http://wu1015.github.io/2024/10/03/Rustdesk-Nginx-Err/" data-id="cm1t3iwl7000v33l6bfv4fggw" data-title="Rustdesk-Nginx-Err"
                class="article-share-link">分享</a>
             
             
             
             
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li></ul>
+    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Rustdesk/" rel="tag">Rustdesk</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SealOS/" rel="tag">SealOS</a></li></ul>
 
 
         </footer>
@@ -265,31 +278,17 @@
         
     <nav id="article-nav" class="wow fadeInUp">
         
-            <div class="article-nav-link-wrap article-nav-link-left">
-                
-                    <img data-src="https://shp.qpic.cn/collector/1015650207/b3e7ff4f-934b-4adb-bee6-cef32aaab437/0" data-sizes="auto" alt="Rustdesk-Nginx-Err"
-                         class="lazyload">
-                
-                <a href="/2024/10/03/Rustdesk-Nginx-Err/"></a>
-                <div class="article-nav-caption">前一篇</div>
-                <h3 class="article-nav-title">
-                    
-                        Rustdesk-Nginx-Err
-                    
-                </h3>
-            </div>
-        
         
             <div class="article-nav-link-wrap article-nav-link-right">
                 
-                    <img data-src="https://shp.qpic.cn/collector/1015650207/de8d8597-c5f2-4ead-b54b-91390124062d/0" data-sizes="auto" alt="Aris终端桌面安卓逆向记录"
+                    <img data-src="https://shp.qpic.cn/collector/1015650207/1276df05-4a46-493c-a8da-e5b543540adb/0" data-sizes="auto" alt="在docker配置vnc连接"
                          class="lazyload">
                 
-                <a href="/2024/09/09/aris-launcher-reverse/"></a>
+                <a href="/2024/09/14/docker-with-vnc/"></a>
                 <div class="article-nav-caption">后一篇</div>
                 <h3 class="article-nav-title">
                     
-                        Aris终端桌面安卓逆向记录
+                        在docker配置vnc连接
                     
                 </h3>
             </div>
@@ -398,7 +397,7 @@
 	<div id="toca" class="widget-wrap wow fadeInRight">
 		<h3 class="widget-title">文章导航</h3>
 		<div class="widget" >
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#vnc%E9%85%8D%E7%BD%AE%E5%89%8D%E7%9A%84%E5%87%86%E5%A4%87"><span class="toc-number">1.</span> <span class="toc-text">vnc配置前的准备</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E5%AE%B9%E5%99%A8"><span class="toc-number">1.1.</span> <span class="toc-text">启动容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B0%E5%BB%BA%E7%94%A8%E6%88%B7"><span class="toc-number">1.2.</span> <span class="toc-text">新建用户</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEvnc"><span class="toc-number">2.</span> <span class="toc-text">配置vnc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-number">2.1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vnc%E9%85%8D%E7%BD%AE"><span class="toc-number">2.2.</span> <span class="toc-text">vnc配置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E8%83%BD%E5%87%BA%E7%8E%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98%E4%BB%A5%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text">可能出现的一些问题以及解决方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0"><span class="toc-number">4.</span> <span class="toc-text">参考文章</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AERustdesk"><span class="toc-number">2.</span> <span class="toc-text">配置Rustdesk</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Nginx%E8%BF%9B%E8%A1%8C%E5%8F%8D%E4%BB%A3%EF%BC%88%E5%A4%B1%E8%B4%A5%EF%BC%89"><span class="toc-number">3.</span> <span class="toc-text">使用Nginx进行反代（失败）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0"><span class="toc-number">3.1.</span> <span class="toc-text">问题描述</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8sealos%E8%BF%9B%E8%A1%8C%E9%85%8D%E7%BD%AE"><span class="toc-number">4.</span> <span class="toc-text">用sealos进行配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8Esealos"><span class="toc-number">4.1.</span> <span class="toc-text">关于sealos</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%87%A0%E5%A4%A9%E5%90%8E%E7%9A%84%E4%BD%93%E9%AA%8C"><span class="toc-number">4.2.</span> <span class="toc-text">使用几天后的体验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%9A%84%E6%9D%A5%E8%AF%B4"><span class="toc-number">4.3.</span> <span class="toc-text">总的来说</span></a></li></ol></li></ol>
 			<div class="sidebar-btn-wrapper" style="position:static">
 				<a href="#top">
 					<div class="sidebar-top">
