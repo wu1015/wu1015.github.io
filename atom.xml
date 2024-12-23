@@ -6,7 +6,7 @@
   <link href="http://wu1015.github.io/atom.xml" rel="self"/>
   
   <link href="http://wu1015.github.io/"/>
-  <updated>2024-12-23T02:28:02.683Z</updated>
+  <updated>2024-12-23T03:47:26.024Z</updated>
   <id>http://wu1015.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>QQ收藏无法作为图床使用</title>
+    <link href="http://wu1015.github.io/2024/12/23/QQMarkFailed/"/>
+    <id>http://wu1015.github.io/2024/12/23/QQMarkFailed/</id>
+    <published>2024-12-23T03:26:08.000Z</published>
+    <updated>2024-12-23T03:47:26.024Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="QQ开始限制外链访问"><a href="#QQ开始限制外链访问" class="headerlink" title="QQ开始限制外链访问"></a>QQ开始限制外链访问</h2><ul><li>2024.12.19的时候发现QQ开始限制QQ收藏图片的外链访问了。最开始是刷新下就能显示，但后面就不行了。<br><img src="https://wu1015-images.pages.dev/imgs/QQMarkFailed/001.png" alt="引用的QQ收藏图片无法显示"></li></ul><h2 id="存储在别人的图床"><a href="#存储在别人的图床" class="headerlink" title="存储在别人的图床"></a>存储在别人的图床</h2><ul><li>私有图床，没准哪天就跑路了，付费的咱们又那闲钱买。</li></ul><h2 id="使用其他的平替"><a href="#使用其他的平替" class="headerlink" title="使用其他的平替"></a>使用其他的平替</h2><ul><li>比如CSDN，微博之类的。但是因为这样需要注册账户，然后出来的外链图片没准还被压缩了。最后就是和前几个一样的问题，没准哪天就停止外链访问了呢。</li></ul><h2 id="自己搭建图床"><a href="#自己搭建图床" class="headerlink" title="自己搭建图床"></a>自己搭建图床</h2><ul><li>这个方案倒是不错，只是如果使用服务器来搭建有被d的风险。如果是用CF之类的免费Work服务来搭建，但其实也是有上限的，而且我也不需要那么完善的服务，只要能引用图片外链就行了（否则我也不会那么长时间的使用QQ收藏作为图床）。</li></ul><h3 id="使用CloudFlare-Page"><a href="#使用CloudFlare-Page" class="headerlink" title="使用CloudFlare Page"></a>使用CloudFlare Page</h3><ul><li>在Github上面新建一个仓库用于存储图片，然后用CF连接部署下就行了。（就和部署正常博客一样）</li><li>因为我需要预览下图片，而且也懒得一个个的打开，所以写了一个小的Py脚本来生成html文件，用于预览。虽然挺简陋的，但是能用就行（<a href="https://github.com/wu1015/images">仓库链接</a>）。<img src="https://wu1015-images.pages.dev/imgs/QQMarkFailed/002.png" alt="效果图"></li><li>仓库大小有5G好像，自己用的话应该是够用很长一段时间的。</li><li>完成，感觉还是不错的，只是速度相比于qq收藏还是稍微慢了点。但白嫖的要什么自行车。</li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;QQ开始限制外链访问&quot;&gt;&lt;a href=&quot;#QQ开始限制外链访问&quot; class=&quot;headerlink&quot; title=&quot;QQ开始限制外链访问&quot;&gt;&lt;/a&gt;QQ开始限制外链访问&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;2024.12.19的时候发现QQ开始限制QQ收藏图片的外链访问</summary>
+      
+    
+    
+    
+    <category term="日常" scheme="http://wu1015.github.io/categories/%E6%97%A5%E5%B8%B8/"/>
+    
+    
+    <category term="图床" scheme="http://wu1015.github.io/tags/%E5%9B%BE%E5%BA%8A/"/>
+    
+  </entry>
   
   <entry>
     <title>Rustdesk-Nginx-Err</title>
@@ -504,33 +529,6 @@
     
     
     <category term="Windows" scheme="http://wu1015.github.io/tags/Windows/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Win使用FTP连接VM虚拟机</title>
-    <link href="http://wu1015.github.io/2024/03/04/FTPUsageForWin/"/>
-    <id>http://wu1015.github.io/2024/03/04/FTPUsageForWin/</id>
-    <published>2024-03-04T10:20:16.000Z</published>
-    <updated>2024-12-23T02:23:05.966Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="Win设置"><a href="#Win设置" class="headerlink" title="Win设置"></a>Win设置</h3><ul><li><p>建议网络使用专用网络并暂时关闭防火墙设置。</p></li><li><p>Win使用命令行常用ftp命令：</p>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//建立连接，address为地址，可以是域名也可以是ip,默认21端口</span><br><span class="line">ftp address</span><br><span class="line">//打开ftp命令行</span><br><span class="line">ftp</span><br><span class="line"></span><br><span class="line">//以下在进入ftp命令行时可用</span><br><span class="line">//建立连接，address为地址</span><br><span class="line">open address</span><br><span class="line">//传入文件，file_path为文件路径</span><br><span class="line">put file_path</span><br><span class="line">//传出文件，file_path为文件路径</span><br><span class="line">get file_path</span><br></pre></td></tr></table></figure></li></ul><h3 id="VM设置"><a href="#VM设置" class="headerlink" title="VM设置"></a>VM设置</h3><ul><li><p>虚拟机网络设置：<br>  默认NAT，主机vlan0自动桥接。Win在使用命令行执行<code>ipconfig</code>后出现VM网络适配器并可ping通后方可使用。</p></li><li><p>虚拟机配置（以deb系为例）：</p>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//安装vsftp</span><br><span class="line">sudo apt install vsftpd</span><br></pre></td></tr></table></figure><p>  在安装完成之后修改文件<code>/etc/vsftpd.conf</code>，打开<code>write.enable=YES</code>和<code>anon_upload_enable=YES</code>后可解决<code>550 Permission denied</code>权限不够的错误。</p><p>  修改文件<code>/etc/ftpusers</code>，关闭root（在root前加入注释<code>#</code>）后可解决无法使用root用户登陆的问题。</p><p>  关闭防火墙或放行21端口：</p>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//关闭防火墙（有很多方法，不一定适用）</span><br><span class="line">sudo systemctl stop ufw</span><br><span class="line">//放行21端口</span><br><span class="line">sudo ufw allow 21/tcp</span><br></pre></td></tr></table></figure></li></ul>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;Win设置&quot;&gt;&lt;a href=&quot;#Win设置&quot; class=&quot;headerlink&quot; title=&quot;Win设置&quot;&gt;&lt;/a&gt;Win设置&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;建议网络使用专用网络并暂时关闭防火墙设置。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Win使用命令行常用</summary>
-      
-    
-    
-    
-    <category term="日常" scheme="http://wu1015.github.io/categories/%E6%97%A5%E5%B8%B8/"/>
-    
-    
-    <category term="FTP" scheme="http://wu1015.github.io/tags/FTP/"/>
     
   </entry>
   
