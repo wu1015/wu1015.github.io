@@ -30,18 +30,18 @@
 <meta property="og:site_name" content="wu1015&#39;s blog">
 <meta property="og:description" content="WPS在使用办公软件的过程中时常会存在 word 文档互相传递的场景，而众所周知，无论是 OpenOffice 还是还是 LibreOffice 都对 MSOffice 存在一定的兼容性问题。比如说格式出错，排版出错等。这时就不得不想起我们的民族之光 WPS 了。 WPS 在 Ubuntu 上有很多种安装方法，最常见的就是直接去官网下载安装 deb 包，其次还有 snap，flatpak 版。接下">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://shp.qpic.cn/collector/1015650207/648d1d5a-40e6-4932-b9c5-3f449beadb64/0">
-<meta property="og:image" content="https://shp.qpic.cn/collector/1015650207/60b8e792-a0ff-4357-9542-381421aa9331/0">
-<meta property="og:image" content="https://shp.qpic.cn/collector/1015650207/2f35a8c3-c3c0-4897-a982-777f750249c9/0">
-<meta property="og:image" content="https://shp.qpic.cn/collector/1015650207/a8f280ba-32cc-4dcc-8b47-b79246e9a89d/0">
-<meta property="og:image" content="https://shp.qpic.cn/collector/1015650207/2da19901-65d1-4869-ad59-5e1f3b4c06b9/0">
-<meta property="og:image" content="https://shp.qpic.cn/collector/1015650207/3414e8b5-38a9-4333-81d0-56e8b13ff157/0">
+<meta property="og:image" content="https://wu1015-images.pages.dev/imgs/WPSForLinuxUse/deb.png">
+<meta property="og:image" content="https://wu1015-images.pages.dev/imgs/WPSForLinuxUse/2019.png">
+<meta property="og:image" content="https://wu1015-images.pages.dev/imgs/WPSForLinuxUse/snap.png">
+<meta property="og:image" content="https://wu1015-images.pages.dev/imgs/WPSForLinuxUse/2016.png">
+<meta property="og:image" content="https://wu1015-images.pages.dev/imgs/WPSForLinuxUse/flatpak2.png">
+<meta property="og:image" content="https://wu1015-images.pages.dev/imgs/WPSForLinuxUse/flatpak.png">
 <meta property="article:published_time" content="2024-05-01T05:10:59.000Z">
-<meta property="article:modified_time" content="2024-06-17T02:25:53.970Z">
+<meta property="article:modified_time" content="2024-12-23T02:32:30.157Z">
 <meta property="article:author" content="wu1015">
 <meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://shp.qpic.cn/collector/1015650207/648d1d5a-40e6-4932-b9c5-3f449beadb64/0">
+<meta name="twitter:image" content="https://wu1015-images.pages.dev/imgs/WPSForLinuxUse/deb.png">
     
         <link rel="alternate" href="/atom.xml" title="wu1015's blog" type="application/atom+xml">
     
@@ -116,7 +116,7 @@
         <div id="wrap">
             <header id="header">
     
-        <img data-src="https://shp.qpic.cn/collector/1015650207/67c474a0-5841-4101-846e-3894f684b185/0" data-sizes="auto" alt="WPS For Linux几个版本的体验" class="lazyload">
+        <img data-src="https://wu1015-images.pages.dev/imgs/WPSForLinuxUse/3a373c651229af7d89425b2982090ddd.jpg" data-sizes="auto" alt="WPS For Linux几个版本的体验" class="lazyload">
     
     <div id="header-outer" class="outer">
         <div id="header-title" class="inner">
@@ -202,7 +202,7 @@
 <li><p>安装方法：官网下载 deb 包ver-11.1.0.11691，在目录打开终端输入：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i wps文件名</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>有的不说，WPS 还是不错的，和众多 Linux 原生应用一样，干净又好用，尽管样式栏还是会出现乱码问题，但又不大影响正常使用，瑕不掩瑜了属于是。<br><img src="https://shp.qpic.cn/collector/1015650207/648d1d5a-40e6-4932-b9c5-3f449beadb64/0" alt="deb 版的样式乱码"></p>
+<li><p>有的不说，WPS 还是不错的，和众多 Linux 原生应用一样，干净又好用，尽管样式栏还是会出现乱码问题，但又不大影响正常使用，瑕不掩瑜了属于是。<br><img src="https://wu1015-images.pages.dev/imgs/WPSForLinuxUse/deb.png" alt="deb 版的样式乱码"></p>
 </li>
 <li><p>不过我还是不大想用它，一是因为安装的的时候会把所有办公文档的默认打开方式都改为 WPS，而且桌面图标也会随之更改；二是我一般很少用到 WPS 的同步功能，也就是说偶尔弹出的登录选项对我来说就像是牛皮癣一样的东西；最后，WPS 之前有锁用户文件的丑闻（尽管官方和当事人都回应不是本地文件），所以我不大想让 WPS 联网或者是读取我太多的文件。</p>
 </li>
@@ -214,11 +214,11 @@
 </li>
 <li><p>snap 两个版本都不支持登录，换言之都删除了登录（或者说联网）功能。</p>
 </li>
-<li><p>2019 版和 deb 版基本相同，感觉不错只是部分功能有问题（如作者所言），点击通用设置或者主题会闪退（其实在主界面那除了新建和打开文档，其他都闪退）。另外我还出现了黑暗模式设置界面的字体跟随变化的情况（白底白字，黑底黑字那种）。在查找资料后，发现需要改为 gtk2 启动才行（但我修改后还是不行）。<br><img src="https://shp.qpic.cn/collector/1015650207/60b8e792-a0ff-4357-9542-381421aa9331/0" alt="2019 版的设置界面字体跟随 bug"></p>
+<li><p>2019 版和 deb 版基本相同，感觉不错只是部分功能有问题（如作者所言），点击通用设置或者主题会闪退（其实在主界面那除了新建和打开文档，其他都闪退）。另外我还出现了黑暗模式设置界面的字体跟随变化的情况（白底白字，黑底黑字那种）。在查找资料后，发现需要改为 gtk2 启动才行（但我修改后还是不行）。<br><img src="https://wu1015-images.pages.dev/imgs/WPSForLinuxUse/2019.png" alt="2019 版的设置界面字体跟随 bug"></p>
 </li>
-<li><p>2019 版也会和 deb 版一样，有几个样式还是会乱码，虽然也不太影响正常使用。<br><img src="https://shp.qpic.cn/collector/1015650207/2f35a8c3-c3c0-4897-a982-777f750249c9/0" alt="snap 版样式乱码"></p>
+<li><p>2019 版也会和 deb 版一样，有几个样式还是会乱码，虽然也不太影响正常使用。<br><img src="https://wu1015-images.pages.dev/imgs/WPSForLinuxUse/snap.png" alt="snap 版样式乱码"></p>
 </li>
-<li><p>2016 版具体 bug 似乎没啥，就是界面有点古老了，不大喜欢。<br><img src="https://shp.qpic.cn/collector/1015650207/a8f280ba-32cc-4dcc-8b47-b79246e9a89d/0" alt="snap 的 2016 版界面"></p>
+<li><p>2016 版具体 bug 似乎没啥，就是界面有点古老了，不大喜欢。<br><img src="https://wu1015-images.pages.dev/imgs/WPSForLinuxUse/2016.png" alt="snap 的 2016 版界面"></p>
 </li>
 </ul>
 <h2 id="With-Flatpak"><a href="#With-Flatpak" class="headerlink" title="With Flatpak"></a>With Flatpak</h2><ul>
@@ -241,7 +241,7 @@
 </li>
 <li><p>但粗体显示乱码<a target="_blank" rel="noopener" href="https://bbs.archlinux.org/viewtopic.php?id=288562">粗体乱码解决方法</a>。</p>
 </li>
-<li><p>和上面几个版本一样，部分样式显示乱码（甚至出问题的样式都一样）。<br><img src="https://shp.qpic.cn/collector/1015650207/2da19901-65d1-4869-ad59-5e1f3b4c06b9/0" alt="flatpak 粗体乱码"><br><img src="https://shp.qpic.cn/collector/1015650207/3414e8b5-38a9-4333-81d0-56e8b13ff157/0" alt="flatpak 样式乱码"></p>
+<li><p>和上面几个版本一样，部分样式显示乱码（甚至出问题的样式都一样）。<br><img src="https://wu1015-images.pages.dev/imgs/WPSForLinuxUse/flatpak2.png" alt="flatpak 粗体乱码"><br><img src="https://wu1015-images.pages.dev/imgs/WPSForLinuxUse/flatpak.png" alt="flatpak 样式乱码"></p>
 </li>
 </ul>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
@@ -305,7 +305,7 @@
         
             <div class="article-nav-link-wrap article-nav-link-left">
                 
-                    <img data-src="https://shp.qpic.cn/collector/1015650207/3605ab31-b8ae-4125-89df-4a9836074166/0" data-sizes="auto" alt="Colab的简单使用"
+                    <img data-src="https://wu1015-images.pages.dev/imgs/ColabUsage/545e912b4b05c58f166185fb1ee75839.jpg" data-sizes="auto" alt="Colab的简单使用"
                          class="lazyload">
                 
                 <a href="/2024/06/03/ColabUsage/"></a>
@@ -320,7 +320,7 @@
         
             <div class="article-nav-link-wrap article-nav-link-right">
                 
-                    <img data-src="https://shp.qpic.cn/collector/1015650207/9d2c04d1-8ba2-4208-9c78-9dfa308d2b3e/0" data-sizes="auto" alt="新版IDEA创建JavaWeb"
+                    <img data-src="https://wu1015-images.pages.dev/imgs/NewIDEAVersionWithJavaEE/%E5%A3%81%E7%BA%B8587.jpg" data-sizes="auto" alt="新版IDEA创建JavaWeb"
                          class="lazyload">
                 
                 <a href="/2024/04/24/NewIDEAVersionWithJavaEE/"></a>
@@ -355,7 +355,7 @@
                     <aside id="sidebar">
     <div class="sidebar-wrap wow fadeInRight">
         <div class="sidebar-author">
-            <img data-src="http://shp.qpic.cn/collector/1015650207/25a0d289-cf69-481c-99c1-74a855390f3b/0" data-sizes="auto" alt="wu1015" class="lazyload">
+            <img data-src="https://wu1015-images.pages.dev/imgs/wu1015/face" data-sizes="auto" alt="wu1015" class="lazyload">
             <div class="sidebar-author-name">wu1015</div>
             <div class="sidebar-description"></div>
         </div>
@@ -526,7 +526,7 @@
         <nav id="mobile-nav">
     <div class="sidebar-wrap">
         <div class="sidebar-author">
-            <img data-src="http://shp.qpic.cn/collector/1015650207/25a0d289-cf69-481c-99c1-74a855390f3b/0" data-sizes="auto" alt="wu1015" class="lazyload">
+            <img data-src="https://wu1015-images.pages.dev/imgs/wu1015/face" data-sizes="auto" alt="wu1015" class="lazyload">
             <div class="sidebar-author-name">wu1015</div>
             <div class="sidebar-description"></div>
         </div>
