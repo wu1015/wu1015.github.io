@@ -12,7 +12,7 @@
 
     
     <title>
-        解决Ubuntu升级内核导致的无法安装VMware模块问题 |
+        使用vbox和OpenWRT实现优雅的代理上网 |
         
         wu1015&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -23,18 +23,23 @@
     
 <link rel="stylesheet" href="/css/loader.css">
 
-    <meta name="description" content="问题报错在升级Linux内核后被要求重新编译安装VM的相关模块。但安装失败。报错UNable to install all modules. See log Path&#x2F;vmware-xxx.log for details. (Exit code 1)。 内核版本：6.5.0-27VM版本：17.0.2（使用vmware-installer -l查询版本，只需要大版本号） log报错内容： 1234">
+    <meta name="description" content="需求 因为使用的 Linux 作为主力机，而在 Linux 上并没有一个为系统代理的东西。虽然修改环境变量能实现部分应用的代理，但总归还是太麻烦了。特别是用 docker 拉镜像的时候，只能用第三方应用下好再导入，费时费力。 至于为什么用 vbox 而不是 VM 。因为我这 VM 在解决Ubuntu升级内核导致的无法安装VMware模块问题后玄学断网，我也懒得弄了。  步骤配置OpenWRT镜像">
 <meta property="og:type" content="article">
-<meta property="og:title" content="解决Ubuntu升级内核导致的无法安装VMware模块问题">
-<meta property="og:url" content="http://wu1015.github.io/2024/04/12/ReinstallVmwareHostModules/index.html">
+<meta property="og:title" content="使用vbox和OpenWRT实现优雅的代理上网">
+<meta property="og:url" content="http://wu1015.github.io/2025/02/01/vbox-proxy-openwrt/index.html">
 <meta property="og:site_name" content="wu1015&#39;s blog">
-<meta property="og:description" content="问题报错在升级Linux内核后被要求重新编译安装VM的相关模块。但安装失败。报错UNable to install all modules. See log Path&#x2F;vmware-xxx.log for details. (Exit code 1)。 内核版本：6.5.0-27VM版本：17.0.2（使用vmware-installer -l查询版本，只需要大版本号） log报错内容： 1234">
+<meta property="og:description" content="需求 因为使用的 Linux 作为主力机，而在 Linux 上并没有一个为系统代理的东西。虽然修改环境变量能实现部分应用的代理，但总归还是太麻烦了。特别是用 docker 拉镜像的时候，只能用第三方应用下好再导入，费时费力。 至于为什么用 vbox 而不是 VM 。因为我这 VM 在解决Ubuntu升级内核导致的无法安装VMware模块问题后玄学断网，我也懒得弄了。  步骤配置OpenWRT镜像">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-04-12T09:01:25.000Z">
-<meta property="article:modified_time" content="2024-12-23T02:27:15.106Z">
+<meta property="og:image" content="https://wu1015-images.pages.dev/imgs/vbox-proxy-openwrt/1.png">
+<meta property="og:image" content="https://wu1015-images.pages.dev/imgs/vbox-proxy-openwrt/2.png">
+<meta property="article:published_time" content="2025-02-01T04:47:36.000Z">
+<meta property="article:modified_time" content="2025-02-01T04:53:30.075Z">
 <meta property="article:author" content="wu1015">
 <meta property="article:tag" content="Linux">
+<meta property="article:tag" content="OpenWRT">
+<meta property="article:tag" content="VirtualBox">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wu1015-images.pages.dev/imgs/vbox-proxy-openwrt/1.png">
     
         <link rel="alternate" href="/atom.xml" title="wu1015's blog" type="application/atom+xml">
     
@@ -109,7 +114,7 @@
         <div id="wrap">
             <header id="header">
     
-        <img data-src="https://wu1015-images.pages.dev/imgs/wu1015/banner.jpg" data-sizes="auto" alt="解决Ubuntu升级内核导致的无法安装VMware模块问题" class="lazyload">
+        <img data-src="https://wu1015-images.pages.dev/imgs/vbox-proxy-openwrt/cover.jpg" data-sizes="auto" alt="使用vbox和OpenWRT实现优雅的代理上网" class="lazyload">
     
     <div id="header-outer" class="outer">
         <div id="header-title" class="inner">
@@ -117,7 +122,7 @@
                 
                     
                     
-                        <a href="/" id="logo"><h1>解决Ubuntu升级内核导致的无法安装VMware模块问题</h1></a>
+                        <a href="/" id="logo"><h1>使用vbox和OpenWRT实现优雅的代理上网</h1></a>
                     
                 
             </div>
@@ -166,14 +171,14 @@
 </header>
 
             <div id="content" class="outer">
-                <section id="main"><article id="post-ReinstallVmwareHostModules" class="h-entry article article-type-post"
+                <section id="main"><article id="post-vbox-proxy-openwrt" class="h-entry article article-type-post"
          itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
     <div class="article-inner">
         <div class="article-meta">
             <div class="article-date wow slideInLeft">
-    <a href="/2024/04/12/ReinstallVmwareHostModules/" class="article-date-link">
-        <time datetime="2024-04-12T09:01:25.000Z"
-              itemprop="datePublished">2024-04-12 Last 2024-12-05</time>
+    <a href="/2025/02/01/vbox-proxy-openwrt/" class="article-date-link">
+        <time datetime="2025-02-01T04:47:36.000Z"
+              itemprop="datePublished">2025-02-01 Last 2025-02-01</time>
     </a>
 </div>
 
@@ -189,43 +194,92 @@
 
         <div class="e-content article-entry" itemprop="articleBody">
             
-                <h2 id="问题报错"><a href="#问题报错" class="headerlink" title="问题报错"></a>问题报错</h2><p>在升级Linux内核后被要求重新编译安装VM的相关模块。但安装失败。报错<code>UNable to install all modules. See log Path/vmware-xxx.log for details. (Exit code 1)</code>。</p>
-<p>内核版本：6.5.0-27<br>VM版本：17.0.2（使用<code>vmware-installer -l</code>查询版本，只需要大版本号）</p>
-<p>log报错内容：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">2024-04-12T08:47:25.949Z In(05) host-110651 ./include/linux/once.h:46: note: this is the location of the previous definition</span><br><span class="line">2024-04-12T08:47:25.949Z In(05) host-110651    46 | #define DO_ONCE(func, ...)                                                   \</span><br><span class="line">2024-04-12T08:47:25.949Z In(05) host-110651       | </span><br><span class="line">2024-04-12T08:47:25.949Z In(05) host-110651 /tmp/modconfig-vA8Pno/vmmon-only/common/task.o: warning: objtool: .text: unexpected end of section</span><br><span class="line">2024-04-12T08:47:25.949Z In(05) host-110651 ERROR: modpost: &quot;__pte_offset_map&quot; [/tmp/modconfig-vA8Pno/vmmon-only/vmmon.ko] undefined!</span><br><span class="line">2024-04-12T08:47:25.949Z In(05) host-110651 make[3]: *** [scripts/Makefile.modpost:144：/tmp/modconfig-vA8Pno/vmmon-only/Module.symvers] 错误 1</span><br><span class="line">2024-04-12T08:47:25.949Z In(05) host-110651 make[2]: *** [/usr/src/linux-headers-6.5.0-27-generic/Makefile:1991：modpost] 错误 2</span><br><span class="line">2024-04-12T08:47:25.949Z In(05) host-110651 make[1]: *** [Makefile:234：__sub-make] 错误 2</span><br><span class="line">2024-04-12T08:47:25.949Z In(05) host-110651 make: *** [Makefile:117：vmmon.ko] 错误 2</span><br><span class="line">2024-04-12T08:47:25.949Z In(05) host-110651 Using kernel build system.</span><br><span class="line">2024-04-12T08:47:25.949Z In(05) host-110651 warning: the compiler differs from the one used to build the kernel</span><br><span class="line">2024-04-12T08:47:25.949Z In(05) host-110651   The kernel was built by: x86_64-linux-gnu-gcc-12 (Ubuntu 12.3.0-1ubuntu1~22.04) 12.3.0</span><br><span class="line">2024-04-12T08:47:25.949Z In(05) host-110651   You are using:           gcc-12 (Ubuntu 12.3.0-1ubuntu1~22.04) 12.3.0</span><br><span class="line">2024-04-12T08:47:25.949Z In(05) host-110651 /tmp/modconfig-vA8Pno/vmnet-only/userif.o: warning: objtool: VNetCsumAndCopyToUser+0x2d: call to csum_partial_copy_nocheck() with UACCESS enabled</span><br><span class="line">2024-04-12T08:47:25.949Z In(05) host-110651 /tmp/modconfig-vA8Pno/vmnet-only/bridge.c: In function ‘VNetBridgeSendLargePacket’:</span><br><span class="line">2024-04-12T08:47:25.949Z In(05) host-110651 /tmp/modconfig-vA8Pno/vmnet-only/bridge.c:1413:11: error: implicit declaration of function ‘skb_gso_segment’; did you mean ‘tcp_gso_segment’? [-Werror=implicit-function-declaration]</span><br><span class="line">2024-04-12T08:47:25.949Z In(05) host-110651  1413 |    segs = skb_gso_segment(skb, 0);</span><br><span class="line">2024-04-12T08:47:25.949Z In(05) host-110651       |           ^~~~~~~~~~~~~~~</span><br><span class="line">2024-04-12T08:47:25.949Z In(05) host-110651       |           tcp_gso_segment</span><br><span class="line">2024-04-12T08:47:25.949Z In(05) host-110651 /tmp/modconfig-vA8Pno/vmnet-only/bridge.c:1413:9: warning: assignment to ‘struct sk_buff *’ from ‘int’ makes pointer from integer without a cast [-Wint-conversion]</span><br><span class="line">2024-04-12T08:47:25.949Z In(05) host-110651  1413 |    segs = skb_gso_segment(skb, 0);</span><br><span class="line">2024-04-12T08:47:25.949Z In(05) host-110651       |         ^</span><br><span class="line">2024-04-12T08:47:25.949Z In(05) host-110651 cc1: some warnings being treated as errors</span><br><span class="line">2024-04-12T08:47:25.949Z In(05) host-110651 make[3]: *** [scripts/Makefile.build:251：/tmp/modconfig-vA8Pno/vmnet-only/bridge.o] 错误 1</span><br><span class="line">2024-04-12T08:47:25.949Z In(05) host-110651 make[2]: *** [/usr/src/linux-headers-6.5.0-27-generic/Makefile:2039：/tmp/modconfig-vA8Pno/vmnet-only] 错误 2</span><br><span class="line">2024-04-12T08:47:25.949Z In(05) host-110651 make[1]: *** [Makefile:234：__sub-make] 错误 2</span><br><span class="line">2024-04-12T08:47:25.949Z In(05) host-110651 make: *** [Makefile:117：vmnet.ko] 错误 2</span><br><span class="line">2024-04-12T08:47:25.949Z In(05) host-110651 Unable to install all modules.  See log for details.</span><br><span class="line">2024-04-12T08:47:25.949Z In(05) host-110651 </span><br></pre></td></tr></table></figure>
-
-<h2 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h2><p>重新安装相关模块</p>
-<p>下载响应的文件（版本号要对应，或者直接去仓库使用浏览器直接下载）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/mkubecek/vmware-host-modules/archive/workstation-17.0.2.tar.gz</span><br></pre></td></tr></table></figure>
-
-<p>解压并移动到目录</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tar -xzf vmware-host-modules-workstation-17.0.2.tar.gz </span><br><span class="line"></span><br><span class="line">cd vmware-host-modules-workstation-17.0.2</span><br></pre></td></tr></table></figure>
-
-<p>在目录打开终端，编译并安装</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo make</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
-
-<h3 id="未完全解决"><a href="#未完全解决" class="headerlink" title="未完全解决"></a>未完全解决</h3><ul>
-<li>在更新到6.8内核后，无法编译成功，最后的解决方法是把vm更新到17.5.1然后再下载新的模块编译。</li>
-<li>在安装之后会时常出现网络断连的情况。 &lt;- 2024.12.05更新，直接换到VirtualBox&#x2F;手动滑稽</li>
+                <h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><ul>
+<li>因为使用的 Linux 作为主力机，而在 Linux 上并没有一个为系统代理的东西。虽然修改环境变量能实现部分应用的代理，但总归还是太麻烦了。特别是用 docker 拉镜像的时候，只能用第三方应用下好再导入，费时费力。</li>
+<li>至于为什么用 vbox 而不是 VM 。因为我这 VM 在<a href="https://wu1015.github.io/2024/04/12/ReinstallVmwareHostModules/">解决Ubuntu升级内核导致的无法安装VMware模块问题</a>后玄学断网，我也懒得弄了。</li>
+</ul>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><h3 id="配置OpenWRT镜像"><a href="#配置OpenWRT镜像" class="headerlink" title="配置OpenWRT镜像"></a>配置OpenWRT镜像</h3><ul>
+<li><p><a target="_blank" rel="noopener" href="https://downloads.openwrt.org/releases/23.05.5/targets/x86/64/">官网</a>下载镜像。根据需求下载，我一般下载的是<code>generic-ext4-combined-efi.img.gz</code>。</p>
+</li>
+<li><p>下载完后解压，得到<code>openwrt-23.05.5-x86-64-generic-ext4-combined-efi.img</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gzip -d openwrt-23.05.5-x86-64-generic-ext4-combined-efi.img.gz</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>转化为 VDI</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vboxmanage convertfromraw --format VDI openwrt-23.05.5-x86-64-generic-ext4-combined-efi.img openwrt-23.05.5-x86-64-generic-ext4-combined-efi.vdi</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>进入 vbox，<code>管理/工具/虚拟介质管理</code>中注册刚刚转化的 VDI 文件。（后续可在此修改大小）</p>
+</li>
+<li><p>新建虚拟电脑。虚拟硬盘选择刚刚注册的。</p>
+</li>
+</ul>
+<h3 id="配置OpenWRT的网络"><a href="#配置OpenWRT的网络" class="headerlink" title="配置OpenWRT的网络"></a>配置OpenWRT的网络</h3><ul>
+<li><p>安装完之后在 vbox 中设置网络为桥接网卡</p>
+</li>
+<li><p>进入虚拟机后设置网络为自己电脑所在网段</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/config/network</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>显示内容如下（不用管其他的直接改<code>ipaddr</code>就行了）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">config interface &#x27;lan&#x27;</span><br><span class="line">	option device &#x27;br-lan&#x27;</span><br><span class="line">	option proto &#x27;static&#x27;</span><br><span class="line">	option ipaddr &#x27;192.168.1.1&#x27;</span><br><span class="line">	option netmask &#x27;255.255.255.0&#x27;</span><br><span class="line">	option ip6assign &#x27;60&#x27;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改完保存重启虚拟机。之后就可以通过修改后的ip访问openWRT的后台了。（默认帐号密码一般是root password）</p>
+</li>
+</ul>
+<h3 id="进行网络配置"><a href="#进行网络配置" class="headerlink" title="进行网络配置"></a>进行网络配置</h3><ul>
+<li><p>输入openwrt的ip进入管理页面，然后到网络那设置一个wan口。选择DHCP，设备选择<code>eth0</code>。</p>
+</li>
+<li><p>然后修改lan的<code>dns、网关</code>等信息，保证与真机一致。保存应用后就可以上网了。</p>
+</li>
+<li><p>或者直接修改配置文件<code>/etc/config/network</code>中的内容如下（最好去管理页面那设置，直接修改配置文件好像会出问题）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">config interface &#x27;lan&#x27;</span><br><span class="line">	option device &#x27;br-lan&#x27;</span><br><span class="line">	option proto &#x27;static&#x27;</span><br><span class="line">	option ipaddr &#x27;空闲的ip&#x27;</span><br><span class="line">	option netmask &#x27;真机的子网掩码&#x27;</span><br><span class="line">	option option ip6assign &#x27;60&#x27;</span><br><span class="line">	option gateway &#x27;真机的网关地址&#x27;</span><br><span class="line">	list dns &#x27;真机网络的DNS&#x27;</span><br><span class="line"></span><br><span class="line">config interface  &#x27;wan&#x27;</span><br><span class="line">	option proto &#x27;dhcp&#x27;</span><br><span class="line">	option device &#x27;eth0&#x27;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="网络代理的配置"><a href="#网络代理的配置" class="headerlink" title="网络代理的配置"></a>网络代理的配置</h3><ul>
+<li><p>输入<code>passwd</code>设置密码，然后通过 ssh 连接。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh root@刚刚设置的ip</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>换源，参考<a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/help/openwrt/">清华源</a>。</p>
+</li>
+<li><p><code>OpenClash</code>依赖的是<code>dnsmasq-full</code>，所以需要移除默认的<code>dnsmasq</code>，否则会导致<code>OpenClash</code>安装失败</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">opkg remove dnsmasq &amp;&amp; opkg install dnsmasq-full</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>下载OpenClash</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/vernesong/OpenClash/releases/download/v0.46.050-beta/luci-app-openclash_0.46.050-beta_all.ipk -O openclash.ipk</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>网络不畅可自己挂梯子下到本机然后上传。<br><img src="https://wu1015-images.pages.dev/imgs/vbox-proxy-openwrt/1.png" alt="上传 OpenClash 应用包"></p>
+</li>
+<li><p>添加<code>luci-compact</code>并重启，否则会提示进入 luci 页面错误</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">opkg install luci luci-base luci-compat</span><br><span class="line">reboot</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>然后就可以在<code>Services/OpenClash</code>看到了。之后就是按照图形化的提示配置了。<br><img src="https://wu1015-images.pages.dev/imgs/vbox-proxy-openwrt/2.png" alt="配置 OpenCLash"></p>
+</li>
+<li><p>配置完后 OpenWRT 会没有网络。</p>
+</li>
+</ul>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><ul>
+<li><p>因为我只是单纯的自己用所以直接在网络设置中修改网关的地址为 OpenWRT 的地址就可以了。（注意不要设置动态MAC）</p>
+</li>
+<li><p>局域网设备同理，如果可以访问 OpenWRT 地址但无法上网的话，应该是路由转发没开。查询命令（Ubuntu）如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ufw status verbose</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>开启路由转发（允许所有路由流量）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ufw default allow routed</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>关闭路由转发（默认拒绝所有路由流量）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ufw default deny routed</span><br></pre></td></tr></table></figure></li>
 </ul>
 <h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000042268631">解决Ubuntu宿主机下面安装Vmware时候vmmon和vmnet模块缺失导致的报错</a><br><a target="_blank" rel="noopener" href="https://ubuntu-mate.community/t/20-04-vmware-workstation-player-fails-to-build-kernel-modules-vmmon-vmnet/21176">[20.04] VMware Workstation&#x2F;Player fails to build kernel modules VMMON &amp; VMNET</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.overcch.com/posts/virtual-openwrt">虚拟 openwrt</a><br><a target="_blank" rel="noopener" href="https://easonyang.com/posts/transparent-proxy-in-router-gateway/">旁路由的原理与配置一文通</a><br><a target="_blank" rel="noopener" href="https://blog.zilch40.wang/post/install-openwrt-in-vm-as-gateway/">折腾虚拟机里的OpenWrt做代理用网关</a><br><a target="_blank" rel="noopener" href="https://mrdoc.fun/doc/425/">VirtualBox虚拟机安装openwrt供本机使用</a><br><a target="_blank" rel="noopener" href="https://blog.hellowood.dev/posts/openwrt-%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8-openclash/">OpenWrt安装使用OpenClash</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/litifeng/p/16400431.html">在 VirtualBox VM 中安装 OpenWRT</a></p>
 </blockquote>
-<h2 id="文章所涉及的资源"><a href="#文章所涉及的资源" class="headerlink" title="文章所涉及的资源"></a>文章所涉及的资源</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/mkubecek/vmware-host-modules/tree/master">vmware-host-modules仓库地址</a></li>
-<li><a target="_blank" rel="noopener" href="https://frp-any.top:18514/Onedrive/%E5%85%B6%E4%BB%96/vmware-host-modules-workstation-17.0.2.tar.gz">vmware-host-modules-workstation-17.0.2.tar.gz下载</a></li>
-</ul>
 
             
         </div>
         <footer class="article-footer">
-            <a data-url="http://wu1015.github.io/2024/04/12/ReinstallVmwareHostModules/" data-id="cm1t3iwl5000r33l618e73efv" data-title="解决Ubuntu升级内核导致的无法安装VMware模块问题"
+            <a data-url="http://wu1015.github.io/2025/02/01/vbox-proxy-openwrt/" data-id="cm6lpx0dm000007l6133l3a86" data-title="使用vbox和OpenWRT实现优雅的代理上网"
                class="article-share-link">分享</a>
             
             
             
             
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li></ul>
+    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenWRT/" rel="tag">OpenWRT</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VirtualBox/" rel="tag">VirtualBox</a></li></ul>
 
 
         </footer>
@@ -234,31 +288,17 @@
         
     <nav id="article-nav" class="wow fadeInUp">
         
-            <div class="article-nav-link-wrap article-nav-link-left">
-                
-                    <img data-src="https://wu1015-images.pages.dev/imgs/NewIDEAVersionWithJavaEE/%E5%A3%81%E7%BA%B8587.jpg" data-sizes="auto" alt="新版IDEA创建JavaWeb"
-                         class="lazyload">
-                
-                <a href="/2024/04/24/NewIDEAVersionWithJavaEE/"></a>
-                <div class="article-nav-caption">前一篇</div>
-                <h3 class="article-nav-title">
-                    
-                        新版IDEA创建JavaWeb
-                    
-                </h3>
-            </div>
-        
         
             <div class="article-nav-link-wrap article-nav-link-right">
                 
-                    <img data-src="https://wu1015-images.pages.dev/imgs/WinInstallWithIntelVMD/0.jpeg" data-sizes="auto" alt="Windows重装找不到磁盘解决"
+                    <img data-src="https://wu1015-images.pages.dev/imgs/QQMarkFailed/cover.jpg" data-sizes="auto" alt="QQ收藏无法作为图床使用"
                          class="lazyload">
                 
-                <a href="/2024/03/10/WinInstallWithIntelVMD/"></a>
+                <a href="/2024/12/23/QQMarkFailed/"></a>
                 <div class="article-nav-caption">后一篇</div>
                 <h3 class="article-nav-title">
                     
-                        Windows重装找不到磁盘解决
+                        QQ收藏无法作为图床使用
                     
                 </h3>
             </div>
@@ -367,7 +407,7 @@
 	<div id="toca" class="widget-wrap wow fadeInRight">
 		<h3 class="widget-title">文章导航</h3>
 		<div class="widget" >
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E6%8A%A5%E9%94%99"><span class="toc-number">1.</span> <span class="toc-text">问题报错</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3"><span class="toc-number">2.</span> <span class="toc-text">问题解决</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AA%E5%AE%8C%E5%85%A8%E8%A7%A3%E5%86%B3"><span class="toc-number">2.1.</span> <span class="toc-text">未完全解决</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0"><span class="toc-number">3.</span> <span class="toc-text">参考文章</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E7%AB%A0%E6%89%80%E6%B6%89%E5%8F%8A%E7%9A%84%E8%B5%84%E6%BA%90"><span class="toc-number">4.</span> <span class="toc-text">文章所涉及的资源</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9C%80%E6%B1%82"><span class="toc-number">1.</span> <span class="toc-text">需求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4"><span class="toc-number">2.</span> <span class="toc-text">步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEOpenWRT%E9%95%9C%E5%83%8F"><span class="toc-number">2.1.</span> <span class="toc-text">配置OpenWRT镜像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEOpenWRT%E7%9A%84%E7%BD%91%E7%BB%9C"><span class="toc-number">2.2.</span> <span class="toc-text">配置OpenWRT的网络</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E8%A1%8C%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE"><span class="toc-number">2.3.</span> <span class="toc-text">进行网络配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E4%BB%A3%E7%90%86%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="toc-number">2.4.</span> <span class="toc-text">网络代理的配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8"><span class="toc-number">2.5.</span> <span class="toc-text">使用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0"><span class="toc-number">3.</span> <span class="toc-text">参考文章</span></a></li></ol>
 			<div class="sidebar-btn-wrapper" style="position:static">
 				<a href="#top">
 					<div class="sidebar-top">
