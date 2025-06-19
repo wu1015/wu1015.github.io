@@ -6,7 +6,7 @@
   <link href="http://wu1015.github.io/atom.xml" rel="self"/>
   
   <link href="http://wu1015.github.io/"/>
-  <updated>2025-05-09T08:20:22.978Z</updated>
+  <updated>2025-06-19T02:59:58.278Z</updated>
   <id>http://wu1015.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Engrampa无法打开rar5的解决方法</title>
+    <link href="http://wu1015.github.io/2025/06/17/Engrampa-rar5/"/>
+    <id>http://wu1015.github.io/2025/06/17/Engrampa-rar5/</id>
+    <published>2025-06-17T09:26:06.000Z</published>
+    <updated>2025-06-19T02:59:58.278Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="无法打开"><a href="#无法打开" class="headerlink" title="无法打开"></a>无法打开</h2><ul><li>在一个阴雨连绵的下午，我如往常一样使用Engrampa打开一个rar压缩包时，归档管理器直接崩溃。根据多年来的经验，肯定是压缩包的问题。毕竟人生不如意十之八九，压缩包损坏情有可原，但当我一番寻觅之后发现并非如此。</li></ul><h3 id="问题排查"><a href="#问题排查" class="headerlink" title="问题排查"></a>问题排查</h3><ul><li><p>使用归档管理器打开其他几个rar的压缩包，正常</p></li><li><p>使用unrar命令进行解压，也正常</p></li><li><p>百思不得其解下，我询问了AI，毕竟AI可是debug的高手。一番询问后，发现似乎是rar升级了版本。使用以下命令查看rar版本。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">file xxx.rar</span><br><span class="line"></span><br><span class="line">// 得到</span><br><span class="line">xxx.rar: RAR archive data, v5</span><br><span class="line">xxx.rar: RAR archive data, v4, os: Win32</span><br></pre></td></tr></table></figure></li><li><p>经过测试发现，可打开的rar文件大部分为v4，小部分为v5。</p></li><li><p>使用以下命令得到Engrampa解压调用的程序。发现调用的是7z相关的命令。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">strace engrampa xxx.rar 2&gt;&amp;1|grep -E &#x27;unrar|unar|bsdtar|7z|7za&#x27;</span><br></pre></td></tr></table></figure></li><li><p>使用以下命令调用7z解压，成功</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">7z x xxx.rar</span><br></pre></td></tr></table></figure></li><li><p>使用以下命名调用unrar解压，成功</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unrar x xxx.rar</span><br></pre></td></tr></table></figure></li><li><p>说明不是后端的问题，那么就把目标锁定到Engrampa上面来。排查开源bug最方便的方法就是去查找该项目的github。一找真找到了，在4月份有个<a href="https://github.com/mate-desktop/engrampa/issues/527">issue</a>，说的就是在这个版本的rar解压的问题。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Engrampa 版本为1.26.2</span><br><span class="line">UNRAR 7.00 freeware</span><br></pre></td></tr></table></figure></li></ul><h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><ul><li><p>根据issue提供的信息，最简单的解决方法就是将<code>.rar</code>后缀改为<code>.zip</code>，实测可行。但是，很多时候我只是想打开看看里面有啥东西而已，每次都需要这样改来改去未免有点太麻烦了。</p></li><li><p>第二个解决方法就是升级版本，在issue的回复中有说明在1.28版本中修复了这个问题。更新版本有不少办法，最简单的就是找个最新的ppa，加进去。但通过观察issue的提交时间可知，修复是在近三个月时间修复的，其他源不一定更新了这个修复。于是，编译成了最佳的选项。（事实上最新的release好像是24年的）</p></li></ul><h3 id="编译安装"><a href="#编译安装" class="headerlink" title="编译安装"></a>编译安装</h3><ul><li><p>根据AI提供的安装教程，亲测可用。先安装依赖</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install -y \</span><br><span class="line">  git \</span><br><span class="line">  meson \</span><br><span class="line">  ninja-build \</span><br><span class="line">  gettext \</span><br><span class="line">  libgtk-3-dev \</span><br><span class="line">  libglib2.0-dev \</span><br><span class="line">  libarchive-dev \</span><br><span class="line">  libxml2-dev \</span><br><span class="line">  itstool \</span><br><span class="line">  yelp-tools \</span><br><span class="line">  libjson-glib-dev \</span><br><span class="line">  libsm-dev \</span><br><span class="line">  desktop-file-utils</span><br></pre></td></tr></table></figure></li><li><p>下载源码</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/mate-desktop/engrampa.git</span><br><span class="line">cd engrampa</span><br></pre></td></tr></table></figure></li><li><p>构建项目</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">meson setup build</span><br><span class="line">meson compile -C build</span><br></pre></td></tr></table></figure></li><li><p>启动构建后的程序，测试打开成功。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./build/src/engrampa</span><br></pre></td></tr></table></figure></li><li><p>安装到系统路径</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo meson install -C build</span><br></pre></td></tr></table></figure></li></ul><h3 id="老旧的编译方法"><a href="#老旧的编译方法" class="headerlink" title="老旧的编译方法"></a>老旧的编译方法</h3><ul><li>搜索到的一篇CSDN中的安装方法，即使用<code>autogen.sh</code>进行编译安装。与文中不同的是，需要安装mate-common，而教程中没有提到。</li></ul><h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><blockquote><ul><li><a href="https://github.com/mate-desktop/engrampa/issues/527">Ubuntu Mate 24.04 Segmentation fault when opening rar files with Engrampa 1.26.2 and 1.28.2 #527</a></li><li><a href="https://blog.csdn.net/gitblog_00061/article/details/138745652">老旧的_Engrampa 文件归档管理器使用教程</a></li></ul></blockquote>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;无法打开&quot;&gt;&lt;a href=&quot;#无法打开&quot; class=&quot;headerlink&quot; title=&quot;无法打开&quot;&gt;&lt;/a&gt;无法打开&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;在一个阴雨连绵的下午，我如往常一样使用Engrampa打开一个rar压缩包时，归档管理器直接崩溃。根据多年来的经</summary>
+      
+    
+    
+    
+    <category term="日常" scheme="http://wu1015.github.io/categories/%E6%97%A5%E5%B8%B8/"/>
+    
+    
+    <category term="Linux" scheme="http://wu1015.github.io/tags/Linux/"/>
+    
+  </entry>
   
   <entry>
     <title>使用kali实现不那么优雅的WiFi密码获取</title>
@@ -512,30 +537,6 @@
     
     
     <category term="人工智能" scheme="http://wu1015.github.io/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>WPS For Linux几个版本的体验</title>
-    <link href="http://wu1015.github.io/2024/05/01/WPSForLinuxUse/"/>
-    <id>http://wu1015.github.io/2024/05/01/WPSForLinuxUse/</id>
-    <published>2024-05-01T05:10:59.000Z</published>
-    <updated>2024-12-23T02:32:30.157Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="WPS"><a href="#WPS" class="headerlink" title="WPS"></a>WPS</h2><p>在使用办公软件的过程中时常会存在 word 文档互相传递的场景，而众所周知，无论是 OpenOffice 还是还是 LibreOffice 都对 MSOffice 存在一定的兼容性问题。比如说格式出错，排版出错等。这时就不得不想起我们的<del>民族之光</del> WPS 了。</p><p>WPS 在 Ubuntu 上有很多种安装方法，最常见的就是直接去官网下载安装 deb 包，其次还有 snap，flatpak 版。接下来我就根据自己的个人需求，大概体验一下这些版本。</p><h2 id="With-Deb"><a href="#With-Deb" class="headerlink" title="With Deb"></a>With Deb</h2><ul><li><p>安装方法：官网下载 deb 包ver-11.1.0.11691，在目录打开终端输入：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i wps文件名</span><br></pre></td></tr></table></figure></li><li><p>有的不说，WPS 还是不错的，和众多 Linux 原生应用一样，干净又好用，尽管样式栏还是会出现乱码问题，但又不大影响正常使用，瑕不掩瑜了属于是。<br><img src="https://wu1015-images.pages.dev/imgs/WPSForLinuxUse/deb.png" alt="deb 版的样式乱码"></p></li><li><p>不过我还是不大想用它，一是因为安装的的时候会把所有办公文档的默认打开方式都改为 WPS，而且桌面图标也会随之更改；二是我一般很少用到 WPS 的同步功能，也就是说偶尔弹出的登录选项对我来说就像是牛皮癣一样的东西；最后，WPS 之前有锁用户文件的丑闻（尽管官方和当事人都回应不是本地文件），所以我不大想让 WPS 联网或者是读取我太多的文件。</p></li></ul><h2 id="With-Snap"><a href="#With-Snap" class="headerlink" title="With Snap"></a>With Snap</h2><ul><li><p>安装方法：因为我是 Ubuntu，自带 snap ，直接去发行版带的软件中心下载就是了ver-11.1.0.9505。</p></li><li><p>snap 版倒还不错，snap 有 2016 和 2019 两个版本，两者都缺少中文语言包（所以界面都是英文的）。不过可以通过把其他版本的 WPS 语言包放进去解决（教程见文章末尾）。</p></li><li><p>snap 两个版本都不支持登录，换言之都删除了登录（或者说联网）功能。</p></li><li><p>2019 版和 deb 版基本相同，感觉不错只是部分功能有问题（如作者所言），点击通用设置或者主题会闪退（其实在主界面那除了新建和打开文档，其他都闪退）。另外我还出现了黑暗模式设置界面的字体跟随变化的情况（白底白字，黑底黑字那种）。在查找资料后，发现需要改为 gtk2 启动才行（但我修改后还是不行）。<br><img src="https://wu1015-images.pages.dev/imgs/WPSForLinuxUse/2019.png" alt="2019 版的设置界面字体跟随 bug"></p></li><li><p>2019 版也会和 deb 版一样，有几个样式还是会乱码，虽然也不太影响正常使用。<br><img src="https://wu1015-images.pages.dev/imgs/WPSForLinuxUse/snap.png" alt="snap 版样式乱码"></p></li><li><p>2016 版具体 bug 似乎没啥，就是界面有点古老了，不大喜欢。<br><img src="https://wu1015-images.pages.dev/imgs/WPSForLinuxUse/2016.png" alt="snap 的 2016 版界面"></p></li></ul><h2 id="With-Flatpak"><a href="#With-Flatpak" class="headerlink" title="With Flatpak"></a>With Flatpak</h2><ul><li><p>安装方法：</p><ol><li><p>安装 flatpak ver-11.1.0.11719：</p>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install flatpak</span><br></pre></td></tr></table></figure></li><li><p>添加 flathub 仓库：</p>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo</span><br><span class="line"></span><br><span class="line">// 下面这句是添加上海交大的源，速度快点</span><br><span class="line">sudo flatpak remote-modify flathub --url=https://mirror.sjtu.edu.cn/flathub</span><br></pre></td></tr></table></figure><p>  <a href="https://mirrors.sjtug.sjtu.edu.cn/docs/flathub">上海交大源</a></p></li><li><p>安装 WPS（可以不用sudo，那样的话就是安装在用户而不是系统那）：</p>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo flatpak install com.wps.Office</span><br></pre></td></tr></table></figure></li></ol></li><li><p>flatpak 版比 snap 版的开发要活跃不少，版本自然就比 snap 版新了，不过还是有不少的 bug，而且也没中文，还是得自己弄语言包。（教程见文章末尾）</p></li><li><p>这次黑暗模式和主题那些功能都没啥问题，甚至把登录的页面删掉了，尽管如此还是可以登录用云文档。</p></li><li><p>但粗体显示乱码<a href="https://bbs.archlinux.org/viewtopic.php?id=288562">粗体乱码解决方法</a>。</p></li><li><p>和上面几个版本一样，部分样式显示乱码（甚至出问题的样式都一样）。<br><img src="https://wu1015-images.pages.dev/imgs/WPSForLinuxUse/flatpak2.png" alt="flatpak 粗体乱码"><br><img src="https://wu1015-images.pages.dev/imgs/WPSForLinuxUse/flatpak.png" alt="flatpak 样式乱码"></p></li></ul><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul><li><p>总的来说如果能接受登录页面弹出，而且经常使用 WPS 的话，还是 deb 版比较好用。</p></li><li><p>如果有点强迫症但又懒得动手的话，snap 的 2019 版还是不错的，毕竟设置也不是很经常用到。</p></li><li><p>有强迫症，动手能力强点就直接 flatpak，毕竟人家更新活跃，而且性能比 snap 强一点（指启动速度比 snap 版快那么一点）。</p></li></ul><h2 id="教程"><a href="#教程" class="headerlink" title="教程"></a>教程</h2><ul><li><p>WPS 中文化教程：</p><ol><li><p>下载语言包：<a href="https://frp-any.top:18514/Onedrive/%E5%85%B6%E4%BB%96/WPS%E4%B8%AD%E6%96%87%E5%8C%96mui.tar.gz">语言包下载链接</a></p></li><li><p>解压并放到指定目录（解压后是一个名为<code>mui</code>的文件夹，直接放进去就是了）。flatpak 版有一部分的语言包，把下载的那个的一部分放进<code>mui</code>里面就是了。</p><ol><li><p>snap 版在<code>~/snap/wps-2019-snap/2/.local/share/Kingsoft/office6/</code></p></li><li><p>flatpak 版在<code>/var/lib/flatpak/app/com.wps.Office/x86_64/stable/版本号/files/extra/wps-office/office6/mui/</code></p></li></ol></li></ol></li><li><p>WPS 补全字体：</p><ol><li><p>下载字体：<a href="https://frp-any.top:18514/Onedrive/%E5%85%B6%E4%BB%96/WPS%E7%BC%BA%E5%A4%B1%E5%AD%97%E4%BD%93%E8%A1%A5%E5%85%A8.7z">字体下载链接</a></p></li><li><p>把解压后的字体文件（不是文件夹）放到<code>/usr/share/fonts/</code>目录下就行了</p></li></ol></li></ul><h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><blockquote><ul><li><a href="https://zhuanlan.zhihu.com/p/470577265">Ubuntu 20.04 下 WPS Office 缺失字体解决方案</a></li><li><a href="https://forum.ubuntu.com.cn/viewtopic.php?t=492055">诚心实意地推荐ubuntu下的最佳办公软件wps-2019-snap</a></li><li><a href="https://wiki.archlinuxcn.org/wiki/WPS_Office">WPS Office_Archlinux wiki</a></li><li><a href="https://bbs.archlinux.org/viewtopic.php?id=288562">wps-office大部分字体粗体出现过粗无法正常显示问题</a></li></ul></blockquote>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;WPS&quot;&gt;&lt;a href=&quot;#WPS&quot; class=&quot;headerlink&quot; title=&quot;WPS&quot;&gt;&lt;/a&gt;WPS&lt;/h2&gt;&lt;p&gt;在使用办公软件的过程中时常会存在 word 文档互相传递的场景，而众所周知，无论是 OpenOffice 还是还是 LibreOff</summary>
-      
-    
-    
-    
-    <category term="日常" scheme="http://wu1015.github.io/categories/%E6%97%A5%E5%B8%B8/"/>
-    
-    
-    <category term="Linux" scheme="http://wu1015.github.io/tags/Linux/"/>
     
   </entry>
   
