@@ -34,7 +34,7 @@
 <meta property="og:image" content="https://wu1015-images.pages.dev/imgs/kali-wifi-get/02.png">
 <meta property="og:image" content="https://wu1015-images.pages.dev/imgs/kali-wifi-get/04.png">
 <meta property="article:published_time" content="2025-05-09T07:59:52.000Z">
-<meta property="article:modified_time" content="2025-05-09T08:20:22.978Z">
+<meta property="article:modified_time" content="2025-08-08T01:18:47.022Z">
 <meta property="article:author" content="wu1015">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="Kali">
@@ -178,7 +178,7 @@
             <div class="article-date wow slideInLeft">
     <a href="/2025/05/09/kali-wifi-get/" class="article-date-link">
         <time datetime="2025-05-09T07:59:52.000Z"
-              itemprop="datePublished">2025-05-09 Last 2025-05-09</time>
+              itemprop="datePublished">2025-05-09 Last 2025-08-05</time>
     </a>
 </div>
 
@@ -197,7 +197,7 @@
                 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>相信不少朋友都遇到过旁边全是Wifi节点，但就是一个都用不了的痛苦。今天我就来分享一些不那么优雅的蹭网方式。</p>
 <h2 id="WiFi万能钥匙"><a href="#WiFi万能钥匙" class="headerlink" title="WiFi万能钥匙"></a>WiFi万能钥匙</h2><ul>
 <li>大道至简，虽说这并不是所谓的密码破解，但在一个陌生环境下蹭网仍是一个不错的选择。毕竟你也不能确定会不会已经有人把密码分享出去了。如果有的话，这种方法可以说是最简单，最高效的方法了。如果没有的话，请继续往下看。</li>
-<li>我此分享一个从网络中找到的别人分享的万能钥匙的改版，相对清爽一些。<a target="_blank" rel="noopener" href="https://frp-any.top:18514/Onedrive/%E5%BA%94%E7%94%A8/Android/WiFi%E4%B8%87%E8%83%BD%E9%92%A5%E5%8C%99%204.9.65.apk">WiFi万能钥匙下载链接</a></li>
+<li>我此分享一个从网络中找到的别人分享的万能钥匙的改版，相对清爽一些。<a target="_blank" rel="noopener" href="https://frp-any.com:18514/Onedrive/%E5%BA%94%E7%94%A8/Android/WiFi%E4%B8%87%E8%83%BD%E9%92%A5%E5%8C%99%204.9.65.apk">WiFi万能钥匙下载链接</a></li>
 </ul>
 <h2 id="抓握手包跑字典"><a href="#抓握手包跑字典" class="headerlink" title="抓握手包跑字典"></a>抓握手包跑字典</h2><ul>
 <li><p>开局直接获取su权限，免得下面操作频繁输入<code>sudo</code>。kali的默认账户和密码都是<code>kali</code>。</p>
@@ -207,7 +207,7 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">airmon-ng </span><br></pre></td></tr></table></figure>
 </li>
 <li><p>开启监听，wlan0就是之前查看的监听网卡</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">airmon-ng start wlan0</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">airmon-ng start wlan0</span><br><span class="line"></span><br><span class="line">// 开始监听</span><br><span class="line">airodump-ng wlan0mon</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>找到需要监听的wifi后记录信息，然后键入<code>ctrl c</code>停止扫描</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">BSSID              PWR  Beacons    #Data, #/s  CH   MB   ENC CIPHER  AUTH ESSID      </span><br><span class="line">FE:92:C4:5E:5E:C3  -47        3        2    0   4  180   WPA2 CCMP   PSK  _test  </span><br></pre></td></tr></table></figure>

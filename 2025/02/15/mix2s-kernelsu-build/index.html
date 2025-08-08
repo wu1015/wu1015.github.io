@@ -31,7 +31,7 @@
 <meta property="og:description" content="前言 看到隔壁用kernelsu（以下简称ksu）隐藏root的效果不错，但mix2s的4.9内核显然不在ksu的官方支持范围内，需要自编译内核。恰好我最近因为一位编译者的crdroid（以下简称为crd）内核只支持lzo的zram压缩算法（因为使用的lineageOS的设备树）。我需要更加高效的算法，比如lz4。  编译环境准备 本文以mix2s为主的配置，相当部分参考了Mix2s内核ksu编译">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-02-15T13:06:43.000Z">
-<meta property="article:modified_time" content="2025-03-04T08:57:28.850Z">
+<meta property="article:modified_time" content="2025-08-08T01:18:47.021Z">
 <meta property="article:author" content="wu1015">
 <meta property="article:tag" content="刷机">
 <meta name="twitter:card" content="summary">
@@ -240,8 +240,8 @@
 </ul>
 <h2 id="编译好的内核"><a href="#编译好的内核" class="headerlink" title="编译好的内核"></a>编译好的内核</h2><ul>
 <li>注意准备好救砖工具，备份好boot分区。仅作为学习分享，造成的后果与本人无关。</li>
-<li><a target="_blank" rel="noopener" href="https://frp-any.top:18514/Onedrive/%E5%88%B7%E6%9C%BA%E5%B7%A5%E5%85%B7/MIX2s/%E5%86%85%E6%A0%B8/AnyKernel3_by-me-test3-lz4.zip">仅增加支持lz4的内核</a></li>
-<li><a target="_blank" rel="noopener" href="https://frp-any.top:18514/Onedrive/%E5%88%B7%E6%9C%BA%E5%B7%A5%E5%85%B7/MIX2s/%E5%86%85%E6%A0%B8/AnyKernel3_by-me-test5-bug.zip">增加了lz4和ksu支持的内核</a></li>
+<li><a target="_blank" rel="noopener" href="https://frp-any.com:18514/Onedrive/%E5%88%B7%E6%9C%BA%E5%B7%A5%E5%85%B7/MIX2s/%E5%86%85%E6%A0%B8/AnyKernel3_by-me-test3-lz4.zip">仅增加支持lz4的内核</a></li>
+<li><a target="_blank" rel="noopener" href="https://frp-any.com:18514/Onedrive/%E5%88%B7%E6%9C%BA%E5%B7%A5%E5%85%B7/MIX2s/%E5%86%85%E6%A0%B8/AnyKernel3_by-me-test5-bug.zip">增加了lz4和ksu支持的内核</a></li>
 </ul>
 <h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><ul>
 <li>可能是我自己的问题，在crd上的隐藏效果一直一般，包括这次的ksu。而且因为mix2s内核老旧，一部分新的特性也无法体验到，确实还不一定有magisk好用。毕竟magisk拥有相当数量的模块可以使用，而ksu需要等别人适配（也许是越更新越不适配）。</li>
