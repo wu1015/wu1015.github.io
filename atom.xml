@@ -6,7 +6,7 @@
   <link href="http://wu1015.github.io/atom.xml" rel="self"/>
   
   <link href="http://wu1015.github.io/"/>
-  <updated>2025-08-26T01:52:55.689Z</updated>
+  <updated>2025-09-04T02:40:46.044Z</updated>
   <id>http://wu1015.github.io/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ROCm的安装</title>
+    <link href="http://wu1015.github.io/2025/09/04/rocm-install/"/>
+    <id>http://wu1015.github.io/2025/09/04/rocm-install/</id>
+    <published>2025-09-04T02:32:12.000Z</published>
+    <updated>2025-09-04T02:40:46.044Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ul><li>最近要进行模型的训练，恰好有一张 AMD RX6750GRE 10G 的卡，打算用这张卡来跑一下。</li></ul><h2 id="在Windows上的实验"><a href="#在Windows上的实验" class="headerlink" title="在Windows上的实验"></a>在Windows上的实验</h2><ul><li>先说结论，在 Windows 上虽然有 <code>DirectML</code> 和 <code>WSL</code> 这种方案，但基本上是不能用的，至少在我这张卡上正常配置后是不能用的。</li></ul><h3 id="DirectML"><a href="#DirectML" class="headerlink" title="DirectML"></a>DirectML</h3><ul><li><p>先说 <code>DirectML</code>，这玩意的想法很不错，而且程序也成功识别到了这张卡，但也仅仅是识别到了,真开始训练就会报出各种错误。比如无法计算 <code>tensor count</code> 之类的。即使使用 <code>.to(device)</code> 也会报。</p></li><li><p>推理的话。尽管 ai 觉得推理可以跑，但实测下来也是基本不行，报错和上面一样。</p></li></ul><h3 id="WSL"><a href="#WSL" class="headerlink" title="WSL"></a>WSL</h3><ul><li><p>主讲<code>WSL2</code>，因为很多文章都说这样可以支持，而且官方也有教程。但实测下来，也是不支持的。使用<code>rocminfo</code>直接搜不到卡。</p></li><li><p>当然主要是我这张卡，也许其他的卡能用这个方法。但显然，我的这张卡不包括在内。</p></li></ul><h4 id="题外话"><a href="#题外话" class="headerlink" title="题外话"></a>题外话</h4><ul><li><p>微软这个<code>WSL2</code>在我电脑经常会出现长时间无响应的状态，具体的解决方法有两个，一个是重启一个是关掉对应的进程树，参考这篇文章 <a href="https://blog.csdn.net/xxj_jing/article/details/132534277">CSDN_windows子系统-wsl命令基础用法和无响应问题排查及解决方法</a>。</p>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 得到LxssManager的PID</span><br><span class="line">tasklist /svc /fi &quot;imagename eq svchost.exe&quot;</span><br></pre></td></tr></table></figure></li><li><p>直接去任务管理器那关掉这个PID对应的那个进程树就行了。</p></li><li><p>还有就是最好不要像在正常 Linux 系统那样随意更新内核，可能会出现一些奇奇怪怪的问题。<del>（虽然本来也不应该随意更新内核）</del></p></li><li><p>如果只是拿来跑包暴力破解一些东西的话，装上 <code>AMD HIP</code> 就可以用了。</p></li></ul><h2 id="在Linux上的实验"><a href="#在Linux上的实验" class="headerlink" title="在Linux上的实验"></a>在Linux上的实验</h2><ul><li><p>这个就比较顺风顺水了。按照官网教程直接安装显卡驱动，<code>ROCm</code> 和 AMD 专用的 <code>torch</code>，基本没出什么太大的问题。</p>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">wget https://repo.radeon.com/amdgpu-install/6.4.3/ubuntu/noble/amdgpu-install_6.4.60403-1_all.deb</span><br><span class="line">sudo apt install ./amdgpu-install_6.4.60403-1_all.deb</span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt install python3-setuptools python3-wheel</span><br><span class="line">sudo usermod -a -G render,video $LOGNAME</span><br><span class="line">sudo apt install rocm</span><br><span class="line"></span><br><span class="line">// 安装torch</span><br><span class="line">pip install --no-cache-dir --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/rocm6.4/</span><br></pre></td></tr></table></figure></li><li><p>修改用户组后需要重启才能生效。不然 <code>torch</code> 作为普通用户是访问不到显卡的。</p></li><li><p>在 <code>torch</code> 的安装上需要注意的是，AMD 的包在 4G 多的大小，安装的时候需要加上<code>--no-cache-dir</code> 才能安装，不然就会显示内存超出。</p></li><li><p>在实际使用中，因为没有针对 <code>gtx1032</code> 的计算库，跑的时候会报错找不到这个文件。可以选择将就用 <code>1030</code> 的，不然就需要自己编译。将就用 <code>1030</code> 的话可以选择设置下环境变量再跑。</p>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export HSA_OVERRIDE_GFX_VERSION=10.3.0</span><br></pre></td></tr></table></figure></li><li><p>虽然使用<code>1030</code>的计算库会导致第一次训练的时间增加（因为好像会自己编译对应的计算库），但也没啥事，慢一点点而已，后面还是正常训练的。</p></li></ul><h3 id="小插曲"><a href="#小插曲" class="headerlink" title="小插曲"></a>小插曲</h3><ul><li><p>本来一开始我是用的 <code>Ubuntu 2404</code> 的镜像（ <code>gnome</code> 那个版本）安装的（现在是24.04.3）。但是在安装的时候就会经常出现报错，报内部错误啥的。毕竟 Ubuntu 是内部错误”大师”，我也没多在意，然后安装就卡住无法进行了。甚至重新打开安装程序也会卡住。</p></li><li><p>我本以为是镜像写入的时候出现了啥问题，重新写入了一遍，然后就<del>无法启动内核</del>了。<code>reddit</code> 论坛那边的说新的安装程序有问题。</p></li><li><p>退回 <code>2204</code> 之后确实好多了，直接一步到位，顺风顺水的。</p></li></ul><h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><blockquote><ul><li><a href="https://rocm.docs.amd.com/projects/install-on-linux/en/latest/install/quick-start.html">AMD_ROCm_Quick start installation guide</a></li><li><a href="https://rocm.docs.amd.com/projects/install-on-linux/en/latest/install/3rd-party/pytorch-install.html">AMD_PyTorch on ROCm</a></li><li><a href="https://blog.csdn.net/Natsuago/article/details/145594631">CSDN_WSL2的安装</a></li><li><a href="https://blog.csdn.net/xxj_jing/article/details/132534277">CSDN_windows子系统-wsl命令基础用法和无响应问题排查及解决方法</a></li></ul></blockquote>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;最近要进行模型的训练，恰好有一张 AMD RX6750GRE 10G 的卡，打算用这张卡来跑一下。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2</summary>
+      
+    
+    
+    
+    <category term="日常" scheme="http://wu1015.github.io/categories/%E6%97%A5%E5%B8%B8/"/>
+    
+    
+    <category term="Linux" scheme="http://wu1015.github.io/tags/Linux/"/>
+    
+    <category term="WSL" scheme="http://wu1015.github.io/tags/WSL/"/>
+    
+    <category term="ROCm" scheme="http://wu1015.github.io/tags/ROCm/"/>
+    
+  </entry>
   
   <entry>
     <title>Git的简单使用</title>
@@ -514,31 +545,6 @@
     
     
     <category term="Linux" scheme="http://wu1015.github.io/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>软件测试基础学习</title>
-    <link href="http://wu1015.github.io/2024/07/01/SoftwareTestingLearning/"/>
-    <id>http://wu1015.github.io/2024/07/01/SoftwareTestingLearning/</id>
-    <published>2024-07-01T10:56:33.000Z</published>
-    <updated>2024-12-23T02:28:34.866Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="软件测试基础学习"><a href="#软件测试基础学习" class="headerlink" title="软件测试基础学习"></a>软件测试基础学习</h2><ul><li><p>什么是静态测试：静态测试是指不运行被测试的软件系统，而是采用其他手段和技术对被测试软件进行检测的一种测试技术。</p></li><li><p>什么是动态测试：动态测试是一种测试方法，通过运行软件程序并输入不同的数据和操作，以检查程序的实际行为和输出结果是否符合预期。 动态测试可以帮助发现软件程序中的错误和缺陷，包括功能错误、性能问题、安全漏洞等。</p></li><li><p>什么是黑盒测试：黑盒测试又称为“功能测试”，是将测试对象看做一个黑盒，在并不考虑软件产品的内部结构和处理过程的基础上对软件产品进行功能测试。黑盒测试注重软件产品的“功能性需求”。</p></li><li><p>什么是白盒测试：白盒测试，又称结构测试，主要用于单元测试阶段。它的前提是可以把程序看成装在一个透明的白箱子里，测试者完全知道程序的结构和处理算法。这种方法按照程序内部逻辑设计测试用例，检测程序中的主要执行通路是否都能按预定要求正常工作。 白盒测试根据软件的内部逻辑设计测试用例，常用的技术是逻辑覆盖，即考察用测试数据运行被测程序时对程序逻辑的覆盖程度。主要的覆盖标准有 6 种：语句覆盖、判定覆盖、条件覆盖、判定&#x2F;条件覆盖、组合条件覆盖和路径覆盖。</p></li><li><p>什么是单元测试：单元测试又称为模块测试，是针对程序模块（软件设计的最小单位）来进行正确性检验的测试工作。程序单元是应用的最小可测试部件。</p></li><li><p>什么是集成测试：集成测试被定义为一种测试类型，其中软件的不同模块被集成并作为一个整体进行测试。一个典型的软件项目由多个软件模块组成，这些模块由不同的程序员进行编码。集成测试的目的是在集成这些不同的软件模块时揭示它们之间交互中的缺陷。集成测试专注于检查这些模块之间的数据通信。因此，它也被称为“ I＆T” （集成和测试）。</p></li><li><p>简述缺陷产生原因：</p><ul><li>软件缺陷就是通常所说的Bug，它是指软件中(包括程序和文档)存在的影响软件正常运行的问题。IEEE(Institute of Electrical and Electronics Engineers，电气电子工程师协会)729-1983标准对软件缺陷有一个标准的定义：从产品内部看,缺陷是产品开发或维护过程中存在的错误、毛病等各种问题;从产品外部看，缺陷是系统运行过程中某种功能的失效或违背。</li><li>软件缺陷的产生主要是由软件产品的特点和开发过程决定的，比如需求不清晰、需求频繁变更、软件结构复杂、编码问题、项目期限短、使用新技术、开发人员水平有限等。</li></ul></li><li><p>静态测试与动态测试区别：</p><ul><li>它们的主要区别在于测试时是否需要运行被测试的程序。</li><li>静态测试 主要是在不运行程序的情况下进行，通过分析代码、审查需求文档来查找错误， 动态测试 则是在程序运行的状态下执行，通过输入测试用例验证程序的实际运行结果和预期结果是否一致。</li></ul></li><li><p>黑盒与白盒测试的相关方法，黑盒白盒测试优缺点：</p><ul><li><blockquote><p><a href="https://blog.csdn.net/qq_42944594/article/details/121907540">白盒</a>、<a href="https://www.itest.info/wiki/white-box-testing">白盒详解</a>、 <a href="https://wiki.mbalib.com/wiki/%E9%BB%91%E7%9B%92%E6%B5%8B%E8%AF%95">黑盒</a></p></blockquote></li><li>黑盒测试：<ul><li>方法：等价类划分法、边界值分析法、因果图分析法、错误推断法，场景法。</li><li>优点：独立性、用户视角、提早发现问题。</li><li>缺点：不可见内部性、缺乏结构性反馈</li></ul></li><li>白盒测试：<ul><li>方法：分为两大类：静态测试方法和动态测试方法。<ul><li>静态：代码审查法、静态结构分析法</li><li>动态：逻辑覆盖法、基本路径测试法</li></ul></li><li>优点：内部可见性、全面覆盖性、性能和安全性检查</li><li>缺点：需要专业知识、依赖源码</li></ul></li></ul></li><li><p>软件测试的复杂性：</p><ul><li>主要体现在：<ul><li>不可能对程序实现完全测试</li><li>杀虫剂现象，必须不断尝试新的杀虫剂（写新的测试程序）</li><li>代价会随着测试量的增加程指数增长</li><li>风险的合理取舍，并不是所有故障都需要被修复</li></ul></li></ul></li><li><p>单元测试的目标：确保每个单元都能独立地正常工作，从而提高整个程序的质量、可靠性和可维护性</p></li><li><p>系统测试的流程：</p><ul><li>需求分析 -&gt; 测试计划 -&gt; 测试用例 -&gt; 测试执行 -&gt; 测试文档</li></ul></li><li><p>测试环境要素有哪些：</p><ul><li>软件、硬件、网络、数据准备、测试工具</li></ul></li></ul><h3 id="名词解析"><a href="#名词解析" class="headerlink" title="名词解析"></a>名词解析</h3><ul><li>测试环境：为了完成软件测试工作所必需的计算机硬件、软件、网络设备、历史数据的总称</li><li>备份：为应付文件、数据丢失或损坏等可能出现的意外情况，将电子计算机存储设备中的数据复制到磁带等大容量存储设备中。</li><li>恢复：使变成原来的样子，在计算机中指被删除的数据得到复原。</li><li>硬件环境：指计算机系统中的硬件设备，如CPU、内存、硬盘等</li><li>网络环境：网络环境是指将分布在不同地点的多个多媒体计算机物理上互联，依据某种协议互相通信，实现软、硬件及其网络文化共享的系统。</li><li>软件环境：运行于计算机硬件之上的驱动计算机及其外围设备实现某种目的的软件系统</li><li>面向对象：面向对象编程将一个系统抽象为许多对象的集合，每一个对象代表了这个系统的特定方面。对象包括函数（方法）和数据。</li><li>消息：消息（message）是指在程序中传递的信息或指令。 它可以是用于传递数据的信息，也可以是用于触发特定操作的指令。 消息通常用于实现程序之间的通信和交互。 在面向对象编程中，对象之间通过消息进行通信。 </li><li>封装性：封装，即隐藏对象的属性和实现细节，仅对外公开接口，控制在程序中属性的读和修改的访问级别；将抽象得到的数据和行为（或功能）相结合，形成一个有机的整体，也就是将数据与操作数据的源代码进行有机的结合，形成“类”，其中数据和函数都是类的成员。</li><li>继承性：继承就是子类继承父类的特征和行为，使得子类对象（实例）具有父类的实例域和方法，或子类从父类继承方法，使得子类具有父类相同的行为。</li><li>多态性：它是指在父类中定义的属性和方法被子类继承之后，可以具有不同的数据类型或表现出不同的行为，这使得同一个属性或方法在父类及其各个子类中具有不同的含义。</li><li>类测试：用来对类中的方法功能进行有目的的测试，以保证程序的正确性和稳定性。</li></ul><h3 id="问答"><a href="#问答" class="headerlink" title="问答"></a>问答</h3><ul><li><p>概述测试用例的设计过程：</p><ul><li>步骤为：测试需求分析 -&gt; 业务流程分析 -&gt; 测试用例设计 -&gt; 测试用例评审 -&gt; 测试用例更新完善</li></ul></li><li><p>测试文档的内容：</p><ul><li>1、测试范围（功能模块等）；2、测试类型（功能、性能、安全等）；3、测试资源（硬件、软件、人员等）；4、人员、进度安排。</li></ul></li><li><p>软件生命周期各阶段的测试任务与可交付的文档：</p><ul><li>问题定义（问题定义报告）、可行性研究（可行性分析报告，粗略的开发计划）、需求分析（需求规格说明书）、总体设计（总体设计说明书）、详细设计（详细设计说明书）、编码与单元测试（程序清单、单元测试报告）、综合测试（测试报告）、维护（）</li></ul></li><li><p>自动化测试的步骤、自动化测试工具的使用：</p><ul><li>暂略</li></ul></li><li><p>面向对象测试与传统测试有哪些区别与联系：</p><ul><li>面向对象测试更加关注对象的行为和交互，而传统测试更加关注系统的功能和流程。</li><li>都需要进行测试计划和测试用例的编写，都需要测试执行和测试结果分析，都是为了保障软件的质量和功能的正确性可靠性。</li></ul></li><li><p>面向对象测试的步骤：</p><ul><li>步骤：为类创建一个实例，即对象，为构造函数传递合适的参数 -&gt; 通过参数传递调用对象的方法并获取结果 -&gt; 检查对象的内部数据</li></ul></li><li><p>压力测试作用：确定在交通繁忙的情况下网站或应用程序的稳定性和可靠性。向访问者显示相应的错误消息和其他信息。优化系统以防止故障。正确规划可伸缩性和资源需求。</p></li><li><p>兼容性测试是什么：兼容性测试在软件测试中是一种非功能性测试方法，确保应用程序在不同硬件、操作系统、网络环境和其他软件应用的组合上正常运行。</p></li><li><p>软件工程V模型流程包括哪些步骤：客户需求分析、软件需求分析、概要设计、详细设计、编码与实现、单元测试、集成测试、系统测试、验收测试。</p></li><li><p>测试用例设计的主要影响因素：需求目标、实际使用场景、软件功能规格说明书、产品设计文档</p></li><li><p>工程使用决策表有哪4部分组成：桩部分、条目部分、条件部分、行动部分</p></li><li><p>在错误推测法中，根据什么因素进行判断好测试用例：</p><ul><li>客观因素：产品先前版本的问题</li><li>已知因素：语言、操作系统、浏览器的限制可能带来的兼容性等问题</li><li>经验：利用不同测试阶段的经验和对测试软件的需求理解以及设计实现的细节来整理归纳的测试点</li></ul></li><li><p>给出流程图G，设计环形复杂度V（G），三种常用计算机方法</p><ul><li><blockquote><p><a href="https://blog.csdn.net/qq_39183034/article/details/122460548">环路复杂度</a></p></blockquote></li><li>V(G) &#x3D; 区域数</li><li>V(G) &#x3D; P + 1，判定结点数 + 1</li><li>V(G) &#x3D; E - N + 2，边的条数 - 结点数 +2</li></ul></li><li><p>测试总结报告包括哪些内容：测试目的、重要项说明、系统概述、测试环境、差异测试项与设计说明之间的差别、测试充分性评价、质量评估、结果概述、测试结论。</p></li></ul>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;软件测试基础学习&quot;&gt;&lt;a href=&quot;#软件测试基础学习&quot; class=&quot;headerlink&quot; title=&quot;软件测试基础学习&quot;&gt;&lt;/a&gt;软件测试基础学习&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;什么是静态测试：静态测试是指不运行被测试的软件系统，而是采用其他手段和技术</summary>
-      
-    
-    
-    
-    <category term="笔记" scheme="http://wu1015.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
-    
-    
-    <category term="软件测试" scheme="http://wu1015.github.io/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/"/>
     
   </entry>
   
