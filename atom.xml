@@ -6,7 +6,7 @@
   <link href="http://wu1015.github.io/atom.xml" rel="self"/>
   
   <link href="http://wu1015.github.io/"/>
-  <updated>2025-12-12T01:13:55.002Z</updated>
+  <updated>2026-02-17T12:49:49.218Z</updated>
   <id>http://wu1015.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>串口半双工配置避坑</title>
+    <link href="http://wu1015.github.io/2026/02/17/half-duplex-usart/"/>
+    <id>http://wu1015.github.io/2026/02/17/half-duplex-usart/</id>
+    <published>2026-02-17T05:28:07.000Z</published>
+    <updated>2026-02-17T12:49:49.218Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ul><li>最近在配置 <code>GD32F150G8U6</code> 和 <code>GD32F103C8T6</code> 这两款芯片的半双工串口的时候遇到问题。在同一个对接芯片上，<code>F150</code> 可以使用，而 <code>F103</code> 无法使用。</li></ul><h2 id="问题排查"><a href="#问题排查" class="headerlink" title="问题排查"></a>问题排查</h2><h3 id="简单排查"><a href="#简单排查" class="headerlink" title="简单排查"></a>简单排查</h3><ul><li>一开始本来以为是软件配置的问题，但是在编写调试的时候是可以使用的。<del>经典为什么能跑，为什么不能跑</del></li><li>比对环境后，只有对接芯片这一段是不一样的。于是果断换成我调试时使用的型号。可以使用。</li><li>于是问题变成了无法解释的悖论环节&#x2F;bushi。</li></ul><h3 id="使用仪器排查"><a href="#使用仪器排查" class="headerlink" title="使用仪器排查"></a>使用仪器排查</h3><ul><li>简单排查无法发现问题，而且也基本排除了软件配置方面的问题。接下来就是锁定具体问题。<del>然后甩锅给硬件</del></li><li>接上串口工具后很意外的可以使用。</li><li>使用示波器查看后发现，<code>F103</code> 连接后串口电平一直是低，这明显不合逻辑。因为半双工串口一般是外接上拉电阻，空闲应该是高而非低。于是我切到 <code>F150</code>，常高。</li><li>然后我突然意识到好像是软件层面的问题。因为查看芯片手册或者例程可以轻松发现，<code>F150</code> 可以在开漏的同时内部拉高，<code>F103</code>不行。<del>只能说我的经验还是欠缺</del></li></ul><h2 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h2><h3 id="推挽-降低速率"><a href="#推挽-降低速率" class="headerlink" title="推挽 + 降低速率"></a>推挽 + 降低速率</h3><ul><li><p>如果将开漏改为了推挽上拉，会在示波器中发现有通信的波形，只是低电平只有 2.7V，无法正常通信。于是我将串口速率拉低到 2MHz，使得内阻增大，推挽能力减弱，通信中可以被拉低到 1V 左右。从而可以勉强正常通信。<br><img src="https://wu1015-images.pages.dev/imgs/half-duplex-usart/001.jpg" alt="推挽时的波形"></p></li><li><p>只是这样可能有通信稳定性的问题，也有可能会因为增大内阻，产生不必要的电流消耗，发热烧毁（虽然我觉得问题应该不大）。</p></li></ul><h3 id="软件模拟（暂未测试）"><a href="#软件模拟（暂未测试）" class="headerlink" title="软件模拟（暂未测试）"></a>软件模拟（暂未测试）</h3><ul><li>软件模拟应该可以实现。只是会长时间占用CPU，而且也会因为高优先级的中断导致的电平时间拉长，可能影响通信稳定性。也可能会因为长时间的CPU占用影响其他功能。但值得一试。</li></ul><h3 id="手动切换（暂未测试）"><a href="#手动切换（暂未测试）" class="headerlink" title="手动切换（暂未测试）"></a>手动切换（暂未测试）</h3><ul><li>（切换复用推挽用于输出，上拉输入用于输入）理论上如果收发不冲突，可以说是比较好的方案，值得一试。</li></ul><h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><ul><li><blockquote><p><a href="https://oshwhub.com/article/half-duplex-convert">半双工硬件配置_嘉立创</a></p></blockquote></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;最近在配置 &lt;code&gt;GD32F150G8U6&lt;/code&gt; 和 &lt;code&gt;GD32F103C8T6&lt;/code&gt; 这两款芯</summary>
+      
+    
+    
+    
+    <category term="日常" scheme="http://wu1015.github.io/categories/%E6%97%A5%E5%B8%B8/"/>
+    
+    
+    <category term="嵌入式" scheme="http://wu1015.github.io/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
+    
+  </entry>
   
   <entry>
     <title>优雅的使用vscode进行嵌入式软件的开发</title>
@@ -518,31 +543,6 @@
     
     
     <category term="Linux" scheme="http://wu1015.github.io/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>PDF与图片的互相转换</title>
-    <link href="http://wu1015.github.io/2024/07/19/pdf-convert/"/>
-    <id>http://wu1015.github.io/2024/07/19/pdf-convert/</id>
-    <published>2024-07-19T02:57:54.000Z</published>
-    <updated>2024-12-23T02:26:52.570Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="PDF转图片"><a href="#PDF转图片" class="headerlink" title="PDF转图片"></a>PDF转图片</h2><ul><li><p>众所周知，对PDF的编辑基本都是建立在对图片的修改上，那么如果将其相对无损的转化为图片就是首要的问题。</p></li><li><p>首先想到的就是截图，但这与无损相悖。那么就剩下提取了。可以使用命令将其提取出来。命令如下，会输出以<code>outputname</code>为前缀的图片。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pdftoppm input.pdf outputname -png</span><br></pre></td></tr></table></figure></li></ul><h2 id="图片转PDF"><a href="#图片转PDF" class="headerlink" title="图片转PDF"></a>图片转PDF</h2><ul><li>图片合并为PDF同样也是有命令<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">convert input.png input1.png output.pdf</span><br></pre></td></tr></table></figure></li></ul><p>如果名称基本相同的话也可以用通配符。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">convert input&#123;01...12&#125;.png output.pdf</span><br></pre></td></tr></table></figure><h2 id="可能会遇到的问题"><a href="#可能会遇到的问题" class="headerlink" title="可能会遇到的问题"></a>可能会遇到的问题</h2><ul><li><p>报错<code>convert: attempt to perform an operation not allowed by the security policy &#39;PDF&#39; @ error/constitute.c/IsCoderAuthorized/408</code>。安全策略问题。前往&#x2F;etc&#x2F;ImageMagick-6&#x2F;policy.xml改对应行如下：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 原本</span><br><span class="line">&lt;policy domain=&quot;coder&quot; rights=&quot;none&quot; pattern=&quot;PDF&quot; /&gt;</span><br><span class="line">// 改为</span><br><span class="line">&lt;policy domain=&quot;coder&quot; rights=&quot;read|write&quot; pattern=&quot;PDF&quot; /&gt;</span><br></pre></td></tr></table></figure></li><li><p>报错<code>convert-im6.q16: cache resources exhausted </code>outputname_12.png’ @ error&#x2F;cache.c&#x2F;OpenPixelCache&#x2F;4095.&#96;。爆内存问题。因为默认设置只有256MiB，去之前的配置文件改对应内存配置就可以了。</p></li></ul><h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><blockquote><ul><li><a href="https://blog.csdn.net/u013919171/article/details/113520520">在ubuntu上如何将多张图片或PDF合到一个PDF上</a></li><li><a href="https://github.com/ImageMagick/ImageMagick/issues/396#issuecomment-319569255">ImageMagick  Memory issues #396 </a></li></ul></blockquote>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;PDF转图片&quot;&gt;&lt;a href=&quot;#PDF转图片&quot; class=&quot;headerlink&quot; title=&quot;PDF转图片&quot;&gt;&lt;/a&gt;PDF转图片&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;众所周知，对PDF的编辑基本都是建立在对图片的修改上，那么如果将其相对无损的转化为图片就是</summary>
-      
-    
-    
-    
-    <category term="日常" scheme="http://wu1015.github.io/categories/%E6%97%A5%E5%B8%B8/"/>
-    
-    
-    <category term="PDF" scheme="http://wu1015.github.io/tags/PDF/"/>
     
   </entry>
   
