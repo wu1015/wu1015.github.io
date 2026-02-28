@@ -6,7 +6,7 @@
   <link href="http://wu1015.github.io/atom.xml" rel="self"/>
   
   <link href="http://wu1015.github.io/"/>
-  <updated>2026-02-17T12:49:49.218Z</updated>
+  <updated>2026-02-28T20:05:53.000Z</updated>
   <id>http://wu1015.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>关闭烦人的视频彩铃</title>
+    <link href="http://wu1015.github.io/2026/03/01/disable-video-ringback-tone/"/>
+    <id>http://wu1015.github.io/2026/03/01/disable-video-ringback-tone/</id>
+    <published>2026-02-28T19:52:15.000Z</published>
+    <updated>2026-02-28T20:05:53.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>因为以往使用的都是类原生，所以并没有发现什么问题，直到最近使用hyper OS 才发现原来拨号有视频彩铃，还特喵是Ai生成的，很是恶心。</p><p>一番搜索之后，发现关闭两种方法。</p><h2 id="方法一-开发者设置"><a href="#方法一-开发者设置" class="headerlink" title="方法一_开发者设置"></a>方法一_开发者设置</h2><ul><li><p>是前往开发者设置，然后关闭视频彩铃&#x2F;运营商通话功能。这个设置选项一般是在移动网络调试选项栏中。</p></li><li><p>但不幸，<code>hyper OS 1</code> 没有这个设置选项。</p></li></ul><h2 id="方法二-创建快捷方式"><a href="#方法二-创建快捷方式" class="headerlink" title="方法二_创建快捷方式"></a>方法二_创建快捷方式</h2><ul><li><p>另一种方法是使用 创建快捷方式（<a href="https://frp-any.com:18514/Onedrive/%E5%BA%94%E7%94%A8/Android/%E5%88%9B%E5%BB%BA%E5%BF%AB%E6%8D%B7%E6%96%B9%E5%BC%8F_1.17.apk">创建应用快捷方式下载链接</a>） 应用打开隐藏的系统设置，进行关闭。</p></li><li><p>先是下载 创建快捷方式，然后搜索移动网络<br><img src="https://wu1015-images.pages.dev/imgs/disable-video-ringback-tone/001.jpg" alt="搜索移动网络"></p></li><li><p>一般会有几个选项，逐个进去找下<code>运营商视频通话</code>设置。关闭即可。<br><img src="https://wu1015-images.pages.dev/imgs/disable-video-ringback-tone/002.jpeg" alt="关闭运营商视频通话"></p></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;因为以往使用的都是类原生，所以并没有发现什么问题，直到最近使用hyper OS 才发现原来拨号有视频彩铃，还特喵是Ai生成的，很是恶心。&lt;/</summary>
+      
+    
+    
+    
+    <category term="日常" scheme="http://wu1015.github.io/categories/%E6%97%A5%E5%B8%B8/"/>
+    
+    
+    <category term="HyperOS" scheme="http://wu1015.github.io/tags/HyperOS/"/>
+    
+  </entry>
   
   <entry>
     <title>串口半双工配置避坑</title>
@@ -517,32 +541,6 @@
     <category term="Linux" scheme="http://wu1015.github.io/tags/Linux/"/>
     
     <category term="Docker" scheme="http://wu1015.github.io/tags/Docker/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Xubuntu的SFTP在thunar上的使用</title>
-    <link href="http://wu1015.github.io/2024/07/23/sftp-in-thunar/"/>
-    <id>http://wu1015.github.io/2024/07/23/sftp-in-thunar/</id>
-    <published>2024-07-23T07:40:19.000Z</published>
-    <updated>2024-12-23T02:28:21.370Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="正常使用"><a href="#正常使用" class="headerlink" title="正常使用"></a>正常使用</h2><ul><li>将sftp链接复制粘贴到thunar的地址栏上，回车就可以直接挂载了。</li><li>长时间不使用一定记得主动卸载掉。</li></ul><h2 id="异常解决"><a href="#异常解决" class="headerlink" title="异常解决"></a>异常解决</h2><ul><li>在长时间不用之后，sftp链接断开连接，但thunar没有及时中断，而是持续请求，这也会导致thunar直接卡死，重启进程，或是断网也无济于事。</li><li>只能重启解决或者使用ps命令查看sftp的进程，再直接kill掉。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ps -A | grep sftp</span><br><span class="line">// 上面得到的pid</span><br><span class="line">kill pid xxx</span><br></pre></td></tr></table></figure></li></ul><h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><blockquote><ul><li><a href="https://www.runoob.com/linux/linux-comm-kill.html">Linux kill命令_菜鸟教程</a></li></ul></blockquote>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;正常使用&quot;&gt;&lt;a href=&quot;#正常使用&quot; class=&quot;headerlink&quot; title=&quot;正常使用&quot;&gt;&lt;/a&gt;正常使用&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;将sftp链接复制粘贴到thunar的地址栏上，回车就可以直接挂载了。&lt;/li&gt;
-&lt;li&gt;长时间不使用一定记得主</summary>
-      
-    
-    
-    
-    <category term="日常" scheme="http://wu1015.github.io/categories/%E6%97%A5%E5%B8%B8/"/>
-    
-    
-    <category term="Linux" scheme="http://wu1015.github.io/tags/Linux/"/>
     
   </entry>
   
