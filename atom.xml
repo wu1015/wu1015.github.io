@@ -6,7 +6,7 @@
   <link href="http://wu1015.github.io/atom.xml" rel="self"/>
   
   <link href="http://wu1015.github.io/"/>
-  <updated>2026-02-28T20:05:53.000Z</updated>
+  <updated>2026-04-27T14:05:44.345Z</updated>
   <id>http://wu1015.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>小米10Pro的官改体验</title>
+    <link href="http://wu1015.github.io/2026/04/27/mi10pro-usage/"/>
+    <id>http://wu1015.github.io/2026/04/27/mi10pro-usage/</id>
+    <published>2026-04-27T14:00:44.000Z</published>
+    <updated>2026-04-27T14:05:44.345Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ul><li>因为<code>Mix2S</code>实在钉不住了，一个是续航堪忧，另一个是 <code>835</code> 确实有点吃力了。所以我换到了另一个钉子户产品<code>Xiaomi 10 Pro</code>。</li><li>一开始并不准备刷机，一个是因为想体验一下<code>HyperOS</code>（1.0.9），另一个是懒。在体验一个月后，想尝试一下新的事务，但微信录音和<code>类DC调光</code>又是刚需，故而选择官改。</li><li>先说明，配置是<code>12+256</code>，日常使用双卡，不<code>root</code>。（猫抓老鼠的游戏不想玩了）</li></ul><h2 id="官方体验"><a href="#官方体验" class="headerlink" title="官方体验"></a>官方体验</h2><ul><li>没啥说的，与<code>Mix2S</code>相比，全是提升。</li><li>很奇怪的就是相机的对焦问题，要是开启微距模式，稍微近点就会自动切微距模式（<del>小米圣经</del>）。</li></ul><h2 id="官改体验"><a href="#官改体验" class="headerlink" title="官改体验"></a>官改体验</h2><h3 id="HyperOS-2-0-216"><a href="#HyperOS-2-0-216" class="headerlink" title="HyperOS 2.0.216"></a>HyperOS 2.0.216</h3><ul><li>沉淀的移植包，移植自小米15Pro。刷的<code>erofs</code>版本。</li><li>体验还不错，动画很完善，卡顿出现的比较少（还是有），<code>NFC</code>也能用。</li></ul><h4 id="出现的问题"><a href="#出现的问题" class="headerlink" title="出现的问题"></a>出现的问题</h4><ul><li>不开启指纹解锁，使用电源键点亮屏幕概率失败。（其实解锁了，但是屏幕是黑的，可以摸黑把亮度拉高，然后就亮了）。</li><li>应用录音概率出现电流音（暂指微信录音）。通话没有影响，但是录音会有电流音。（猜测可能是哈曼卡顿音效的影响）。</li><li>大部分功能无法开启，或开启后自动关闭。如 60Hz 屏幕刷新率（过一会儿自动锁 90Hz ）、通知分组（开启后自动关闭）、锁屏通知显示（开启后自动切为默认设置）、移动网络调试、防晕车模式等。</li><li>灵动岛没有完全适配，灵动额头有的灵动岛才有，否则就是原来正常的通知样式。</li><li>浮动通知不显示（小窗缩小之后有通知后会显示在小图标旁边）。</li><li>触摸不跟手，点击一些应用会卡一会儿才跳转。</li><li>手表版 QQ 会出现显示 bug，不清楚原因，只能显示一行文字，之后的都是重复第一行的文字，但是用<code>FV</code>提取却又是完整的文字。</li></ul><h3 id="MIUI-14-0-4-0"><a href="#MIUI-14-0-4-0" class="headerlink" title="MIUI 14.0.4.0"></a>MIUI 14.0.4.0</h3><ul><li>沉淀的官改包，并非移植。刷的<code>erofs</code>版本。</li><li>体验一般，动画傻快，影响体验的问题很多。</li></ul><h4 id="出现的问题-1"><a href="#出现的问题-1" class="headerlink" title="出现的问题"></a>出现的问题</h4><ul><li>桌面壁纸显示比图标暗很多。</li><li>面部解锁动画丢失。</li><li>似乎会偶尔出现断流的问题。</li><li>谷歌拼音输入法修改包名后闪退（比如在<code>HyperOS</code>的时候修改为百度输入法，从而可以使用系统的垫高）。</li><li>桌面壁纸有时候被高斯覆盖掉（先使用抽屉进入应用后直接返回桌面大概率触发）。</li></ul><h4 id="缺少刚需的功能"><a href="#缺少刚需的功能" class="headerlink" title="缺少刚需的功能"></a>缺少刚需的功能</h4><ul><li>通知和铃声不分离。</li><li>分区解锁之后没有伪装加密，有些环境可能过不去。</li></ul><h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><ul><li>最后还是回到了官方稳定版。当然，如果能接受一些问题，并且不玩游戏的话，<code>HyperOS 2.0.216</code> 是一个不错的选择。</li><li>相比<code>HyperOS 2.0.216</code>，缺少了媒体访问权限的管理（比如只允许读取某几张图片）。</li><li>意外发现如果把指纹解锁关闭的话，可以延长待机续航（效果明显）。</li></ul><h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><blockquote><ul><li><a href="https://www.coolapk.com/feed/67650154">CoolApk_10.5更新:小米10系列_移植A15_HyperOS2.0.216.0（稳定版)，接入高级设置V1.2.0【养老精选】</a></li><li><a href="https://www.coolapk.com/feed/49320807">CoolApk_9.18:更新发布精品Rom，遥遥领先……小米10pro安卓13_官方稳定版Miui14.0.4.0官改纯净包。安卓安全补丁：2023-04-01</a></li></ul></blockquote>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;因为&lt;code&gt;Mix2S&lt;/code&gt;实在钉不住了，一个是续航堪忧，另一个是 &lt;code&gt;835&lt;/code&gt; 确实有点吃力了</summary>
+      
+    
+    
+    
+    <category term="日常" scheme="http://wu1015.github.io/categories/%E6%97%A5%E5%B8%B8/"/>
+    
+    
+    <category term="刷机" scheme="http://wu1015.github.io/tags/%E5%88%B7%E6%9C%BA/"/>
+    
+  </entry>
   
   <entry>
     <title>关闭烦人的视频彩铃</title>
@@ -505,32 +530,6 @@
     <summary type="html">&lt;h2 id=&quot;拉取镜像&quot;&gt;&lt;a href=&quot;#拉取镜像&quot; class=&quot;headerlink&quot; title=&quot;拉取镜像&quot;&gt;&lt;/a&gt;拉取镜像&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;&lt;p&gt;直接拉取镜像&lt;/p&gt;
 &lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table</summary>
-      
-    
-    
-    
-    <category term="笔记" scheme="http://wu1015.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
-    
-    
-    <category term="Linux" scheme="http://wu1015.github.io/tags/Linux/"/>
-    
-    <category term="Docker" scheme="http://wu1015.github.io/tags/Docker/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Docker的基本使用</title>
-    <link href="http://wu1015.github.io/2024/08/01/docker-base-usage/"/>
-    <id>http://wu1015.github.io/2024/08/01/docker-base-usage/</id>
-    <published>2024-08-01T09:16:57.000Z</published>
-    <updated>2024-12-23T02:21:49.054Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="Docker的安装"><a href="#Docker的安装" class="headerlink" title="Docker的安装"></a>Docker的安装</h2><h3 id="卸载旧版本"><a href="#卸载旧版本" class="headerlink" title="卸载旧版本"></a>卸载旧版本</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get remove docker \</span><br><span class="line">               docker-engine \</span><br><span class="line">               docker.io</span><br></pre></td></tr></table></figure><h3 id="使用apt安装"><a href="#使用apt安装" class="headerlink" title="使用apt安装"></a>使用apt安装</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin</span><br></pre></td></tr></table></figure><ul><li>或者我这是没有上述的<code>docker-ce</code>等包，所以就安装了<code>docker-io</code>，但也能用。</li></ul><h3 id="运行镜像"><a href="#运行镜像" class="headerlink" title="运行镜像"></a>运行镜像</h3><ul><li><p>如果本地没有镜像会远程拉取。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run hello-world</span><br></pre></td></tr></table></figure></li><li><p>然后在2024年的今天，在国内基本已经不能如此拉取了。甚至连几个大的镜像站也关闭了。因此需要添加其他的镜像站。</p></li><li><p>添加到<code>/etc/docker/daemon.json</code>，如果没有这个文件就创建一个。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/docker/daemon.json</span><br></pre></td></tr></table></figure></li></ul><p>输入以下内容并保存</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;registry-mirrors&quot;: [</span><br><span class="line">    &quot;https://docker.m.daocloud.io&quot;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="Docker的操作"><a href="#Docker的操作" class="headerlink" title="Docker的操作"></a>Docker的操作</h2><h3 id="基础操作"><a href="#基础操作" class="headerlink" title="基础操作"></a>基础操作</h3><ul><li><p>查看的Docker版本</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker --version</span><br></pre></td></tr></table></figure></li><li><p>查看Docker信息</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker info</span><br></pre></td></tr></table></figure></li><li><p>查看已有的镜像</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure></li><li><p>查看正在运行的容器</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps -a</span><br></pre></td></tr></table></figure><p><img src="https://wu1015-images.pages.dev/imgs/docker-base-usage/%E6%88%AA%E5%9B%BE_2024-08-01_09-56-58.png" alt="查看正在运行的容器"></p></li><li><p>关闭&#x2F;打开正在运行的容器。<code>CONTAINER ID</code>和<code>NAMES</code>为刚刚看到的容器属性，用哪个都行。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker stop &lt;CONTAINER ID&gt; &lt;NAMES&gt;</span><br><span class="line">docker start &lt;CONTAINER ID&gt; &lt;NAMES&gt;</span><br></pre></td></tr></table></figure></li><li><p>进入已经打开了的容器，<code>CONTAINER ID</code>和<code>NAMES</code>为之前看到的容器属性，用哪个都行。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker attach &lt;CONTAINER ID&gt; &lt;NAMES&gt;</span><br></pre></td></tr></table></figure></li><li><p>退出但不关闭容器</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 输入Ctrl P Q</span><br><span class="line"></span><br><span class="line">//退出并关闭容器</span><br><span class="line">exit</span><br></pre></td></tr></table></figure></li><li><p>修改容器名称</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rename 原容器名称 新容器名称</span><br></pre></td></tr></table></figure><p><img src="https://wu1015-images.pages.dev/imgs/docker-base-usage/%E6%88%AA%E5%9B%BE_2024-08-01_09-59-12.png" alt="修改容器名称"></p></li><li><p>删除容器。<code>CONTAINER ID</code>和<code>NAMES</code>为刚刚看到的容器属性，用哪个都行。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker rm &lt;CONTAINER ID&gt; &lt;NAMES&gt;</span><br><span class="line">docker rm &lt;CONTAINER ID&gt; &lt;NAMES&gt;</span><br></pre></td></tr></table></figure></li></ul><h3 id="打包和导入导出镜像"><a href="#打包和导入导出镜像" class="headerlink" title="打包和导入导出镜像"></a>打包和导入导出镜像</h3><ul><li><p>将容器打包为镜像</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">docker commit -m &quot;What you did to the image&quot; -a &quot;Author Name&quot; container_id repository/new_image_name</span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line">*参数说明</span><br><span class="line">*参数说明：</span><br><span class="line">*commit：提交命令</span><br><span class="line">*-m：提交的注释</span><br><span class="line">*-a：作者的名字</span><br><span class="line">*container_id：容器的id</span><br><span class="line">*repository/new_image_name：作者自定义的库名（一般和用户名一致）/镜像名*/</span><br></pre></td></tr></table></figure><p><img src="https://wu1015-images.pages.dev/imgs/docker-base-usage/%E6%88%AA%E5%9B%BE_2024-08-01_10-10-26.png" alt="容器打包为镜像"></p></li><li><p>导出容器的镜像,<code>CONTAINER ID</code>为之前看到的容器属性。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker export CONTAINER ID  &gt; 路径/文件名.tar</span><br><span class="line"></span><br><span class="line">//导出多个容器镜像为一个压缩包</span><br><span class="line">docker save CONTAINER ID CONTAINER ID CONTAINER ID  &gt; 路径/文件名.tar</span><br></pre></td></tr></table></figure></li><li><p>导入镜像</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker import - 仓库:名称 &lt; 路径/文件.tar</span><br><span class="line"></span><br><span class="line">//从一个压缩包导入多个容器镜像</span><br><span class="line">docker load --input 路径/文件名.tar</span><br></pre></td></tr></table></figure></li><li><p>启动导入的镜像，<code>COMMAND</code>是之前看到的镜像的一个属性。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run 镜像id COMMAND</span><br></pre></td></tr></table></figure></li></ul><h3 id="直接下载镜像"><a href="#直接下载镜像" class="headerlink" title="直接下载镜像"></a>直接下载镜像</h3><ul><li><p>直接下载镜像而不下载docker。这么一来就不用过多担心国内无法拉取docker镜像的问题。完全可以直接挂梯子拉下来然后再导入进去。<del>（为什么不直接挂代理拉下来呢）</del></p></li><li><p>不过需要注意的是，拉下来后的导入应该使用<code>load</code>而不是<code>import</code>。</p></li></ul><h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><blockquote><ul><li><a href="https://cloud.tencent.com/developer/article/2434428">国内无法拉取Docker镜像了？这些方法拯救你的Docker</a></li><li><a href="https://github.com/DaoCloud/public-image-mirror">public-image-mirror </a></li><li><a href="https://blog.csdn.net/weixin_43117620/article/details/129217954">【一站式教程】Ubuntu利用Docker进行深度学习</a></li><li><a href="https://github.com/NotGlop/docker-drag">Github项目_docker-drag</a></li></ul></blockquote>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;Docker的安装&quot;&gt;&lt;a href=&quot;#Docker的安装&quot; class=&quot;headerlink&quot; title=&quot;Docker的安装&quot;&gt;&lt;/a&gt;Docker的安装&lt;/h2&gt;&lt;h3 id=&quot;卸载旧版本&quot;&gt;&lt;a href=&quot;#卸载旧版本&quot; class=&quot;header</summary>
       
     
     
