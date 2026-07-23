@@ -32,7 +32,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://wu1015-images.pages.dev/imgs/half-duplex-usart/001.jpg">
 <meta property="article:published_time" content="2026-02-17T05:28:07.000Z">
-<meta property="article:modified_time" content="2026-02-17T12:49:49.218Z">
+<meta property="article:modified_time" content="2026-07-23T13:21:32.989Z">
 <meta property="article:author" content="wu1015">
 <meta property="article:tag" content="嵌入式">
 <meta name="twitter:card" content="summary">
@@ -175,7 +175,7 @@
             <div class="article-date wow slideInLeft">
     <a href="/2026/02/17/half-duplex-usart/" class="article-date-link">
         <time datetime="2026-02-17T05:28:07.000Z"
-              itemprop="datePublished">2026-02-17 Last 2026-02-17</time>
+              itemprop="datePublished">2026-02-17 Last 2026-07-23</time>
     </a>
 </div>
 
@@ -206,9 +206,9 @@
 <li>然后我突然意识到好像是软件层面的问题。因为查看芯片手册或者例程可以轻松发现，<code>F150</code> 可以在开漏的同时内部拉高，<code>F103</code>不行。<del>只能说我的经验还是欠缺</del></li>
 </ul>
 <h2 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h2><h3 id="推挽-降低速率"><a href="#推挽-降低速率" class="headerlink" title="推挽 + 降低速率"></a>推挽 + 降低速率</h3><ul>
-<li><p>如果将开漏改为了推挽上拉，会在示波器中发现有通信的波形，只是低电平只有 2.7V，无法正常通信。于是我将串口速率拉低到 2MHz，使得内阻增大，推挽能力减弱，通信中可以被拉低到 1V 左右。从而可以勉强正常通信。<br><img src="https://wu1015-images.pages.dev/imgs/half-duplex-usart/001.jpg" alt="推挽时的波形"></p>
+<li><p>如果将开漏改为了推挽上拉，会在示波器中发现有通信的波形，只是低电平只有 2.7V，无法正常通信。于是我将串口速率拉低到 2MHz，大上升斜率，避免冲突。从而可以勉强正常通信。<br><img src="https://wu1015-images.pages.dev/imgs/half-duplex-usart/001.jpg" alt="推挽时的波形"></p>
 </li>
-<li><p>只是这样可能有通信稳定性的问题，也有可能会因为增大内阻，产生不必要的电流消耗，发热烧毁（虽然我觉得问题应该不大）。</p>
+<li><p>只是这样可能有通信稳定性的问题，也有可能会因为低速导致的总线冲突时间变长，产生不必要的电流消耗，发热烧毁（虽然我觉得问题应该不大）。</p>
 </li>
 </ul>
 <h3 id="软件模拟（暂未测试）"><a href="#软件模拟（暂未测试）" class="headerlink" title="软件模拟（暂未测试）"></a>软件模拟（暂未测试）</h3><ul>
